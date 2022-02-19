@@ -7,9 +7,9 @@
     * [Swap Data / Swap Nodes](#p2)
     * [Reverse](#p3)
     * [Remove n-th Last Node](#p4)
-    * [Merge Two Sorted Linked Lists](#p5)
-    * [Remove Duplicates](#p6)
-    * [Rotate](#p7)
+    * [Remove Duplicates](#p5)
+    * [Rotate](#p6)
+    * [Merge Two Sorted Linked Lists](#p7)
 * ### LeetCode Problems
     * [0002. Add Two Numbers (Medium)](https://leetcode.com/problems/add-two-numbers/)
     * [0009. Palindrome Number (Easy)](https://leetcode.com/problems/palindrome-number/)
@@ -273,7 +273,63 @@ class LinkedList:
         slowP.next = slowP.next.next
 ```
 
-## Merge Two Sorted Linked Lists    <a name="p5"></a>
+## Remove Duplicates                <a name="p5"></a>
+```python
+    def removeDuplicate_set(self):
+        record = set()
+        prev, cur = None, self.head
+
+        while cur:
+            if cur.data in record:
+                prev.next = cur.next
+            else:
+                record.add(cur.data)
+                prev = cur
+            
+            cur = cur.next
+
+    def removeDuplicate_ifSorted(self):
+        cur = self.head
+        while cur:
+            while cur.next and cur.data == cur.next.data:
+                cur.next = cur.next.next
+
+            cur = cur.next
+```
+
+## Rotate                           <a name="p6"></a>
+```python
+    def rotate(self, n, dir='right'):
+        """
+        [Key] Find New Tail Node & Original Tail Node
+        ================================================================
+        A -> B -> C -> D -> E (n = 2, length = 5)
+        Rotate to the right = C is new tail node = 5 - 2 - 1 gaps from A
+                            D is new head node
+
+        Rotate to the left  = B is new tail node = 2 - 1     gaps from A
+                            C is new head node
+        ================================================================
+        """
+        node = self.head
+
+        tail, length = node, 1
+        while tail.next: tail, length = tail.next, length + 1
+
+        n %= length
+        if n == 0: return node
+
+        if   dir == 'right': rotation = length - n - 1
+        elif dir == 'left':  rotation = n - 1
+
+        new_tail = node    
+        for _ in range(rotation): new_tail = new_tail.next
+
+        self.head = new_tail.next
+        tail.next, new_tail.next = node, None
+```
+
+## Merge Two Sorted Linked Lists    <a name="p7"></a>
 ```python
 def mergeTwoLists_iterative(l1, l2):
     ret = cur = Node(0)
@@ -297,60 +353,4 @@ def mergeTwoLists_recursive(l1, l2):
     l1.next = mergeTwoLists_recursive(l1.next, l2)
 
     return l1
-```
-
-## Remove Duplicates                <a name="p6"></a>
-```python
-def removeDuplicate_set(node):
-    record = set()
-    prev, cur = None, node
-
-    while cur:
-        if cur.data in record:
-            prev.next = cur.next
-        else:
-            record.add(cur.data)
-            prev = cur
-        
-        cur = cur.next
-
-def removeDuplicate_ifSorted(node):
-    cur = node
-    while cur:
-        while cur.next and cur.data == cur.next.data:
-            cur.next = cur.next.next
-
-        cur = cur.next
-```
-
-## Rotate                           <a name="p7"></a>
-```python
-def rotate(node, n, dir='right'):
-    """
-    [Key] Find New Tail Node & Original Tail Node
-    ================================================================
-    A -> B -> C -> D -> E (n = 2, length = 5)
-    Rotate to the right = C is new tail node = 5 - 2 - 1 gaps from A
-                          D is new head node
-
-    Rotate to the left  = B is new tail node = 2 - 1     gaps from A
-                          C is new head node
-    ================================================================
-    """
-    tail, length = node, 1
-    while tail.next: tail, length = tail.next, length + 1
-
-    n %= length
-    if n == 0: return node
-
-    if   dir == 'right': rotation = length - n - 1
-    elif dir == 'left':  rotation = n - 1
-
-    new_tail = node    
-    for _ in range(rotation): new_tail = new_tail.next
-
-    head = new_tail.next
-    tail.next, new_tail.next = node, None
-
-    return head
 ```
