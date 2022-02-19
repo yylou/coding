@@ -12,7 +12,6 @@
     * [Merge Two Sorted Linked Lists](#p7)
 * ### LeetCode Problems
     * [0002. Add Two Numbers (Medium)](https://leetcode.com/problems/add-two-numbers/)
-    * [0009. Palindrome Number (Easy)](https://leetcode.com/problems/palindrome-number/)
     * [0019. Remove Nth Node From End of List (Medium)](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
     * [0021. Merge Two Sorted Lists (Easy)](https://leetcode.com/problems/merge-two-sorted-lists/)
     * [0061. Rotate List (Medium)](https://leetcode.com/problems/rotate-list/)
