@@ -11,7 +11,7 @@
 <br />
 
 ## Math Operators                       <a name="p1"></a>
-```Python
+```python
   " +  "    Addition
   " -  "    Subtraction
   " *  "    Multiplication
@@ -22,7 +22,7 @@
 ```
 
 ## Operator Precedence                  <a name="p2"></a>
-```Python
+```python
   (1)  Parentheses      " () "
   (2)  Exponentiation   " ** "
   (3)  Mul / Div / Mod  " *, /, //, %"
