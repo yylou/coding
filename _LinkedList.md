@@ -22,7 +22,7 @@
 
 <br />
 
-## Linked List          <a name="p17"></a>
+## Linked List
 ```python
 from __future__ import print_function
 
@@ -34,7 +34,10 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+```
 
+## Append
+```python
     def append(self, data):
         """
         Add new node to the tail of the linked list
@@ -45,7 +48,10 @@ class LinkedList:
             cur = self.head
             while cur.next: cur = cur.next
             cur.next = new
+```
 
+## Prepend
+```python
     def prepend(self, data):
         """
         Add new node to the head of the linked list
@@ -53,7 +59,10 @@ class LinkedList:
         new = Node(data)
         new.next = self.head
         self.head = new
+```
 
+## Insert
+```python
     def insert_after(self, node, data):
         """
         Add new node after the specific node
