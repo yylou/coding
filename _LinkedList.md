@@ -2,13 +2,14 @@
 
 * ### [Menu](./README.md)
 * ### Data Structures - Linked List
-    * Append / Prepend / Insert / Delete / Length
-    * Swap Data / Swap Nodes
-    * Reverse
-    * Remove n-th Last Node
-    * Merge Two Linked Lists
-    * Remove Duplicates
-    * Rotate
+    * [Source Code](./_LinkedList.py)
+    * [Append / Prepend / Insert / Delete / Length](#p1)
+    * [Swap Data / Swap Nodes](#p2)
+    * [Reverse](#p3)
+    * [Remove n-th Last Node](#p4)
+    * [Merge Two Sorted Linked Lists](#p5)
+    * [Remove Duplicates](#p6)
+    * [Rotate](#p7)
 * ### LeetCode Problems
     * [0002. Add Two Numbers (Medium)](https://leetcode.com/problems/add-two-numbers/)
     * [0009. Palindrome Number (Easy)](https://leetcode.com/problems/palindrome-number/)
@@ -34,15 +35,35 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+
+    def get_node(self, key):
+        """
+        Retrieve node by key (data)
+        """
+        cur = self.head
+        while cur: 
+            if cur.data == key: return cur
+            cur = cur.next
+
+    def print_list(self):
+        """
+        Print the linked list from HEAD to the TAIL node
+        """
+        cur = self.head
+        while cur:
+            print(cur.data, end='')
+            cur = cur.next
+        print('')
 ```
 
-## Append
+## Append                           <a name="p1"></a>
 ```python
     def append(self, data):
         """
         Add new node to the tail of the linked list
         """
         new = Node(data)
+
         if not self.head: self.head = new
         else: 
             cur = self.head
@@ -70,7 +91,10 @@ class LinkedList:
         new = Node(data)
         new.next = node.next
         node.next = new
+```
 
+## Delete
+```python
     def delete(self, key):
         """
         Delete node by searching key as node's data
@@ -100,7 +124,28 @@ class LinkedList:
             while cur and index != pos:
                 cur, prev, index = cur.next, cur, index+1
             if cur: prev.next, cur = cur.next, None
+```
 
+## Length
+```python
+    def get_len_iterative(self):
+        """
+        Get the length of the linked list (iterative)
+        """
+        cur, count = self.head, 0
+        while cur: cur, count = cur.next, count+1
+        return count
+
+    def get_len_recursive(self, node):
+        """
+        Get the length of the linked list (recursive)
+        """
+        if not node: return 0
+        return 1 + self.get_len_recursive(node.next)
+```
+
+### Swap Data / Swap Nodes          <a name="p2"></a>
+```python
     def swap_data(self, key1, key2):
         """
         Swap two nodes' data by searching key as node's data
@@ -143,7 +188,10 @@ class LinkedList:
 
         # Swap node1 and node2's next pointers
         node1.next, node2.next = node2.next, node1.next
+```
 
+## Reverse                          <a name="p3"></a>
+```python
     def reverse_iterative(self):
         """
         Reverse the linked list by iterative method
@@ -196,7 +244,10 @@ class LinkedList:
         
         node = helper(self.head)
         self.head = node
+```
 
+## Remove n-th Last Node            <a name="p4"></a>
+```python
     def remove_nthToLast(self, n):
         """
         Get the nth node from the tail of the linked list
@@ -220,41 +271,10 @@ class LinkedList:
         while fastP.next: fastP, slowP = fastP.next, slowP.next
 
         slowP.next = slowP.next.next
+```
 
-    def get_node(self, key):
-        """
-        Retrieve node by key (data)
-        """
-        cur = self.head
-        while cur: 
-            if cur.data == key: return cur
-            cur = cur.next
-
-    def get_len_iterative(self):
-        """
-        Get the length of the linked list (iterative)
-        """
-        cur, count = self.head, 0
-        while cur: cur, count = cur.next, count+1
-        return count
-
-    def get_len_recursive(self, node):
-        """
-        Get the length of the linked list (recursive)
-        """
-        if not node: return 0
-        return 1 + self.get_len_recursive(node.next)
-
-    def print_list(self):
-        """
-        Print the linked list from HEAD to the TAIL node
-        """
-        cur = self.head
-        while cur:
-            print(cur.data, end='')
-            cur = cur.next
-        print('')
-
+## Merge Two Sorted Linked Lists    <a name="p5"></a>
+```python
 def mergeTwoLists_iterative(l1, l2):
     ret = cur = Node(0)
 
@@ -277,7 +297,10 @@ def mergeTwoLists_recursive(l1, l2):
     l1.next = mergeTwoLists_recursive(l1.next, l2)
 
     return l1
+```
 
+## Remove Duplicates                <a name="p6"></a>
+```python
 def removeDuplicate_set(node):
     record = set()
     prev, cur = None, node
@@ -298,7 +321,10 @@ def removeDuplicate_ifSorted(node):
             cur.next = cur.next.next
 
         cur = cur.next
+```
 
+## Rotate                           <a name="p7"></a>
+```python
 def rotate(node, n, dir='right'):
     """
     [Key] Find New Tail Node & Original Tail Node
@@ -327,103 +353,4 @@ def rotate(node, n, dir='right'):
     tail.next, new_tail.next = node, None
 
     return head
-
-if __name__ == '__main__':
-    l1 = LinkedList()
-    l1.append('B')                              # B
-    l1.prepend('A')                             # AB
-    l1.insert_after(l1.get_node('B'), 'C')      # ABC
-    l1.insert_after(l1.get_node('C'), 'D')      # ABCD
-    length = l1.get_len_iterative()             # 4
-
-    l1.delete("B")                              # ACD
-    l1.delete("E")                              # ACD
-
-    l1.insert_after(l1.get_node('A'), 'B')      # ABCD
-    l1.delete_pos(2)                            # ABD
-
-    length = l1.get_len_iterative()             # 3
-    length = l1.get_len_recursive(l1.head)      # 3
-
-    l1.insert_after(l1.get_node('B'), 'C')      # ABCD
-    length = l1.get_len_iterative()             # 4
-
-    l1.swap_data('A', 'C')                      # CBAD
-    l1.swap_data('C', 'A')                      # ABCD
-
-    l1.swap_node('A', 'D')                      # DBCA
-    l1.swap_node('C', 'B')                      # DCBA
-
-    l1.reverse_iterative()                      # ABCD
-    l1.reverse_recursive()                      # DCBA
-
-    l2 = LinkedList()
-    l2.append('E')
-    l2.append('F')
-    l2.append('G')
-    l2.append('H')                              # EFGH
-
-    print('l1: ', end=''); l1.print_list()      # DCBA
-    print('l2: ', end=''); l2.print_list()      # EFGH
-    l3 = mergeTwoLists_recursive(l1.head, l2.head)
-    l4 = LinkedList()
-    while l3:
-        l4.append(l3.data)
-        l3 = l3.next
-    print('Merge: ', end=''); l4.print_list()   # DCBAEFGH
-    print()
-
-    l1 = LinkedList()
-    l1.append('A')
-    l1.append('B')
-    l1.append('G')
-    l1.append('H')
-
-    print('l1: ', end=''); l1.print_list()      # ABGH
-    print('l2: ', end=''); l2.print_list()      # EFGH
-    l3 = mergeTwoLists_iterative(l1.head, l2.head)
-    l4 = LinkedList()
-    while l3:
-        l4.append(l3.data)
-        l3 = l3.next
-    print('Merge:      ', end=''); l4.print_list()   # ABEFGGHH
-
-    removeDuplicate_set(l4.head)
-    print('Remove Dup: ', end='')
-    l4.print_list()                             # ABEFGH
-    print()
-
-    l4.insert_after(l4.get_node('A'), 'A')
-    l4.insert_after(l4.get_node('A'), 'A')
-    l4.insert_after(l4.get_node('G'), 'G')
-    l4.insert_after(l4.get_node('H'), 'H')      # AAABEFGGHH
-
-    print('l4:         ', end='')
-    l4.print_list()                             # AAABEFGGHH
-    removeDuplicate_ifSorted(l4.head)
-    print('Remove Dup: ', end='')
-    l4.print_list()                             # ABEFGH
-
-    print('Remove 3th last node: ', end='')
-    l4.remove_nthToLast(3)                      # ABE_GH
-    l4.print_list()
-    print()
-
-    print('l4:             ', end='')
-    l4.print_list()                             # ABEGH
-    node = rotate(l4.head, 2, dir='right')
-    l3 = LinkedList()
-    while node:
-        l3.append(node.data)
-        node = node.next
-    print('Rotate right 2: ', end='')
-    l3.print_list()                             # GHABE
-
-    node = rotate(l3.head, 2, dir='left')
-    l3 = LinkedList()
-    while node:
-        l3.append(node.data)
-        node = node.next
-    print('Rotate left  2: ', end='')
-    l3.print_list()                             # ABEGH
 ```
