@@ -18,5 +18,5 @@
     * Implementing duck typing
     * Abstract Base Classes (ABC)
     * Iterable vs. Iterator
-* ### Data Structures
-    * [Linked List (w/ Leetcode Problems)](./_LinkedList.md)
+* ### Data Structures (w/ Leetcode Problems)
+    * [Linked List](./_LinkedList.md)
