@@ -9,6 +9,25 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    def get_node(self, key):
+        """
+        Retrieve node by key (data)
+        """
+        cur = self.head
+        while cur: 
+            if cur.data == key: return cur
+            cur = cur.next
+
+    def print_list(self):
+        """
+        Print the linked list from HEAD to the TAIL node
+        """
+        cur = self.head
+        while cur:
+            print(cur.data, end='')
+            cur = cur.next
+        print('')
+
     def append(self, data):
         """
         Add new node to the tail of the linked list
@@ -65,6 +84,21 @@ class LinkedList:
             while cur and index != pos:
                 cur, prev, index = cur.next, cur, index+1
             if cur: prev.next, cur = cur.next, None
+
+    def get_len_iterative(self):
+        """
+        Get the length of the linked list (iterative)
+        """
+        cur, count = self.head, 0
+        while cur: cur, count = cur.next, count+1
+        return count
+
+    def get_len_recursive(self, node):
+        """
+        Get the length of the linked list (recursive)
+        """
+        if not node: return 0
+        return 1 + self.get_len_recursive(node.next)
 
     def swap_data(self, key1, key2):
         """
@@ -185,40 +219,6 @@ class LinkedList:
         while fastP.next: fastP, slowP = fastP.next, slowP.next
 
         slowP.next = slowP.next.next
-
-    def get_node(self, key):
-        """
-        Retrieve node by key (data)
-        """
-        cur = self.head
-        while cur: 
-            if cur.data == key: return cur
-            cur = cur.next
-
-    def get_len_iterative(self):
-        """
-        Get the length of the linked list (iterative)
-        """
-        cur, count = self.head, 0
-        while cur: cur, count = cur.next, count+1
-        return count
-
-    def get_len_recursive(self, node):
-        """
-        Get the length of the linked list (recursive)
-        """
-        if not node: return 0
-        return 1 + self.get_len_recursive(node.next)
-
-    def print_list(self):
-        """
-        Print the linked list from HEAD to the TAIL node
-        """
-        cur = self.head
-        while cur:
-            print(cur.data, end='')
-            cur = cur.next
-        print('')
 
 def mergeTwoLists_iterative(l1, l2):
     ret = cur = Node(0)
