@@ -328,6 +328,8 @@ if __name__ == '__main__':
     l2.append('G')
     l2.append('H')                              # EFGH
 
+    # =============================================================
+
     print('l1: ', end=''); l1.print_list()      # DCBA
     print('l2: ', end=''); l2.print_list()      # EFGH
     l3 = mergeTwoLists_recursive(l1.head, l2.head)
