@@ -1,4 +1,14 @@
+'''
+Author  : Yuan-Yao Lou (Mike)
+Title   : PhD student in ECE at Purdue University
+Email   : yylou@purdue.edu
+Website : https://yylou.github.io/
+Date    : 2022/02/19
+'''
+
+
 from __future__ import print_function
+
 
 class Node:
     def __init__(self, data):
@@ -28,11 +38,14 @@ class LinkedList:
             cur = cur.next
         print('')
 
+    # =============================================================
+
     def append(self, data):
         """
         Add new node to the tail of the linked list
         """
         new = Node(data)
+
         if not self.head: self.head = new
         else: 
             cur = self.head
@@ -100,6 +113,8 @@ class LinkedList:
         if not node: return 0
         return 1 + self.get_len_recursive(node.next)
 
+    # =============================================================
+
     def swap_data(self, key1, key2):
         """
         Swap two nodes' data by searching key as node's data
@@ -142,6 +157,8 @@ class LinkedList:
 
         # Swap node1 and node2's next pointers
         node1.next, node2.next = node2.next, node1.next
+
+    # =============================================================
 
     def reverse_iterative(self):
         """
@@ -196,6 +213,8 @@ class LinkedList:
         node = helper(self.head)
         self.head = node
 
+    # =============================================================
+
     def remove_nthToLast(self, n):
         """
         Get the nth node from the tail of the linked list
@@ -220,6 +239,8 @@ class LinkedList:
 
         slowP.next = slowP.next.next
 
+    # =============================================================
+
     def removeDuplicate_set(self):
         record = set()
         prev, cur = None, self.head
@@ -240,6 +261,8 @@ class LinkedList:
                 cur.next = cur.next.next
 
             cur = cur.next
+
+    # =============================================================
 
     def rotate(self, n, dir='right'):
         """
@@ -270,6 +293,7 @@ class LinkedList:
         self.head = new_tail.next
         tail.next, new_tail.next = node, None
 
+
 def mergeTwoLists_iterative(l1, l2):
     ret = cur = Node(0)
 
@@ -292,6 +316,7 @@ def mergeTwoLists_recursive(l1, l2):
     l1.next = mergeTwoLists_recursive(l1.next, l2)
 
     return l1
+
 
 if __name__ == '__main__':
     l1 = LinkedList()
