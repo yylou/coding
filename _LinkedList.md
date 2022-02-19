@@ -2,7 +2,7 @@
 
 * ### [Menu](./README.md)
 * ### Data Structures - Linked List
-    * [Source Code](./_LinkedList.py)
+    * [<ins>Source Code<ins>](./_LinkedList.py)
     * [Append / Prepend / Insert / Delete / Length](#p1)
     * [Swap Data / Swap Nodes](#p2)
     * [Reverse](#p3)
