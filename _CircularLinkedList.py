@@ -264,7 +264,7 @@ class LinkedList:
         slowP.next = slowP.next.next
 
         # If target node is the head node
-        if fastP == self.head: self.head = slowP.next
+        if fastP == slowP: self.head = slowP.next
 
         return self.head
 
@@ -382,3 +382,9 @@ if __name__ == '__main__':
     print(f'[Remove 6-th last node: {l5.get_nthToLast(6)}]')
     l5.remove_nthToLast(6)
     print('[List 5]   ', l5)        # 12345
+    print(f'[Remove 3-th last node: {l5.get_nthToLast(3)}]')
+    l5.remove_nthToLast(3)
+    print('[List 5]   ', l5)        # 1245
+    print(f'[Remove 8-th last node: {l5.get_nthToLast(8)}]')
+    l5.remove_nthToLast(8)
+    print('[List 5]   ', l5)        # 245
