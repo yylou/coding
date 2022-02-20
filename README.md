@@ -20,3 +20,4 @@
     * Iterable vs. Iterator
 * ### Data Structures (w/ Leetcode Problems)
     * [Singly Linked List](./_SinglyLinkedList.md)
+    * [Circular Linked List](./_CircularLinkedList.md)
