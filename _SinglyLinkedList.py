@@ -158,7 +158,7 @@ class LinkedList:
 
     def swap_node(self, key1, key2) -> Node:
         """
-        Swap two nodes by searching key as node's data
+        Swap two nodes by searching key (node's data)
         """
         cur, prev = self.head, None
         prev1, node1, prev2, node2 = None, None, None, None
