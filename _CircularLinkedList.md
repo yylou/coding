@@ -3,7 +3,7 @@
 * ### [Menu](./README.md)
 * ### Data Structures - Circular Linked List
     * [<ins>Source Code<ins>](./_CircularLinkedList.py)
-    * [__len__ / Get Node / __str__](#p1)
+    * [\_\_len\_\_ / Get Node / \_\_str\_\_](#p1)
     * [Append / Prepend / Insert / Delete](#p2)
     * [Reverse](#p3)
     * [Rotate](#p4)
