@@ -285,6 +285,48 @@ class LinkedList:
 
     # =============================================================
 
+    def split(self, n=2) -> tuple:
+        """
+        Split linked list into two parts
+        - For even length, get the first middle node
+        """
+        # (base case) No node or only one node in the linked list
+        if not self.head: return None, None
+        if not self.head.next: return self.head, None
+
+        fastP, slowP = self.head, self.head
+
+        # For even length, get the first middle node
+        while fastP and fastP.next and fastP.next.next: 
+            fastP, slowP = fastP.next.next, slowP.next
+
+        secondPart, slowP.next = slowP.next, None
+        
+        return self.head, secondPart
+
+    def get_middle(self) -> Node:
+        """
+        Get the middle node of the linked list
+        """
+        # (base case)
+        if not self.head.next: return self.head
+        
+        fastP, slowP = self.head, self.head
+
+        # For even length, get the second middle node
+        while fastP and fastP.next: 
+            fastP, slowP = fastP.next.next, slowP.next
+
+        # For even length, get the first middle node
+        '''
+        while fastP and fastP.next and fastP.next.next: 
+            fastP, slowP = fastP.next.next, slowP.next
+        '''
+            
+        return slowP
+
+    # =============================================================
+
     def remove_nthToLast(self, n: int) -> Node:
         """
         Remove the n-th node from the tail of the linked list
@@ -480,7 +522,7 @@ if __name__ == '__main__':
     l3.insert_after(l3.get_node('H'), 'H')
 
     print(f'\n[List 3]      {l3}')              # AAABEFGGHH
-    l3.removeDuplicate_ifSorted()
+    l5 = LinkedList(l3.removeDuplicate_ifSorted())
     print(f'Remove Dup:   {l3}')                # ABEFGH
     length = l3.get_len_iterative()
     print(f'Length (recu):     {length}')       # 6
@@ -501,3 +543,26 @@ if __name__ == '__main__':
     print(f'[Remove 1-th last node: {l4.get_nthToLast(1)}]')
     l4.remove_nthToLast(1)
     print(f'[List 4]       {l4}')               # BEFG
+
+    for _ in range(4): l5.remove_nthToLast(1)
+    for char in ['C', 'D', 'E']: l5.append(char)
+    for char in ['1', '2', '3', '4', '5']: l5.append(char)
+    print(f'\n[List 5]       {l5}')             # AAABEFGGHH
+    l6 = LinkedList(l5.head)
+    length = l5.get_len_iterative()
+    print(f'Length:        {length}')           # 6
+    print(f'Middle Node:   {l5.get_middle()}')  # 1
+    first, second = l5.split()
+    first, second = LinkedList(first), LinkedList(second)
+    print(f'1st Part:      {first}')
+    print(f'2nd Part:      {second}')
+
+    l6.remove_nthToLast(6)
+    print(f'\n[List 6]       {l6}')             # BEFGH
+    length = l6.get_len_iterative()
+    print(f'Length:        {length}')           # 5
+    print(f'Middle Node:   {l6.get_middle()}')  # 1
+    first, second = l6.split()
+    first, second = LinkedList(first), LinkedList(second)
+    print(f'1st Part:      {first}')
+    print(f'2nd Part:      {second}')
