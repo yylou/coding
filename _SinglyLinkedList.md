@@ -7,9 +7,11 @@
     * [Swap Data / Swap Nodes](#p2)
     * [Reverse](#p3)
     * [Rotate](#p4)
-    * [Remove n-th Last Node](#p5)
-    * [Remove Duplicates](#p6)
-    * [Merge Two Sorted Linked Lists](#p7)
+    * [Get Middle Node](#p5)
+    * [Split](#p6)
+    * [Remove n-th Last Node](#p7)
+    * [Remove Duplicates](#p8)
+    * [Merge Two Sorted Linked Lists](#p9)
 * ### LeetCode Problems
     * [0002. Add Two Numbers (Medium)](https://leetcode.com/problems/add-two-numbers/)
     * [0019. Remove Nth Node From End of List (Medium)](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
@@ -19,6 +21,7 @@
     * [0206. Reverse Linked List (Easy)](https://leetcode.com/problems/reverse-linked-list/)
     * [0234. Palindrome Linked List (Easy)](https://leetcode.com/problems/palindrome-linked-list/)
     * [0445. Add Two Numbers II (Medium)](https://leetcode.com/problems/add-two-numbers-ii/)
+    * [0876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
 
 <br />
 
@@ -317,7 +320,35 @@ class LinkedList:
         return self.head
 ```
 
-## Remove n-th Last Node            <a name="p5"></a>
+## Get Middel Node                  <a name="p5"></a>
+```python
+    def get_middle(self) -> Node:
+        """
+        Get the middle node of the linked list
+        """
+        # (base case)
+        if not self.head.next: return self.head
+        
+        fastP, slowP = self.head, self.head
+
+        # For even length, return the second middle node
+        while fastP and fastP.next: 
+            fastP, slowP = fastP.next.next, slowP.next
+
+        # For even length, return the first middle node
+        '''
+        while fastP and fastP.next and fastP.next.next: 
+            fastP, slowP = fastP.next.next, slowP.next
+        '''
+            
+        return slowP
+```
+
+## Split                            <a name="p6"></a>
+```python
+```
+
+## Remove n-th Last Node            <a name="p7"></a>
 ```python
     def remove_nthToLast(self, n: int) -> Node:
         """
@@ -373,7 +404,7 @@ class LinkedList:
         return slowP.next
 ```
 
-## Remove Duplicates                <a name="p6"></a>
+## Remove Duplicates                <a name="p8"></a>
 ```python
     def removeDuplicate_set(self) -> Node:
         """
@@ -407,7 +438,7 @@ class LinkedList:
         return self.head
 ```
 
-## Merge Two Sorted Linked Lists    <a name="p7"></a>
+## Merge Two Sorted Linked Lists    <a name="p9"></a>
 ```python
 def mergeTwoLists_iterative(l1, l2) -> Node:
     """
