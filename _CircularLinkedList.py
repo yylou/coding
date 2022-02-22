@@ -255,6 +255,10 @@ class LinkedList:
         """
         Get the middle node of the linked list
         """
+        # (base case) No node or only one node in the linked list
+        if not self.head: return None
+        if self.head.next == self.head: return self.head
+
         fastP, slowP = self.head, self.head
 
         # For even length, get the second middle node
