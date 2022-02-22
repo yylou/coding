@@ -285,25 +285,6 @@ class LinkedList:
 
     # =============================================================
 
-    def split(self, n=2) -> tuple:
-        """
-        Split linked list into two parts
-        - For even length, get the first middle node
-        """
-        # (base case) No node or only one node in the linked list
-        if not self.head: return None, None
-        if not self.head.next: return self.head, None
-
-        fastP, slowP = self.head, self.head
-
-        # For even length, get the first middle node
-        while fastP and fastP.next and fastP.next.next: 
-            fastP, slowP = fastP.next.next, slowP.next
-
-        secondPart, slowP.next = slowP.next, None
-        
-        return self.head, secondPart
-
     def get_middle(self) -> Node:
         """
         Get the middle node of the linked list
@@ -324,6 +305,25 @@ class LinkedList:
         '''
             
         return slowP
+
+    def split(self, n=2) -> tuple:
+        """
+        Split linked list into two parts
+        - For even length, get the first middle node
+        """
+        # (base case) No node or only one node in the linked list
+        if not self.head: return None, None
+        if not self.head.next: return self.head, None
+
+        fastP, slowP = self.head, self.head
+
+        # For even length, get the first middle node
+        while fastP and fastP.next and fastP.next.next: 
+            fastP, slowP = fastP.next.next, slowP.next
+
+        secondPart, slowP.next = slowP.next, None
+        
+        return self.head, secondPart
 
     # =============================================================
 
