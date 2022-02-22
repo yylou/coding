@@ -331,11 +331,11 @@ class LinkedList:
         
         fastP, slowP = self.head, self.head
 
-        # For even length, return the second middle node
+        # For even length, get the second middle node
         while fastP and fastP.next: 
             fastP, slowP = fastP.next.next, slowP.next
 
-        # For even length, return the first middle node
+        # For even length, get the first middle node
         '''
         while fastP and fastP.next and fastP.next.next: 
             fastP, slowP = fastP.next.next, slowP.next
@@ -346,6 +346,24 @@ class LinkedList:
 
 ## Split                            <a name="p6"></a>
 ```python
+    def split(self, n=2) -> tuple:
+        """
+        Split linked list into two parts
+        - For even length, get the first middle node
+        """
+        # (base case) No node or only one node in the linked list
+        if not self.head: return None, None
+        if not self.head.next: return self.head, None
+
+        fastP, slowP = self.head, self.head
+
+        # For even length, get the first middle node
+        while fastP and fastP.next and fastP.next.next: 
+            fastP, slowP = fastP.next.next, slowP.next
+
+        secondPart, slowP.next = slowP.next, None
+        
+        return self.head, secondPart
 ```
 
 ## Remove n-th Last Node            <a name="p7"></a>
