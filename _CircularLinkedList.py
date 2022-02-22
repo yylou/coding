@@ -251,6 +251,51 @@ class LinkedList:
     
     # =============================================================
 
+    def split(self, n=2) -> tuple:
+        """
+        Split linked list into two parts
+        - For even length, get the first middle node
+        """
+        # (base case) No node or only one node in the linked list
+        if not self.head: return None, None
+        if self.head.next == self.head: return self.head, None
+
+        fastP, slowP = self.head, self.head
+
+        # For even length, get the first middle node
+        while fastP and fastP.next != self.head and fastP.next.next != self.head:
+            fastP, slowP = fastP.next.next, slowP.next
+            
+        secondPart = slowP.next
+        slowP.next, slowP = self.head, slowP.next
+        
+        # Make second part be circular
+        while slowP.next != self.head: slowP = slowP.next
+        slowP.next = secondPart
+
+        return self.head, secondPart
+
+    def get_middle(self) -> Node:
+        """
+        Get the middle node of the linked list
+        """
+        fastP, slowP = self.head, self.head
+
+        # For even length, get the second middle node
+        while fastP and fastP.next != self.head:
+            fastP, slowP = fastP.next.next, slowP.next
+            if fastP == self.head: break
+            
+        # For even length, get the first middle node
+        '''
+        while fastP and fastP.next != self.head and fastP.next.next != self.head:
+            fastP, slowP = fastP.next.next, slowP.next
+        '''
+        
+        return slowP
+
+    # =============================================================
+
     def remove_nthToLast(self, n: int) -> Node:
         """
         Remove the n-th node from the tail of the linked list
@@ -388,3 +433,19 @@ if __name__ == '__main__':
     print(f'[Remove 8-th last node: {l5.get_nthToLast(8)}]')
     l5.remove_nthToLast(8)
     print('[List 5]   ', l5)        # 245
+
+    l4.insert_after(l4.get_node('A'), 'B')
+    l4.insert_after(l4.get_node('B'), 'C')
+    l5 = LinkedList(l4.insert_after(l4.get_node('C'), 'D'))
+    print('\n[List 4]   ', l4)                  # ABCD12345
+    print(f'Middle Node: {l4.get_middle()}')    # 1
+    first, second = l4.split()
+    print('1st Part:  ', LinkedList(first))     # ABCD1
+    print('2nd Part:  ', LinkedList(second))    # 2345
+
+    l5.insert_after(l5.get_node('D'), 'E')
+    print('\n[List 5]   ', l5)                  # ABCDE12345
+    print(f'Middle Node: {l5.get_middle()}')    # 1
+    first, second = l5.split()
+    print('1st Part:  ', LinkedList(first))     # ABCDE
+    print('2nd Part:  ', LinkedList(second))    # 12345
