@@ -548,22 +548,22 @@ if __name__ == '__main__':
     for _ in range(4): l5.remove_nthToLast(1)
     for char in ['C', 'D', 'E']: l5.append(char)
     for char in ['1', '2', '3', '4', '5']: l5.append(char)
-    print(f'\n[List 5]       {l5}')             # AAABEFGGHH
+    print(f'\n[List 5]       {l5}')             # ABCDE12345
     l6 = LinkedList(l5.head)
     length = l5.get_len_iterative()
-    print(f'Length:        {length}')           # 6
+    print(f'Length:        {length}')           # 10
     print(f'Middle Node:   {l5.get_middle()}')  # 1
     first, second = l5.split()
     first, second = LinkedList(first), LinkedList(second)
-    print(f'1st Part:      {first}')
-    print(f'2nd Part:      {second}')
+    print(f'1st Part:      {first}')            # ABCDE
+    print(f'2nd Part:      {second}')           # 12345
 
     l6.remove_nthToLast(6)
-    print(f'\n[List 6]       {l6}')             # BEFGH
+    print(f'\n[List 6]       {l6}')             # ABCD12345
     length = l6.get_len_iterative()
-    print(f'Length:        {length}')           # 5
+    print(f'Length:        {length}')           # 9
     print(f'Middle Node:   {l6.get_middle()}')  # 1
     first, second = l6.split()
     first, second = LinkedList(first), LinkedList(second)
-    print(f'1st Part:      {first}')
-    print(f'2nd Part:      {second}')
+    print(f'1st Part:      {first}')            # ABCD1
+    print(f'2nd Part:      {second}')           # 2345
