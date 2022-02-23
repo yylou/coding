@@ -9,6 +9,7 @@ Date    : 2022/02/19
 
 # For Python3 Compatibility
 from __future__ import print_function
+from re import L
 
 
 class Node:
@@ -124,7 +125,7 @@ class LinkedList:
 
         return self.head
 
-    def get_len_iterative(self) -> int:
+    def __len__(self) -> int:
         """
         Get the length of the linked list (iterative)
         """
@@ -307,7 +308,7 @@ class LinkedList:
             
         return slowP
 
-    def split(self, n=2) -> tuple:
+    def split(self) -> tuple:
         """
         Split linked list into two parts
         - For even length, get the first middle node
@@ -325,6 +326,33 @@ class LinkedList:
         secondPart, slowP.next = slowP.next, None
         
         return self.head, secondPart
+
+    # =============================================================
+
+    def split_inParts(self, step: int) -> list:
+        """
+        Split linked list into several parts 
+        """
+        # (base case) No nodes / Only one node
+        if not self.head: return [None for _ in range(step)]
+        if not self.head.next: return [self.head] + [None for _ in range(step - 1)]
+
+        width, remain = divmod(self.__len__(), step)
+        
+        ret = []
+        cur = Node(None, self.head)
+        for i in range(step):
+            start = cur
+            for _ in range(width + (i < remain)): cur = cur.next
+            ret.append(start.next)
+            start.next = None
+
+        return ret
+
+    # =============================================================
+
+    def sort(self) -> Node:
+        pass
 
     # =============================================================
 
@@ -444,126 +472,137 @@ def mergeTwoLists_recursive(l1, l2) -> Node:
 
     return l1
 
+def reorder(head: Node) -> None:
+    """
+    Leetcode 0143. Reorder List (Medium) [https://leetcode.com/problems/reorder-list/]
+    """
+    # (base case) No node / Only one node / Two nodes
+    if not head: return None
+    if not head.next: return head
+    if not head.next.next: return head
+
+    # 1. Find middle point
+    slowP, fastP = head, head
+    while fastP and fastP.next and fastP.next.next:
+        slowP, fastP = slowP.next, fastP.next.next
+    
+    # 2. Reverse second part
+    prev, slowP.next, slowP = None, None, slowP.next
+    while slowP: prev, slowP.next, slowP = slowP, prev, slowP.next
+
+    # 3. Merge
+    while prev:
+        head.next, head = prev, head.next
+        prev.next, prev = head, prev.next
+
 
 if __name__ == '__main__':
     l1 = LinkedList()
-    l1.append('B')
-    l1.prepend('A')
-    l1.insert_after(l1.get_node('B'), 'C')
-    l1.insert_after(l1.get_node('C'), 'D')
-    print(f'\n[List 1]    {l1}')                # ABCD
-    length = l1.get_len_iterative()
-    print('Length:    ', length)                # 4
+    l1.append('B')                                                          # B
+    l1.prepend('A')                                                         # AB
+    l1.insert_after(l1.get_node('B'), 'C')                                  # ABC
+    l1.insert_after(l1.get_node('C'), 'D')                                  # ABCD
+    print(f'\n[List 1]    {l1}')                                            # ABCD
+    print('Length:    ', len(l1))                                           # 4
+    print(f'Remove B:   {LinkedList(l1.delete("B"))}')                      # ACD
+    print(f'Remove E:   {LinkedList(l1.delete("E"))}')                      # ACD
 
-    l1.delete('B')
-    print(f'Remove B:   {l1}')                  # ACD
-    tmp = l1.delete('E')
-    print(f'Remove E:   {l1}')                  # ACD
+    l2 = LinkedList(l1.insert_after(l1.get_node('A'), 'B'))                 # ABCD
+    print(f'\n[List 2]         {l2}')                                       # ABCD
+    print(f'Remove 2nd node: {LinkedList(l2.delete_pos(2))}')               # ACD
+    print(f'Remove 7th node: {LinkedList(l2.delete_pos(7))}')               # ACD
+    print(f'Length (iter):     {len(l2)}')                                  # 3
+    print(f'Length (recu):     {l2.get_len_recursive(l2.head)}')            # 3
 
-    l2 = LinkedList(l1.insert_after(l1.get_node('A'), 'B'))
-    print(f'\n[List 2]         {l2}')           # ABCD
-    l2.delete_pos(2)
-    print(f'Remove 2nd node: {l2}')             # ABD
-    l2.delete_pos(7)
-    print(f'Remove 7th node: {l2}')             # ABD
-    
-    length = l2.get_len_iterative()
-    print(f'Length (iter):     {length}')       # 3
-    length = l2.get_len_recursive(l2.head)
-    print(f'Length (recu):     {length}')       # 3
-
-    print(f'\n[List 1]        {l1}')            # ABCD
-    l1.swap_data('A', 'C')
-    print(f"Swap 'A' & 'C': {l1}")              # CBAD
-    l1.swap_data('C', 'D')
-    print(f"Swap 'C' & 'D': {l1}")              # DBAC
-    l1.swap_data('B', 'C')
-    print(f"Swap 'B' & 'C': {l1}")              # DCAB
-    tmp = l1.swap_data('A', 'B')
-    print(f"Swap 'A' & 'B': {l1}")              # DCBA
-
-    l1.reverse_iterative()
-    print(f'Reverse:        {l1}')              # ABCD
-    l1.reverse_recursive()
-    print(f'Reverse:        {l1}')              # DCBA
-
-    l1.rotate(2, dir='right')
-    print(f'Rotate right 2: {l1}')              # BADC
-    tmp = l1.rotate(2, dir='left')
-    print(f'Rotate left  2: {l1}')              # DCBA
+    print(f'\n[List 1]        {l1}')                                        # ABCD
+    print(f"Swap 'A' & 'C': {LinkedList(l1.swap_data('A', 'C'))}")          # CBAD
+    print(f"Swap 'C' & 'D': {LinkedList(l1.swap_data('C', 'D'))}")          # DBAC
+    print(f"Swap 'B' & 'C': {LinkedList(l1.swap_data('B', 'C'))}")          # DCAB
+    print(f"Swap 'A' & 'B': {LinkedList(l1.swap_data('A', 'B'))}")          # DCBA
+    print(f'Reverse:        {LinkedList(l1.reverse_iterative())}')          # ABCD
+    print(f'Reverse:        {LinkedList(l1.reverse_recursive())}')          # DCBA
+    print(f"Rotate right 2: {LinkedList(l1.rotate(2, dir='right'))}")       # BADC
+    print(f"Rotate left  2: {LinkedList(l1.rotate(2, dir='left'))}")        # DCBA
 
     l2 = LinkedList()
-    l2.append('E')
-    l2.append('F')
-    l2.append('G')
-    l2.append('H')                              # EFGH
-
-    print(f'\n[List 1]        {l1}')            # DCBA
-    print(  f'[List 2]        {l2}')            # EFGH
+    l2.append('E')                                                          # E
+    l2.append('F')                                                          # EF
+    l2.append('G')                                                          # EFG
+    l2.append('H')                                                          # EFGH
+    print(f'\n[List 1]        {l1}')                                        # DCBA
+    print(  f'[List 2]        {l2}')                                        # EFGH
     l3 = LinkedList(mergeTwoLists_recursive(l1.head, l2.head))
-    print(f'Merge:      {l3}')                  # DCBAEFGH
+    print(f'Merge:      {l3}')                                              # DCBAEFGH
 
     l1 = LinkedList()
-    l1.append('A')
-    l1.append('B')
-    l1.append('G')
-    l1.append('H')
-
-    print(f'\n[List 1]        {l1}')            # ABGH
-    print(  f'[List 2]        {l2}')            # EFGH
+    l1.append('A')                                                          # A
+    l1.append('B')                                                          # AB
+    l1.append('G')                                                          # ABG
+    l1.append('H')                                                          # ABGH
+    print(f'\n[List 1]        {l1}')                                        # ABGH
+    print(  f'[List 2]        {l2}')                                        # EFGH
     l3 = LinkedList(mergeTwoLists_recursive(l1.head, l2.head))
-    print(f'Merge:      {l3}')                  # ABEFGGHH
+    print(f'Merge:      {l3}')                                              # ABEFGGHH
+    print(f'Remove Dup: {LinkedList(l3.removeDuplicate_set())}')            # ABEFGH
 
-    l3.removeDuplicate_set()
-    print(f'Remove Dup: {l3}')                  # ABEFGH
-
-    l3.insert_after(l3.get_node('A'), 'A')
-    l3.insert_after(l3.get_node('A'), 'A')
-    l3.insert_after(l3.get_node('G'), 'G')
-    l3.insert_after(l3.get_node('H'), 'H')
-
-    print(f'\n[List 3]      {l3}')              # AAABEFGGHH
-    l5 = LinkedList(l3.removeDuplicate_ifSorted())
-    print(f'Remove Dup:   {l3}')                # ABEFGH
-    length = l3.get_len_iterative()
-    print(f'Length (recu):     {length}')       # 6
-    print(f'[Remove 6-th last node: {l3.get_nthToLast(6)}]')
-    l4 = LinkedList(l3.remove_nthToLast(6))
-    print(f'[List 3]       {l3}')               # ABEFGH
+    l3.insert_after(l3.get_node('A'), 'A')                                  # AABEFGH
+    l3.insert_after(l3.get_node('A'), 'A')                                  # AAABEFGH
+    l3.insert_after(l3.get_node('G'), 'G')                                  # AAABEFGGH
+    l3.insert_after(l3.get_node('H'), 'H')                                  # AAABEFGGHH
+    print(f'\n[List 3]      {l3}')                                          # AAABEFGGHH
+    print(f'Remove Dup:   {LinkedList(l3.removeDuplicate_ifSorted())}')     # ABEFGH
+    print(f'Length (recu):     {len(l3)}')                                  # 6
+    print(f'[Remove 6-th last node: {l3.get_nthToLast(6)}]')                # A
+    print(f'[List 3]       {LinkedList(l3.remove_nthToLast(6))}')           # BEFGH
     
-    print(f'\n[List 4]       {l4}')             # BEFGH
-    length = l4.get_len_iterative()
-    print(f'Length (recu):     {length}')       # 5
-    print(f'[Get 3-th last node] {l4.get_nthToLast(3)}')
-    print(f'[Get 7-th last node]')
-    node = l4.get_nthToLast(7)
-    print(f'[Remove 6-th last node]')
-    l4.remove_nthToLast(6)
+    print(f'\n[List 4]       {l3}')                                         # BEFGH
+    print(f'Length (recu):     {len(l3)}')                                  # 5
+    for i in range(1, len(l3)+1):
+        print(f'[{i}-th last node]   {l3.get_nthToLast(i)}')                # H,G,F,E,B
+    print(f'[Remove 6-th last node]'); l3.remove_nthToLast(6)               # [Error]
     
-    print(f'\n[List 4]       {l4}')             # BEFGH
-    print(f'[Remove 1-th last node: {l4.get_nthToLast(1)}]')
-    l4.remove_nthToLast(1)
-    print(f'[List 4]       {l4}')               # BEFG
+    print(f'\n[List 4]       {l3}')                                         # BEFGH
+    print(f'[Remove 1-th last node: {l3.get_nthToLast(1)}]')                # H
+    l3.remove_nthToLast(1); print(f'[List 4]       {l3}')                   # BEFG
 
-    for _ in range(4): l5.remove_nthToLast(1)
-    for char in ['C', 'D', 'E']: l5.append(char)
-    for char in ['1', '2', '3', '4', '5']: l5.append(char)
-    print(f'\n[List 5]       {l5}')             # ABCDE12345
-    l6 = LinkedList(l5.head)
-    length = l5.get_len_iterative()
-    print(f'Length:        {length}')           # 10
-    print(f'Middle Node:   {l5.get_middle()}')  # 1
+    l5 = LinkedList()
+    for char in ['A', 'B', 'C', 'D', 'E']: l5.append(char)                  # ABCDE
+    for char in ['1', '2', '3', '4', '5']: l5.append(char)                  # ABCDE12345
+    print(f'\n[List 5]       {l5}')                                         # ABCDE12345
+    l6, l7 = LinkedList(l5.head), LinkedList(l5.head)
+    print(f'Length:        {len(l5)}')                                      # 10
+    print(f'Middle Node:   {l5.get_middle()}')                              # 1
     first, second = l5.split()
-    first, second = LinkedList(first), LinkedList(second)
-    print(f'1st Part:      {first}')            # ABCDE
-    print(f'2nd Part:      {second}')           # 12345
+    print(f'1st Part:      {LinkedList(first)}')                            # ABCDE
+    print(f'2nd Part:      {LinkedList(second)}')                           # 12345
 
-    l6.remove_nthToLast(6)
-    print(f'\n[List 6]       {l6}')             # ABCD12345
-    length = l6.get_len_iterative()
-    print(f'Length:        {length}')           # 9
-    print(f'Middle Node:   {l6.get_middle()}')  # 1
+    l6.remove_nthToLast(1)
+    print(f'\n[List 6]       {l6}')                                         # ABCDE1234
+    print(f'Length:        {len(l6)}')                                      # 9
+    print(f'Middle Node:   {l6.get_middle()}')                              # E
     first, second = l6.split()
-    first, second = LinkedList(first), LinkedList(second)
-    print(f'1st Part:      {first}')            # ABCD1
-    print(f'2nd Part:      {second}')           # 2345
+    print(f'1st Part:      {LinkedList(first)}')                            # ABCDE
+    print(f'2nd Part:      {LinkedList(second)}')                           # 12345
+
+    print(f'\n[List 7]       {l7}')                                         # ABCDE12345
+    print(f'Length:        {len(l7)}')                                      # 10
+    step = 4
+    parts = l7.split_inParts(step=step)
+    print(f'[Split into {step} parts]')
+    for i in range(len(parts)):
+        print(f'Part {i}:        {LinkedList(parts[i])}')                   # ABC,DE1,23,45
+
+    for i in range(1, len(parts)):
+        l7 = LinkedList(mergeTwoLists_iterative(l7.head, parts[i]))         # 2345ABCDE1
+    l7 = LinkedList(l7.rotate(4, dir='left'))                               # ABCDE12345
+    print(f'\n[List 7]       {l7}')                                         # ABCDE12345
+    reorder(l7.head)
+    print(f'Reorder:       {l7}')                                           # A5B4C3D2E1
+    l7.sort()
+    print(f'Sort:          {l7}')                                           # ABCDE12345
+    reorder(l7.head)
+    print(f'Reorder:       {l7}')                                           # A5B4C3D2E1
+    print(f'[Remove 1-th last node: {l7.get_nthToLast(1)}]')                # 1
+    print(f'[List 7]       {LinkedList(l7.remove_nthToLast(1))}')           # A5B4C3D2E
+    l7.sort()
+    print(f'Sort:          {l7}')                                           # ABCDE2345
