@@ -79,7 +79,7 @@ class LinkedList:
         """
         # (base case)
         if not self.head: return "'Empty'"
-        if self.head.next == self.head: return str(self.head.data)
+        if self.head.next == self.head: return str(self.head.data) + f'\t(next: {self.head.data})'
 
         ret = ''
 
@@ -141,7 +141,7 @@ class LinkedList:
 
     def delete(self, data) -> Node:
         """
-        Remove a node from the linked list
+        Search a node with specified data and remove from the linked list
         """
         # (base case)
         if not self.head: return
@@ -171,6 +171,43 @@ class LinkedList:
                 cur = cur.next
                 if cur == self.head: break
 
+        return self.head
+
+    # =============================================================
+
+    def merge(self, node: Node) -> Node:
+        """
+        Merge with the other circular linked list while keeping sorted order
+        """
+        l1, l2 = self.head, node
+        ret = cur = Node(-1)
+
+        remain = (None, None)
+        while True:
+            if str(l1.data) < str(l2.data):
+                cur.next = l1
+                cur, l1 = cur.next, l1.next
+                
+                if l1 == self.head:
+                    remain = (l2, node)
+                    break
+            else:
+                cur.next = l2
+                cur, l2 = cur.next, l2.next
+
+                if l2 == node:
+                    remain = (l1, self.head)
+                    break
+
+        # Concat the remaining part
+        cur.next = remain[0]
+        cur = cur.next
+        while cur.next != remain[1]: cur = cur.next
+        
+        # Make it circular / Modify head node
+        cur.next = ret.next
+        self.head = ret.next
+        
         return self.head
 
     # =============================================================
@@ -367,89 +404,108 @@ class LinkedList:
         return self.head
 
 
+def josephus_circle(head: Node, step: int) -> Node:
+    """
+    Find the Winner of the Circular Game (Josephus Problem)
+    """
+    # Initialization (avoid affecting input linked list)
+    l1 = LinkedList(head)
+    print(f'\nOriginal List: {l1}')
+
+    # (base case)
+    n  = len(l1)
+    if step == 1: return Node(n)
+
+    prev, head = None, l1.head
+    while n != 1:
+        for _ in range(step - 1): prev, head = head, head.next
+        if prev.next == l1.head: l1.head = prev.next.next
+        
+        print(f'Remove: {prev.next}')
+        prev.next = prev.next.next
+        head = prev.next
+        n -= 1
+
+    print(f'After (step={step}): {l1}')
+    return Node(l1.head)
+
+
 if __name__ == '__main__':
     l1 = LinkedList()
-    l1.append(1)
-    l1.append(2)
-    l1.append(3)
-    l1.append(4)
-    l1.append(5)                    # 12345
+    l1.append(1)                                                            # 1
+    l1.append(2)                                                            # 2
+    l1.append(3)                                                            # 3
+    l1.append(4)                                                            # 4
+    l1.append(5)                                                            # 12345
     
     l2 = LinkedList()
-    l2.prepend(5)
-    l2.prepend(4)
-    l2.prepend(3)
-    l2.prepend(2)
-    l2.prepend(1)                   # 12345
+    l2.prepend(5)                                                           # 5
+    l2.prepend(4)                                                           # 45
+    l2.prepend(3)                                                           # 345
+    l2.prepend(2)                                                           # 2345
+    l2.prepend(1)                                                           # 12345
 
     l1 = LinkedList()
-    l1.append(3)
-    l1.append(2)
-    l1.append(1)
-    print('\n[List 1]   ', l1)      # 321
-    l1.delete(2)
-    print('Remove 2:  ', l1)        # 31
-    l1.delete(1)
-    print('Remove 1:  ', l1)        # 3
-    l1.delete(3)
-    print('Remove 3:  ', l1)        # 'Empty'
+    l1.append(3)                                                            # 3
+    l1.append(2)                                                            # 32
+    l1.append(1)                                                            # 321
+    print('\n[List 1]   ', l1)                                              # 321
+    print('Remove 2:  ', LinkedList(l1.delete(2)))                          # 31
+    print('Remove 1:  ', LinkedList(l1.delete(1)))                          # 3
+    print('Remove 3:  ', LinkedList(l1.delete(3)))                          # 'Empty'
 
-    tail = l2.get_tail()
-    l2.insert_after(tail, 6)
-    print('\n[List 2]   ', l2)      # 123456
-    print('Length:    ', len(l2))   # 6
-    head = l2.reverse_iterative()
-    print('Reverse:   ', l2)        # 654321
-    head = l2.reverse_recursive()
-    print('Reverse:   ', l2)        # 123456
-    l2.delete(6)
-    print('Remove 6:  ', l2)        # 12345
-    l2.delete('A')
-    print('Remove A:  ', l2)        # 12345
-    head = l2.rotate(3)
-    print('Rotate right 3: ', l2)   # 34512
-    head = l2.rotate(3, dir='left')
-    print('Rotate left  3: ', l2)   # 12345
+    l2.insert_after(l2.get_tail(), 6)                                       # 123456
+    print('\n[List 2]   ', l2)                                              # 123456
+    print('Length:    ', len(l2))                                           # 6
+    print('Reverse:   ', LinkedList(l2.reverse_iterative()))                # 654321
+    print('Reverse:   ', LinkedList(l2.reverse_recursive()))                # 123456
+    print('Remove 6:  ', LinkedList(l2.delete(6)))                          # 12345
+    print('Remove A:  ', LinkedList(l2.delete('A')))                        # 12345
+    print('Rotate right 3: ', LinkedList(l2.rotate(3)))                     # 34512
+    print('Rotate left  3: ', LinkedList(l2.rotate(3, dir='left')))         # 12345
 
-    l2.insert_after(l2.get_node(2), 2)
-    l2.insert_after(tail, 5)
-    l3 = LinkedList(l2.insert_after(tail, 5))
-    print('\n[List 3]   ', l3)      # 12234555
-    l3.removeDuplicates_ifSorted()
-    print('Remove Dup:   ', l3)     # 12345
+    l2.insert_after(l2.get_node(2), 2)                                      # 122345
+    l2.append(5)                                                            # 1223455        
+    l3 = LinkedList(l2.append(5))                                           # 12234555
+    print('\n[List 3]   ', l3)                                              # 12234555
+    print('Remove Dup:   ', LinkedList(l3.removeDuplicates_ifSorted()))     # 12345
     
-    tail = l3.get_tail()
-    l3.insert_after(l3.get_node(2), 2)
-    l3.insert_after(tail, 5)
-    l4 = LinkedList(l3.insert_after(tail, 5))
-    print('\n[List 4]   ', l4)      # 12234555
-    l4.removeDuplicates_set()
-    print('Remove Dup:   ', l4)     # 12345
+    l3.insert_after(l3.get_node(2), 2)                                      # 122345
+    l3.append(5)                                                            # 1223455
+    l4 = LinkedList(l3.append(5))                                           # 12234555
+    print('\n[List 4]   ', l4)                                              # 12234555
+    print('Remove Dup:   ', LinkedList(l4.removeDuplicates_set()))          # 12345
 
-    l5 = LinkedList(l4.prepend('A'))
-    print('\n[List 5]   ', l5)      # A12345
-    print(f'[Remove 6-th last node: {l5.get_nthToLast(6)}]')
-    l5.remove_nthToLast(6)
-    print('[List 5]   ', l5)        # 12345
-    print(f'[Remove 3-th last node: {l5.get_nthToLast(3)}]')
-    l5.remove_nthToLast(3)
-    print('[List 5]   ', l5)        # 1245
-    print(f'[Remove 8-th last node: {l5.get_nthToLast(8)}]')
-    l5.remove_nthToLast(8)
-    print('[List 5]   ', l5)        # 245
+    l5 = LinkedList(l4.prepend('A'))                                        # A12345
+    print('\n[List 5]    ', l5)                                             # A12345
+    for i in range(1, len(l5)+1):
+        print(f'[{i}-th last node]  {l5.get_nthToLast(i)}')                 # 5,4,3,2,1,A
+    print(f'[Remove 6-th last node: {l5.get_nthToLast(6)}]')                # A
+    print('[List 5]   ', LinkedList(l5.remove_nthToLast(6)))                # 12345
+    print(f'[Remove 3-th last node: {l5.get_nthToLast(3)}]')                # 3
+    print('[List 5]   ', LinkedList(l5.remove_nthToLast(3)))                # 1245
+    print(f'[Remove 8-th last node: {l5.get_nthToLast(8)}]')                # 1
+    print('[List 5]   ', LinkedList(l5.remove_nthToLast(8)))                # 245
 
-    l4.insert_after(l4.get_node('A'), 'B')
-    l4.insert_after(l4.get_node('B'), 'C')
-    l5 = LinkedList(l4.insert_after(l4.get_node('C'), 'D'))
-    print('\n[List 4]   ', l4)                  # ABCD12345
-    print(f'Middle Node: {l4.get_middle()}')    # 1
-    first, second = l4.split()
-    print('1st Part:  ', LinkedList(first))     # ABCD1
-    print('2nd Part:  ', LinkedList(second))    # 2345
+    l4.insert_after(l4.get_node('A'), 'B')                                  # AB12345
+    l4.insert_after(l4.get_node('B'), 'C')                                  # ABC12345
+    l4.insert_after(l4.get_node('C'), 'D')                                  # ABCD12345
+    l6 = LinkedList(l4.insert_after(l4.get_node('D'), 'E'))                 # ABCDE12345
+    print('\n[List 6]    ', l6)                                             # ABCD12345
+    print('Length:     ', len(l6))                                          # 10
+    print(f'Middle Node: {l6.get_middle()}')                                # 1
+    first, second = l6.split()
+    print('1st Part:   ', LinkedList(first))                                # ABCDE
+    print('2nd Part:   ', LinkedList(second))                               # 12345
 
-    l5.insert_after(l5.get_node('D'), 'E')
-    print('\n[List 5]   ', l5)                  # ABCDE12345
-    print(f'Middle Node: {l5.get_middle()}')    # 1
-    first, second = l5.split()
-    print('1st Part:  ', LinkedList(first))     # ABCDE
-    print('2nd Part:  ', LinkedList(second))    # 12345
+    l7 = LinkedList(l6.merge(second))                                       # 12345ABCDE
+    l7.remove_nthToLast(1)
+    print('\n[List 7]    ', l7)                                             # 12345ABCD
+    print('Length:     ', len(l7))                                          # 9
+    print(f'Middle Node: {l7.get_middle()}')                                # 5
+    first, second = l7.split()
+    print('1st Part:   ', LinkedList(first))                                # 12345
+    print('2nd Part:   ', LinkedList(second))                               # ABCD
+
+    l6 = LinkedList(first)
+    josephus_circle(l6.head, step=2)
