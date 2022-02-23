@@ -9,19 +9,24 @@
     * [Rotate](#p4)
     * [Get Middle Node](#p5)
     * [Split](#p6)
-    * [Remove n-th Last Node](#p7)
-    * [Remove Duplicates](#p8)
-    * [Merge Two Sorted Linked Lists](#p9)
+    * [Split in Parts](#p7)
+    * [Sort](#p8)
+    * [Remove n-th Last Node](#p9)
+    * [Remove Duplicates](#p10)
+    * [Merge Two Sorted Linked Lists](#p11)
 * ### LeetCode Problems
     * [0002. Add Two Numbers (Medium)](https://leetcode.com/problems/add-two-numbers/)
     * [0019. Remove Nth Node From End of List (Medium)](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
     * [0021. Merge Two Sorted Lists (Easy)](https://leetcode.com/problems/merge-two-sorted-lists/)
     * [0061. Rotate List (Medium)](https://leetcode.com/problems/rotate-list/)
     * [0083. Remove Duplicates from Sorted List (Easy)](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
+    * [0143. Reorder List (Medium)](https://leetcode.com/problems/reorder-list/)
+    * [0148. Sort List (Medium)](https://leetcode.com/problems/sort-list/)
     * [0206. Reverse Linked List (Easy)](https://leetcode.com/problems/reverse-linked-list/)
     * [0234. Palindrome Linked List (Easy)](https://leetcode.com/problems/palindrome-linked-list/)
     * [0445. Add Two Numbers II (Medium)](https://leetcode.com/problems/add-two-numbers-ii/)
-    * [0876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
+    * [0725. Split Linked List in Parts (Medium)](https://leetcode.com/problems/split-linked-list-in-parts/)
+    * [0876. Middle of the Linked List (Easy)](https://leetcode.com/problems/middle-of-the-linked-list/)
 
 <br />
 
@@ -347,7 +352,7 @@ class LinkedList:
 
 ## Split                            <a name="p6"></a>
 ```python
-    def split(self, n=2) -> tuple:
+    def split(self, n: int=2) -> tuple
         """
         Split linked list into two parts
         - For even length, get the first middle node
@@ -367,7 +372,32 @@ class LinkedList:
         return self.head, secondPart
 ```
 
-## Remove n-th Last Node            <a name="p7"></a>
+## Split in Parts                   <a name="p7"></a>
+```python
+    def split_inParts(self, step: int) -> list:
+        # (base case) No nodes / Only one node
+        if not self.head: return [None for _ in range(step)]
+        if not self.head.next: return [self.head] + [None for _ in range(step - 1)]
+
+        length = self.get_len_iterative()
+        width, remain = divmod(length, step)
+        
+        ret = []
+        cur = Node(None, self.head)
+        for i in range(step):
+            start = cur
+            for _ in range(width + (i < remain)): cur = cur.next
+            ret.append(start.next)
+            start.next = None
+
+        return ret
+```
+
+## Sort                             <a name="p8"></a>
+```python
+```
+
+## Remove n-th Last Node            <a name="p9"></a>
 ```python
     def remove_nthToLast(self, n: int) -> Node:
         """
@@ -423,7 +453,7 @@ class LinkedList:
         return slowP.next
 ```
 
-## Remove Duplicates                <a name="p8"></a>
+## Remove Duplicates                <a name="p10"></a>
 ```python
     def removeDuplicate_set(self) -> Node:
         """
@@ -457,7 +487,7 @@ class LinkedList:
         return self.head
 ```
 
-## Merge Two Sorted Linked Lists    <a name="p9"></a>
+## Merge Two Sorted Linked Lists    <a name="p11"></a>
 ```python
 def mergeTwoLists_iterative(l1, l2) -> Node:
     """
