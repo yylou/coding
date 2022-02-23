@@ -162,7 +162,7 @@ class LinkedList:
 
 ## Length
 ```python
-    def get_len_iterative(self) -> int:
+    def __len__(self) -> int:
         """
         Get the length of the linked list (iterative)
         """
@@ -375,12 +375,14 @@ class LinkedList:
 ## Split in Parts                   <a name="p7"></a>
 ```python
     def split_inParts(self, step: int) -> list:
+        """
+        Split linked list into several parts 
+        """
         # (base case) No nodes / Only one node
         if not self.head: return [None for _ in range(step)]
         if not self.head.next: return [self.head] + [None for _ in range(step - 1)]
 
-        length = self.get_len_iterative()
-        width, remain = divmod(length, step)
+        width, remain = divmod(self.__len__(), step)
         
         ret = []
         cur = Node(None, self.head)
@@ -395,6 +397,8 @@ class LinkedList:
 
 ## Sort                             <a name="p8"></a>
 ```python
+ def sort(self) -> Node:
+        pass
 ```
 
 ## Remove n-th Last Node            <a name="p9"></a>
@@ -517,4 +521,30 @@ def mergeTwoLists_recursive(l1, l2) -> Node:
     l1.next = mergeTwoLists_recursive(l1.next, l2)
 
     return l1
+```
+
+### Reorder                         <a name="p12"></a>
+```python
+def reorder(head: Node) -> None:
+    """
+    Leetcode 0143. Reorder List (Medium) [https://leetcode.com/problems/reorder-list/]
+    """
+    # (base case) No node / Only one node / Two nodes
+    if not head: return None
+    if not head.next: return head
+    if not head.next.next: return head
+
+    # 1. Find middle point
+    slowP, fastP = head, head
+    while fastP and fastP.next and fastP.next.next:
+        slowP, fastP = slowP.next, fastP.next.next
+    
+    # 2. Reverse second part
+    prev, slowP.next, slowP = None, None, slowP.next
+    while slowP: prev, slowP.next, slowP = slowP, prev, slowP.next
+
+    # 3. Merge
+    while prev:
+        head.next, head = prev, head.next
+        prev.next, prev = head, prev.next
 ```
