@@ -10,6 +10,7 @@ Date    : 2022/02/19
 # For Python3 Compatibility
 from __future__ import print_function
 from re import L
+from tkinter import N
 
 
 class Node:
@@ -40,6 +41,15 @@ class LinkedList:
             cur = cur.next
 
         return None
+
+    def get_tail(self) -> Node:
+        """
+        Retrieve the tail node
+        """
+        cur = self.head
+        while cur.next: cur = cur.next
+        
+        return cur
 
     def __str__(self) -> str:
         """
@@ -191,6 +201,61 @@ class LinkedList:
 
     # =============================================================
 
+    def swap_nodes(self, k: int) -> Node:
+        """
+        Leetcode 1721. Swapping Nodes in a Linked List (Mdeium) [(https://leetcode.com/problems/swapping-nodes-in-a-linked-list/]
+        - Swap the kth node from the beginning and the kth node from the end
+        """
+        ret = prev = Node(0, self.head)
+        cur = self.head
+        
+        for _ in range(k - 1): prev, cur = cur, cur.next
+        
+        slowP = ret
+        while cur and cur.next: slowP, cur = slowP.next, cur.next
+            
+        # If node to be swapped is the middle one
+        if prev.next == slowP.next: return self.head
+        
+        # Swap nodes
+        node1, node2 = prev.next, slowP.next
+        
+        if prev: prev.next = slowP.next
+        else: ret.next = slowP.next
+        
+        slowP.next = node1
+        
+        node1.next, node2.next = node2.next, node1.next
+        
+        self.head = ret.next
+        return self.head
+
+    # =============================================================
+
+    def swap_pairs(self) -> Node:
+        """
+        Leetcode 0024. Swap Nodes in Pairs (Medium) [https://leetcode.com/problems/swap-nodes-in-pairs/]
+        """
+        # (base case)
+        if not self.head: return None
+        if not self.head.next: return self.head
+
+        ret = prev = Node(0, self.head)
+        cur = self.head
+
+        while cur and cur.next:
+            tmp = cur.next.next
+            cur.next.next = cur
+            prev.next = cur.next
+            cur.next = tmp
+
+            cur, prev = tmp, cur
+
+        self.head = ret.next
+        return self.head
+
+    # =============================================================
+
     def reverse_iterative(self) -> Node:
         """
         Reverse the linked list by iterative method
@@ -247,6 +312,28 @@ class LinkedList:
         self.head = tail
 
         return self.head
+
+    def reverse_between(self, left: int, right: int) -> Node:
+        """
+        Leetcode 0092. Reverse Linked List II (Medium) [https://leetcode.com/problems/reverse-linked-list-ii/]
+        """ 
+        # (base case)
+        if left == right: return self.head
+
+        ret = cur = Node(0, self.head)
+        
+        for _ in range(left - 1): cur = cur.next
+        start = cur
+
+        prev, cur = cur, cur.next
+        for _ in range(right - left + 1):
+            cur.next, cur, prev = prev, cur.next, cur
+
+        start.next.next = cur
+        start.next = prev
+
+        self.head = ret.next
+        return ret.next
 
     # =============================================================
 
@@ -308,6 +395,8 @@ class LinkedList:
             
         return slowP
 
+    # =============================================================
+
     def split(self) -> tuple:
         """
         Split linked list into two parts
@@ -326,8 +415,6 @@ class LinkedList:
         secondPart, slowP.next = slowP.next, None
         
         return self.head, secondPart
-
-    # =============================================================
 
     def split_inParts(self, step: int) -> list:
         """
@@ -352,7 +439,50 @@ class LinkedList:
     # =============================================================
 
     def sort(self) -> Node:
-        pass
+        """
+        Leetcode 0148. Sort List (Medium) [https://leetcode.com/problems/sort-list/]
+        - Sort the linked list (using bottom-up Merge Sort)
+        """ 
+        # (base case)
+        if not self.head or not self.head.next: return self.head
+
+        length = self.__len__()
+        ret, size = Node(0, self.head), 1
+
+        while size < length:
+            splitHead, mergeHead = ret.next, ret
+
+            while splitHead:
+                left      = splitHead
+                right     = self._split(size, left)
+                splitHead = self._split(size, right)
+
+                mergeHead = self._merge(left, right, mergeHead)
+
+            size *= 2
+
+        self.head = ret.next
+        return self.head
+
+    def _split(self, size: int, node: Node) -> Node:
+        prev, cur = None, node
+        for _ in range(size):
+            if not cur: break
+            prev, cur = cur, cur.next
+        
+        if prev: prev.next = None
+        return cur
+
+    def _merge(self, left: Node, right: Node, head: Node) -> Node:
+        while left and right:
+            if str(left.data) <= str(right.data): head.next, left = left, left.next
+            else: head.next, right = right, right.next
+
+            head = head.next
+
+        head.next = left or right
+        while head.next: head = head.next
+        return head
 
     # =============================================================
 
@@ -495,6 +625,17 @@ def reorder(head: Node) -> None:
         head.next, head = prev, head.next
         prev.next, prev = head, prev.next
 
+def intersection(headA: Node, headB: Node) -> Node:
+    """
+    Leetcode 0160. Intersection of Two Linked Lists (Easy) [https://leetcode.com/problems/intersection-of-two-linked-lists/]
+    """
+    pA, pB = headA, headB
+    while pA != pB:
+        pA = pA.next if pA else headB
+        pB = pB.next if pB else headA
+    
+    return pA
+
 
 if __name__ == '__main__':
     l1 = LinkedList()
@@ -589,20 +730,66 @@ if __name__ == '__main__':
     step = 4
     parts = l7.split_inParts(step=step)
     print(f'[Split into {step} parts]')
+    parts = list(map(LinkedList, parts))
     for i in range(len(parts)):
-        print(f'Part {i}:        {LinkedList(parts[i])}')                   # ABC,DE1,23,45
+        print(f'Part {i}:        {parts[i]}')                               # ABC,DE1,23,45
+
+    first = LinkedList(first)
+    second, shared = tuple(map(LinkedList, LinkedList(second).split()))
+    first.get_tail().next  = shared.head
+    second.get_tail().next = shared.head
+    print(f'\n1st List:      {first}')                                      # ABCDE
+    print(f'2nd List:      {second}')                                       # 12
+    print(f'Shared:        {shared}')                                       # 34
+    print(f'Intersection:  {intersection(first.head, second.head)}')        # 3
+    
 
     for i in range(1, len(parts)):
-        l7 = LinkedList(mergeTwoLists_iterative(l7.head, parts[i]))         # 2345ABCDE1
+        l7 = LinkedList(mergeTwoLists_iterative(l7.head, parts[i].head))    # 2345ABCDE1
     l7 = LinkedList(l7.rotate(4, dir='left'))                               # ABCDE12345
     print(f'\n[List 7]       {l7}')                                         # ABCDE12345
     reorder(l7.head)
     print(f'Reorder:       {l7}')                                           # A5B4C3D2E1
     l7.sort()
-    print(f'Sort:          {l7}')                                           # ABCDE12345
+    print(f'Sort:          {l7}')                                           # 12345ABCDE
     reorder(l7.head)
-    print(f'Reorder:       {l7}')                                           # A5B4C3D2E1
-    print(f'[Remove 1-th last node: {l7.get_nthToLast(1)}]')                # 1
-    print(f'[List 7]       {LinkedList(l7.remove_nthToLast(1))}')           # A5B4C3D2E
+    print(f'Reorder:       {l7}')                                           # 1E2D3C4B5A
+    print(f'[Remove 2-th last node: {l7.get_nthToLast(2)}]')                # 5
+    print(f'[List 7]       {LinkedList(l7.remove_nthToLast(2))}')           # 1E2D3C4BA
     l7.sort()
-    print(f'Sort:          {l7}')                                           # ABCDE2345
+    print(f'Sort:          {l7}')                                           # 1234ABCDE
+
+    print(f'\n[List 7]       {l7}')                                         # 1234ABCDE
+    print(f"[Reverse between: {l7.get_node('1')} and {l7.get_node('4')}]")  # 1,4
+    l7.reverse_between(1, 4)
+    print(f'[List 7]       {l7}')                                           # 4321ABCDE
+    print(f"[Reverse between: {l7.get_node('A')} and {l7.get_node('E')}]")  # A,E
+    l7.reverse_between(5, 9)
+    print(f'[List 7]       {l7}')                                           # 4321EDCBA
+    print(f"[Reverse between: {l7.get_node('4')} and {l7.get_node('A')}]")  # 4,A
+    l7.reverse_between(1, 9)
+    print(f'[List 7]       {l7}')                                           # ABCDE1234
+    l7.swap_pairs()
+    print('[Swap nodes in paris]')
+    print(f'[List 7]       {l7}')                                           # BADC1E324
+    
+    k = 1
+    print(f'[Swap {l7.get_nthToLast(len(l7)-k+1)}, {l7.get_nthToLast(k)}]') # B,4
+    l7.swap_nodes(k)
+    print(f'[List 7]       {l7}')                                           # 4ADC1E32B
+    k = 2
+    print(f'[Swap {l7.get_nthToLast(len(l7)-k+1)}, {l7.get_nthToLast(k)}]') # A,2
+    l7.swap_nodes(k)
+    print(f'[List 7]       {l7}')                                           # 42DC1E3AB
+    k = 3
+    print(f'[Swap {l7.get_nthToLast(len(l7)-k+1)}, {l7.get_nthToLast(k)}]') # D,3
+    l7.swap_nodes(k)
+    print(f'[List 7]       {l7}')                                           # 423C1EDAB
+    k = 4
+    print(f'[Swap {l7.get_nthToLast(len(l7)-k+1)}, {l7.get_nthToLast(k)}]') # C,E
+    l7.swap_nodes(k)
+    print(f'[List 7]       {l7}')                                           # 423E1CDAB
+    k = 5
+    print(f'[Swap {l7.get_nthToLast(len(l7)-k+1)}, {l7.get_nthToLast(k)}]') # 1,1
+    l7.swap_nodes(k)
+    print(f'[List 7]       {l7}')                                           # 423E1CDAB
