@@ -4,29 +4,36 @@
 * ### Data Structures - Singly Linked List
     * [<ins>Source Code<ins>](./_SinglyLinkedList.py)
     * [Append / Prepend / Insert / Delete / Length](#p1)
-    * [Swap Data / Swap Nodes](#p2)
-    * [Reverse](#p3)
+    * [Swap Data / Swap Nodes / Swap Pairs](#p2)
+    * [Reverse / Reverse Between](#p3)
     * [Rotate](#p4)
     * [Get Middle Node](#p5)
-    * [Split](#p6)
-    * [Split in Parts](#p7)
-    * [Sort](#p8)
-    * [Remove n-th Last Node](#p9)
-    * [Remove Duplicates](#p10)
-    * [Merge Two Sorted Linked Lists](#p11)
+    * [Split / Split in Parts](#p6)
+    * [Sort](#p7)
+    * [Remove n-th Last Node](#p8)
+    * [Remove Duplicates](#p9)
+    * [Merge Two Sorted Linked Lists](#p10)
+    * [Reorder](#p11)
 * ### LeetCode Problems
     * [0002. Add Two Numbers (Medium)](https://leetcode.com/problems/add-two-numbers/)
     * [0019. Remove Nth Node From End of List (Medium)](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
     * [0021. Merge Two Sorted Lists (Easy)](https://leetcode.com/problems/merge-two-sorted-lists/)
+    * [0024. Swap Nodes in Pairs (Medium](https://leetcode.com/problems/swap-nodes-in-pairs/)
+    <!--- * [0025. Reverse Nodes in k-Group (Hard)](https://leetcode.com/problems/reverse-linked-list-ii/) -->
     * [0061. Rotate List (Medium)](https://leetcode.com/problems/rotate-list/)
     * [0083. Remove Duplicates from Sorted List (Easy)](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
+    * [0092. Reverse Linked List II (Medium)](https://leetcode.com/problems/reverse-linked-list-ii/)
+    <!--- * [0138. Copy List with Random Pointer (Medium)](https://leetcode.com/problems/copy-list-with-random-pointer/) -->
     * [0143. Reorder List (Medium)](https://leetcode.com/problems/reorder-list/)
     * [0148. Sort List (Medium)](https://leetcode.com/problems/sort-list/)
+    * [0160. Intersection of Two Linked Lists (Easy)](https://leetcode.com/problems/intersection-of-two-linked-lists/)
     * [0206. Reverse Linked List (Easy)](https://leetcode.com/problems/reverse-linked-list/)
     * [0234. Palindrome Linked List (Easy)](https://leetcode.com/problems/palindrome-linked-list/)
+    <!--- * [0328. Odd Even Linked List (Medium)](https://leetcode.com/problems/odd-even-linked-list/) -->
     * [0445. Add Two Numbers II (Medium)](https://leetcode.com/problems/add-two-numbers-ii/)
     * [0725. Split Linked List in Parts (Medium)](https://leetcode.com/problems/split-linked-list-in-parts/)
     * [0876. Middle of the Linked List (Easy)](https://leetcode.com/problems/middle-of-the-linked-list/)
+    * [1721. Swapping Nodes in a Linked List (Mdeium)](https://leetcode.com/problems/swapping-nodes-in-a-linked-list/)
 
 <br />
 
@@ -65,6 +72,15 @@ class LinkedList:
 
         return None
 
+    def get_tail(self) -> Node:
+        """
+        Retrieve the tail node
+        """
+        cur = self.head
+        while cur.next: cur = cur.next
+        
+        return cur
+
     def __str__(self) -> str:
         """
         Print the linked list from HEAD to the TAIL node
@@ -79,7 +95,7 @@ class LinkedList:
         return ret
 ```
 
-## Append                           <a name="p1"></a>
+## Append                                   <a name="p1"></a>
 ```python
     def append(self, data) -> Node:
         """
@@ -178,7 +194,7 @@ class LinkedList:
         return 1 + self.get_len_recursive(node.next)
 ```
 
-### Swap Data / Swap Nodes          <a name="p2"></a>
+### Swap Data / Swap Nodes / Swap Pairs     <a name="p2"></a>
 ```python
     def swap_data(self, key1, key2) -> Node:
         """
@@ -226,9 +242,60 @@ class LinkedList:
         node1.next, node2.next = node2.next, node1.next
 
         return self.head
+
+    def swap_nodes(self, k: int) -> Node:
+        """
+        Leetcode 1721. Swapping Nodes in a Linked List (Mdeium) [(https://leetcode.com/problems/swapping-nodes-in-a-linked-list/]
+        - Swap the kth node from the beginning and the kth node from the end
+        """
+        ret = prev = Node(0, self.head)
+        cur = self.head
+        
+        for _ in range(k - 1): prev, cur = cur, cur.next
+        
+        slowP = ret
+        while cur and cur.next: slowP, cur = slowP.next, cur.next
+            
+        # If node to be swapped is the middle one
+        if prev.next == slowP.next: return self.head
+        
+        # Swap nodes
+        node1, node2 = prev.next, slowP.next
+        
+        if prev: prev.next = slowP.next
+        else: ret.next = slowP.next
+        
+        slowP.next = node1
+        
+        node1.next, node2.next = node2.next, node1.next
+        
+        self.head = ret.next
+        return self.head
+
+    def swap_pairs(self) -> Node:
+        """
+        Leetcode 0024. Swap Nodes in Pairs (Medium) [https://leetcode.com/problems/swap-nodes-in-pairs/]
+        """
+        # (base case)
+        if not self.head: return None
+        if not self.head.next: return self.head
+
+        ret = prev = Node(0, self.head)
+        cur = self.head
+
+        while cur and cur.next:
+            tmp = cur.next.next
+            cur.next.next = cur
+            prev.next = cur.next
+            cur.next = tmp
+
+            cur, prev = tmp, cur
+
+        self.head = ret.next
+        return self.head
 ```
 
-## Reverse                          <a name="p3"></a>
+## Reverse / Reverse Between                <a name="p3"></a>
 ```python
     def reverse_iterative(self) -> Node:
         """
@@ -286,9 +353,31 @@ class LinkedList:
         self.head = tail
 
         return self.head
+
+    def reverse_between(self, left: int, right: int) -> Node:
+        """
+        Leetcode 0092. Reverse Linked List II (Medium) [https://leetcode.com/problems/reverse-linked-list-ii/]
+        """ 
+        # (base case)
+        if left == right: return self.head
+
+        ret = cur = Node(0, self.head)
+        
+        for _ in range(left - 1): cur = cur.next
+        start = cur
+
+        prev, cur = cur, cur.next
+        for _ in range(right - left + 1):
+            cur.next, cur, prev = prev, cur.next, cur
+
+        start.next.next = cur
+        start.next = prev
+
+        self.head = ret.next
+        return ret.next
 ```
 
-## Rotate                           <a name="p4"></a>
+## Rotate                                   <a name="p4"></a>
 ```python
     def rotate(self, n: int, dir: str='right') -> Node:
         """
@@ -325,7 +414,7 @@ class LinkedList:
         return self.head
 ```
 
-## Get Middel Node                  <a name="p5"></a>
+## Get Middle Node                          <a name="p5"></a>
 ```python
     def get_middle(self) -> Node:
         """
@@ -350,9 +439,9 @@ class LinkedList:
         return slowP
 ```
 
-## Split                            <a name="p6"></a>
+## Split / Split in Parts                   <a name="p6"></a>
 ```python
-    def split(self, n: int=2) -> tuple
+    def split(self) -> tuple:
         """
         Split linked list into two parts
         - For even length, get the first middle node
@@ -370,10 +459,7 @@ class LinkedList:
         secondPart, slowP.next = slowP.next, None
         
         return self.head, secondPart
-```
 
-## Split in Parts                   <a name="p7"></a>
-```python
     def split_inParts(self, step: int) -> list:
         """
         Split linked list into several parts 
@@ -395,13 +481,56 @@ class LinkedList:
         return ret
 ```
 
-## Sort                             <a name="p8"></a>
+## Sort                                     <a name="p7"></a>
 ```python
- def sort(self) -> Node:
-        pass
+    def sort(self) -> Node:
+        """
+        Leetcode 0148. Sort List (Medium) [https://leetcode.com/problems/sort-list/]
+        - Sort the linked list (using bottom-up Merge Sort)
+        """ 
+        # (base case)
+        if not self.head or not self.head.next: return self.head
+
+        length = self.__len__()
+        ret, size = Node(0, self.head), 1
+
+        while size < length:
+            splitHead, mergeHead = ret.next, ret
+
+            while splitHead:
+                left      = splitHead
+                right     = self._split(size, left)
+                splitHead = self._split(size, right)
+
+                mergeHead = self._merge(left, right, mergeHead)
+
+            size *= 2
+
+        self.head = ret.next
+        return self.head
+
+    def _split(self, size: int, node: Node) -> Node:
+        prev, cur = None, node
+        for _ in range(size):
+            if not cur: break
+            prev, cur = cur, cur.next
+        
+        if prev: prev.next = None
+        return cur
+
+    def _merge(self, left: Node, right: Node, head: Node) -> Node:
+        while left and right:
+            if str(left.data) <= str(right.data): head.next, left = left, left.next
+            else: head.next, right = right, right.next
+
+            head = head.next
+
+        head.next = left or right
+        while head.next: head = head.next
+        return head
 ```
 
-## Remove n-th Last Node            <a name="p9"></a>
+## Remove n-th Last Node                    <a name="p8"></a>
 ```python
     def remove_nthToLast(self, n: int) -> Node:
         """
@@ -457,7 +586,7 @@ class LinkedList:
         return slowP.next
 ```
 
-## Remove Duplicates                <a name="p10"></a>
+## Remove Duplicates                        <a name="p9"></a>
 ```python
     def removeDuplicate_set(self) -> Node:
         """
@@ -491,7 +620,7 @@ class LinkedList:
         return self.head
 ```
 
-## Merge Two Sorted Linked Lists    <a name="p11"></a>
+## Merge Two Sorted Linked Lists            <a name="p10"></a>
 ```python
 def mergeTwoLists_iterative(l1, l2) -> Node:
     """
@@ -523,7 +652,7 @@ def mergeTwoLists_recursive(l1, l2) -> Node:
     return l1
 ```
 
-### Reorder                         <a name="p12"></a>
+### Reorder                                 <a name="p11"></a>
 ```python
 def reorder(head: Node) -> None:
     """

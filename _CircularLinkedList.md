@@ -14,6 +14,8 @@
     * [Remove Duplicates](#p9)
     * [Josephus Problem](#p10)
 * ### LeetCode Problems
+    * [0141. Linked List Cycle (Easy)](https://leetcode.com/problems/linked-list-cycle/)
+    * [0142. Linked List Cycle II (Medium)](https://leetcode.com/problems/linked-list-cycle-ii/)
     * [1823. Find the Winner of the Circular Game (Medium)](https://leetcode.com/problems/find-the-winner-of-the-circular-game/)
 
 <br />
