@@ -91,7 +91,7 @@ class LinkedList:
             cur = cur.next
             if cur == self.head: break
 
-        if ret: ret += f'\t(next: {cur.data})'
+        if ret and cur: ret += f'\t(next: {cur.data})'
         return ret if ret else "'Empty'"
 
     # =============================================================
@@ -408,7 +408,8 @@ class LinkedList:
 
 def josephus_circle(head: Node, step: int) -> Node:
     """
-    Find the Winner of the Circular Game (Josephus Problem)
+    Leetcode 1823. Find the Winner of the Circular Game (Medium) [https://leetcode.com/problems/find-the-winner-of-the-circular-game]
+    - Find the Winner of the Circular Game (Josephus Problem)
     """
     # Initialization (avoid affecting input linked list)
     l1 = LinkedList(head)
@@ -430,6 +431,31 @@ def josephus_circle(head: Node, step: int) -> Node:
 
     print(f'After (step={step}): {l1}')
     return Node(l1.head)
+
+def linkedList_cycle(head: Node) -> tuple:
+    """
+    Leetcode 0141. Linked List Cycle    (Easy)   [https://leetcode.com/problems/linked-list-cycle/]
+    Leetcode 0142. Linked List Cycle II (Medium) [https://leetcode.com/problems/linked-list-cycle-ii/]
+    """
+    # (base case) No nodes / Only one node
+    if not head or not head.next: return False, None
+    if head.next == head: return True, head
+    
+    slowP, fastP = head, head
+    
+    # 0141. Check whether the linked list has cycle or not
+    while slowP and fastP and fastP.next:
+        slowP, fastP = slowP.next, fastP.next.next
+        if slowP == fastP: break
+
+    # No cycle
+    if slowP != fastP: return False, None
+    
+    # 0142. If there is cycle, find the entrance of the cycle
+    slowP = head
+    while slowP != fastP: slowP, fastP = slowP.next, fastP.next
+
+    return True, slowP
 
 
 if __name__ == '__main__':
@@ -511,3 +537,14 @@ if __name__ == '__main__':
 
     l6 = LinkedList(first)
     josephus_circle(l6.head, step=2)
+
+    print('\n[List 7]    ', l7)                                             # 12345
+    isCycle, entrance = linkedList_cycle(l7.head)
+    print(f'isCycle:     {isCycle}')                                        # True
+    print(f'Entrance:    {entrance}')                                       # 1
+
+    l7.get_tail().next = None
+    print('\n[List 7]    ', l7)                                             # 12345
+    isCycle, entrance = linkedList_cycle(l7.head)
+    print(f'isCycle:     {isCycle}')                                        # False
+    print(f'Entrance:    {entrance}')                                       # None
