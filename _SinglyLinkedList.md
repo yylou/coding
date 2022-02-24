@@ -1,6 +1,6 @@
 # Python Coding
 
-* ### [Menu](./README.md)
+* ### [Menu](./README.md)                   <a name="p0"></a>
 * ### Data Structures - Singly Linked List
     * [<ins>Source Code<ins>](./_SinglyLinkedList.py)
     * [Append / Prepend / Insert / Delete / Length](#p1)
@@ -39,6 +39,7 @@
 <br />
 
 ## Linked List
+[Table of content](#p0)
 ```python
 # For Python3 Compatibility
 from __future__ import print_function
@@ -62,6 +63,19 @@ class LinkedList:
                 self.append(head.data)
                 head = head.next
 
+    def __str__(self) -> str:
+        """
+        Print the linked list from HEAD to the TAIL node
+        """
+        ret = ''
+
+        cur = self.head
+        while cur:
+            ret += str(cur.data)
+            cur = cur.next
+        
+        return ret
+
     def get_node(self, key) -> Node:
         """
         Retrieve node by key (data)
@@ -81,19 +95,6 @@ class LinkedList:
         while cur.next: cur = cur.next
         
         return cur
-
-    def __str__(self) -> str:
-        """
-        Print the linked list from HEAD to the TAIL node
-        """
-        ret = ''
-
-        cur = self.head
-        while cur:
-            ret += str(cur.data)
-            cur = cur.next
-        
-        return ret
 ```
 
 ## Append                                   <a name="p1"></a>
