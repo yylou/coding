@@ -31,6 +31,19 @@ class LinkedList:
                 self.append(head.data)
                 head = head.next
 
+    def __str__(self) -> str:
+        """
+        Print the linked list from HEAD to the TAIL node
+        """
+        ret = ''
+
+        cur = self.head
+        while cur:
+            ret += str(cur.data)
+            cur = cur.next
+        
+        return ret
+
     def get_node(self, key) -> Node:
         """
         Retrieve node by key (data)
@@ -50,19 +63,6 @@ class LinkedList:
         while cur.next: cur = cur.next
         
         return cur
-
-    def __str__(self) -> str:
-        """
-        Print the linked list from HEAD to the TAIL node
-        """
-        ret = ''
-
-        cur = self.head
-        while cur:
-            ret += str(cur.data)
-            cur = cur.next
-        
-        return ret
 
     # =============================================================
 
@@ -112,7 +112,7 @@ class LinkedList:
             self.head = cur.next
             cur = None
 
-        # Search for the node to be deleted
+        # Search for the node before the node to be deleted
         else:
             while cur.next and cur.next.data != key: cur = cur.next
             if cur.next: cur.next = cur.next.next
@@ -134,6 +134,8 @@ class LinkedList:
             if cur: prev.next, cur = cur.next, None
 
         return self.head
+
+    # =============================================================
 
     def __len__(self) -> int:
         """
@@ -203,28 +205,22 @@ class LinkedList:
 
     def swap_nodes(self, k: int) -> Node:
         """
-        Leetcode 1721. Swapping Nodes in a Linked List (Mdeium) [(https://leetcode.com/problems/swapping-nodes-in-a-linked-list/]
+        Leetcode 1721. Swapping Nodes in a Linked List (Medium) [(https://leetcode.com/problems/swapping-nodes-in-a-linked-list/]
         - Swap the kth node from the beginning and the kth node from the end
         """
-        ret = prev = Node(0, self.head)
+        ret = prev1 = prev2 = Node(0, self.head)
         cur = self.head
         
-        for _ in range(k - 1): prev, cur = cur, cur.next
-        
-        slowP = ret
-        while cur and cur.next: slowP, cur = slowP.next, cur.next
+        # Find the previous nodes
+        for _ in range(k - 1): prev1, cur = cur, cur.next
+        while cur and cur.next: prev2, cur = prev2.next, cur.next
             
         # If node to be swapped is the middle one
-        if prev.next == slowP.next: return self.head
+        if prev1.next == prev2.next: return self.head
         
         # Swap nodes
-        node1, node2 = prev.next, slowP.next
-        
-        if prev: prev.next = slowP.next
-        else: ret.next = slowP.next
-        
-        slowP.next = node1
-        
+        node1, node2 = prev1.next, prev2.next
+        prev1.next, prev2.next = node2, node1
         node1.next, node2.next = node2.next, node1.next
         
         self.head = ret.next
