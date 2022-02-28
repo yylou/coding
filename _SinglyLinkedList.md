@@ -389,23 +389,26 @@ class LinkedList:
                        C is new head node
         ================================================================
         """
-        head = self.head
+        # (base case) No node / Only one node
+        if not self.head or not self.head.next: return self.head
 
-        tail, length = head, 1
+        # Find tail node
+        tail, length = self.head, 1
         while tail.next: tail, length = tail.next, length + 1
 
         n %= length
-        if n == 0: return head
+        if n == 0: return self.head
 
-        # Find new tail node
         if   dir == 'right': rotation = length - n - 1
         elif dir == 'left':  rotation = n - 1
 
-        new_tail = head    
+        # Find new tail node
+        new_tail = self.head    
         for _ in range(rotation): new_tail = new_tail.next
 
-        self.head = new_tail.next
-        tail.next, new_tail.next = head, None
+        new_head, new_tail.next = new_tail.next, None
+        tail.next = self.head
+        self.head = new_head
 
         return self.head
 ```
