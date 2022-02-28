@@ -350,16 +350,17 @@ class LinkedList:
         # (base case) No node / Only one node
         if not self.head or not self.head.next: return self.head
 
+        # Find tail node
         tail, length = self.head, 1
         while tail.next: tail, length = tail.next, length + 1
 
         n %= length
         if n == 0: return self.head
 
-        # Find new tail node
         if   dir == 'right': rotation = length - n - 1
         elif dir == 'left':  rotation = n - 1
 
+        # Find new tail node
         new_tail = self.head    
         for _ in range(rotation): new_tail = new_tail.next
 
