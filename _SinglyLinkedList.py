@@ -347,23 +347,25 @@ class LinkedList:
                        C is new head node
         ================================================================
         """
-        head = self.head
+        # (base case) No node / Only one node
+        if not self.head or not self.head.next: return self.head
 
-        tail, length = head, 1
+        tail, length = self.head, 1
         while tail.next: tail, length = tail.next, length + 1
 
         n %= length
-        if n == 0: return head
+        if n == 0: return self.head
 
         # Find new tail node
         if   dir == 'right': rotation = length - n - 1
         elif dir == 'left':  rotation = n - 1
 
-        new_tail = head    
+        new_tail = self.head    
         for _ in range(rotation): new_tail = new_tail.next
 
-        self.head = new_tail.next
-        tail.next, new_tail.next = head, None
+        new_head, new_tail.next = new_tail.next, None
+        tail.next = self.head
+        self.head = new_head
 
         return self.head
 
@@ -734,8 +736,8 @@ if __name__ == '__main__':
     second, shared = tuple(map(LinkedList, LinkedList(second).split()))
     first.get_tail().next  = shared.head
     second.get_tail().next = shared.head
-    print(f'\n1st List:      {first}')                                      # ABCDE
-    print(f'2nd List:      {second}')                                       # 12
+    print(f'\n1st List:      {first}')                                      # ABCDE34
+    print(f'2nd List:      {second}')                                       # 1234
     print(f'Shared:        {shared}')                                       # 34
     print(f'Intersection:  {intersection(first.head, second.head)}')        # 3
     
