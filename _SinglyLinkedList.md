@@ -20,6 +20,7 @@
     * [0021. Merge Two Sorted Lists (Easy)](https://leetcode.com/problems/merge-two-sorted-lists/)
     * [0023. Merge k Sorted Lists (Hard)](https://leetcode.com/problems/merge-k-sorted-lists/)
     * [0024. Swap Nodes in Pairs (Medium](https://leetcode.com/problems/swap-nodes-in-pairs/)
+    * [0025. Reverse Nodes in k-Group (Hard)](https://leetcode.com/problems/reverse-nodes-in-k-group/)
     * [0061. Rotate List (Medium)](https://leetcode.com/problems/rotate-list/)
     * [0083. Remove Duplicates from Sorted List (Easy)](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
     * [0092. Reverse Linked List II (Medium)](https://leetcode.com/problems/reverse-linked-list-ii/)
@@ -34,7 +35,6 @@
     * [0876. Middle of the Linked List (Easy)](https://leetcode.com/problems/middle-of-the-linked-list/)
     * [1721. Swapping Nodes in a Linked List (Mdeium)](https://leetcode.com/problems/swapping-nodes-in-a-linked-list/)
 
-    <!--- * [0025. Reverse Nodes in k-Group (Hard)](https://leetcode.com/problems/reverse-nodes-in-k-group/) -->
     <!--- * [0138. Copy List with Random Pointer (Medium)](https://leetcode.com/problems/copy-list-with-random-pointer/) -->
 
 <br />
