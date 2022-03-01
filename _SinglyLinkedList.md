@@ -34,7 +34,7 @@
     * [0876. Middle of the Linked List (Easy)](https://leetcode.com/problems/middle-of-the-linked-list/)
     * [1721. Swapping Nodes in a Linked List (Mdeium)](https://leetcode.com/problems/swapping-nodes-in-a-linked-list/)
 
-    <!--- * [0025. Reverse Nodes in k-Group (Hard)](https://leetcode.com/problems/reverse-linked-list-ii/) -->
+    <!--- * [0025. Reverse Nodes in k-Group (Hard)](https://leetcode.com/problems/reverse-nodes-in-k-group/) -->
     <!--- * [0138. Copy List with Random Pointer (Medium)](https://leetcode.com/problems/copy-list-with-random-pointer/) -->
 
 <br />
