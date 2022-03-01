@@ -411,6 +411,9 @@ def josephus_circle(head: Node, step: int) -> Node:
     Leetcode 1823. Find the Winner of the Circular Game (Medium) [https://leetcode.com/problems/find-the-winner-of-the-circular-game]
     - Find the Winner of the Circular Game (Josephus Problem)
     """
+    # (base case)
+    if step == 1: return head
+
     # Initialization (avoid affecting input linked list)
     l1 = LinkedList(head)
     print(f'\nOriginal List: {l1}')
@@ -419,18 +422,38 @@ def josephus_circle(head: Node, step: int) -> Node:
     n  = len(l1)
     if step == 1: return Node(n)
 
-    prev, head = None, l1.head
+    prev, cur = None, l1.head
     while n != 1:
-        for _ in range(step - 1): prev, head = head, head.next
+        print(f'Cur: {cur}, Prev: {prev}')
+        
+        for _ in range(step - 1): prev, cur = cur, cur.next
         if prev.next == l1.head: l1.head = prev.next.next
         
-        print(f'Remove: {prev.next}')
-        prev.next = prev.next.next
-        head = prev.next
+        print(f'Remove: {prev.next}', end='')
+        prev.next = cur.next
+        cur = prev.next
+        print(f'\t({l1}')
+
         n -= 1
 
     print(f'After (step={step}): {l1}')
-    return Node(l1.head)
+    return l1.head
+
+    # Alternative Solution: Math
+    """
+    l1 = LinkedList(head)
+    length = len(l1)
+
+    index = 0
+    for i in range(1, length+1): index = (index + step) % i
+    winner = index + 1
+
+    print(f'\nWinner of Josephus Problem: {winner}')
+
+    cur = l1.head
+    for _ in range(index): cur = cur.next
+    return cur
+    """
 
 def linkedList_cycle(head: Node) -> tuple:
     """
@@ -536,7 +559,7 @@ if __name__ == '__main__':
     print('2nd Part:   ', LinkedList(second))                               # ABCD
 
     l6 = LinkedList(first)
-    josephus_circle(l6.head, step=2)
+    josephus_circle(l6.head, step=3)
 
     print('\n[List 7]    ', l7)                                             # 12345
     isCycle, entrance = linkedList_cycle(l7.head)
