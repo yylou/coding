@@ -19,5 +19,6 @@
     * Abstract Base Classes (ABC)
     * Iterable vs. Iterator
 * ### Data Structures (w/ Leetcode Problems)
+    * [Hash Table](./_HashTable.md)
     * [Singly Linked List](./_SinglyLinkedList.md)
     * [Circular Linked List](./_CircularLinkedList.md)
