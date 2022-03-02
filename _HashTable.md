@@ -2,7 +2,6 @@
 
 * ### [Menu](./README.md)
 * ### Data Structures - Hash Table
-    * [<ins>Source Code<ins>](./_HashTable.py)
     * [Anagram / Palindrome](#p1)
 * ### LeetCode Problems
     * [0049. Group Anagrams (Medium)](https://leetcode.com/problems/group-anagrams/)
