@@ -3,7 +3,7 @@
 * ### [Menu](./README.md)
 * ### Data Structures - Hash Table
     * [<ins>Source Code<ins>](./_HashTable.py)
-    * [Anagram](#p1)
+    * [Anagram / Palindrome](#p1)
 * ### LeetCode Problems
     * [0049. Group Anagrams (Medium)](https://leetcode.com/problems/group-anagrams/)
     * [0138. Copy List with Random Pointer (Medium)](https://leetcode.com/problems/copy-list-with-random-pointer/)
@@ -14,7 +14,8 @@
 <br />
 
 ## Anagram                                  <a name="p1"></a>
-An **Anagram** is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+* An **Anagram** is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+* A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
 ```python
 """
