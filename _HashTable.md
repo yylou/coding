@@ -13,9 +13,9 @@
 
 <br />
 
-## Anagram                                  <a name="p1"></a>
+## Anagram / Palindrome                     <a name="p1"></a>
 * An **Anagram** is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
-* A **Palindrome** if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+* A phrase is a **Palindrome** if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
 ```python
 """
