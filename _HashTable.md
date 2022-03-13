@@ -27,7 +27,7 @@ https://leetcode.com/problems/group-anagrams/
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         # (base case)
-        if not strs: return [[""]]
+        if not strs: return [['']]
         if len(strs) == 1: return [strs]
         
         table = {}
@@ -42,12 +42,13 @@ class Solution:
             
         return table.values()
         
-    def count(self, s: str):
+    def count(self, s: str) -> tuple:
         """
         Count the occurence based on 26 lowercase Engligh letters
         """
         counter = [0 for _ in range(26)]
         for char in s: counter[ord(char) - ord('a')] += 1
+        
         return tuple(counter)
 ```
 
@@ -65,12 +66,12 @@ class Solution:
         table = Counter(s)
         
         for char in t:
-            # Additional char
+            # (1) Additional char
             if char not in table: return False
             
             table[char] -= 1
             
-            # Not enough chars
+            # (2) Not enough chars
             if table[char] < 0: return False
         
         # Remain chars
