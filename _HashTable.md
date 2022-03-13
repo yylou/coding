@@ -4,7 +4,7 @@
 * ### Data Structures - Hash Table
     * [Anagram / Palindrome](#p1)
 * ### LeetCode Problems
-    * [0001. Two Sum](https://leetcode.com/problems/two-sum/) [```Solution```]
+    * [0001. Two Sum](https://leetcode.com/problems/two-sum/) [```Solution```](https://github.com/yylou/leetcode/tree/main/0001-2-sum)
     * [0049. Group Anagrams (Medium)](https://leetcode.com/problems/group-anagrams/)
     * [0138. Copy List with Random Pointer (Medium)](https://leetcode.com/problems/copy-list-with-random-pointer/)
     * [0242. Valid Anagram (Easy)](https://leetcode.com/problems/valid-anagram/)
