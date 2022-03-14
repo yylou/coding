@@ -41,7 +41,6 @@
 <br />
 
 ## Linked List
-[Table of content](#p0)
 ```python
 # For Python3 Compatibility
 from __future__ import print_function

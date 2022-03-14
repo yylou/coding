@@ -22,3 +22,4 @@
     * [Hash Table](./_HashTable.md)
     * [Singly Linked List](./_SinglyLinkedList.md)
     * [Circular Linked List](./_CircularLinkedList.md)
+    * [Doubly Linked List](./_DoublyLinkedList.md)
