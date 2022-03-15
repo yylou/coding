@@ -22,6 +22,7 @@
     * [0024. Swap Nodes in Pairs ```Medium```](https://leetcode.com/problems/swap-nodes-in-pairs/)
     * [0025. Reverse Nodes in k-Group ```Hard```](https://leetcode.com/problems/reverse-nodes-in-k-group/)
     * [0061. Rotate List ```Medium```](https://leetcode.com/problems/rotate-list/)
+    * [0082. Remove Duplicates from Sorted List II ```Medium```](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)
     * [0083. Remove Duplicates from Sorted List ```Easy```](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
     * [0092. Reverse Linked List II ```Medium```](https://leetcode.com/problems/reverse-linked-list-ii/)
     * [0138. Copy List with Random Pointer ```Medium```](https://leetcode.com/problems/copy-list-with-random-pointer/)
