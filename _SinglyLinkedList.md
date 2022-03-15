@@ -33,11 +33,14 @@
     * [0203. Remove Linked List Elements (Easy)](https://leetcode.com/problems/remove-linked-list-elements/)
     * [0206. Reverse Linked List (Easy)](https://leetcode.com/problems/reverse-linked-list/)
     * [0234. Palindrome Linked List (Easy)](https://leetcode.com/problems/palindrome-linked-list/)
+    * [0237. Delete Node in a Linked List (Easy)](https://leetcode.com/problems/delete-node-in-a-linked-list/)
     * [0328. Odd Even Linked List (Medium)](https://leetcode.com/problems/odd-even-linked-list/)
     * [0445. Add Two Numbers II (Medium)](https://leetcode.com/problems/add-two-numbers-ii/)
     * [0725. Split Linked List in Parts (Medium)](https://leetcode.com/problems/split-linked-list-in-parts/)
     * [0876. Middle of the Linked List (Easy)](https://leetcode.com/problems/middle-of-the-linked-list/)
     * [1721. Swapping Nodes in a Linked List (Mdeium)](https://leetcode.com/problems/swapping-nodes-in-a-linked-list/)
+    * [2095. Delete the Middle Node of a Linked List (Medium)](https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/)
+    * [2130. Maximum Twin Sum of a Linked List](https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/)
 
 <br />
 
