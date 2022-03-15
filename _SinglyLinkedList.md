@@ -15,7 +15,7 @@
     * [Merge Two Sorted Linked Lists](#p10)
     * [Reorder](#p11)
 * ### LeetCode Problems
-    * [0002. Add Two Numbers ```(Medium)```](https://leetcode.com/problems/add-two-numbers/)
+    * [0002. Add Two Numbers ```Medium```](https://leetcode.com/problems/add-two-numbers/)
     * [0019. Remove Nth Node From End of List (Medium)](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
     * [0021. Merge Two Sorted Lists (Easy)](https://leetcode.com/problems/merge-two-sorted-lists/)
     * [0023. Merge k Sorted Lists (Hard)](https://leetcode.com/problems/merge-k-sorted-lists/)
