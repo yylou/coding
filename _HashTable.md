@@ -4,14 +4,14 @@
 * ### Data Structures - Hash Table
     * [Anagram / Palindrome](#p1)
 * ### LeetCode Problems
-    * [0001. Two Sum (Easy)](https://leetcode.com/problems/two-sum/)
-    * [0015. 3Sum (Medium)](https://leetcode.com/problems/3sum/)
-    * [0049. Group Anagrams (Medium)](https://leetcode.com/problems/group-anagrams/)
-    * [0138. Copy List with Random Pointer (Medium)](https://leetcode.com/problems/copy-list-with-random-pointer/)
-    * [0217. Contains Duplicate (Easy)](https://leetcode.com/problems/contains-duplicate/)
-    * [0242. Valid Anagram (Easy)](https://leetcode.com/problems/valid-anagram/)
-    * [0409. Longest Palindrome (Easy)](https://leetcode.com/problems/longest-palindrome/)
-    * [0438. Find All Anagrams in a String (Medium)](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
+    * [0001. Two Sum ```Easy```](https://leetcode.com/problems/two-sum/)
+    * [0015. 3Sum ```Medium```](https://leetcode.com/problems/3sum/)
+    * [0049. Group Anagrams ```Medium```](https://leetcode.com/problems/group-anagrams/)
+    * [0138. Copy List with Random Pointer ```Medium```](https://leetcode.com/problems/copy-list-with-random-pointer/)
+    * [0217. Contains Duplicate ```Easy```](https://leetcode.com/problems/contains-duplicate/)
+    * [0242. Valid Anagram ```Easy```](https://leetcode.com/problems/valid-anagram/)
+    * [0409. Longest Palindrome ```Easy```](https://leetcode.com/problems/longest-palindrome/)
+    * [0438. Find All Anagrams in a String ```Medium```](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
 
 <br />
 
