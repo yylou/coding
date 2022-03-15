@@ -15,7 +15,7 @@
     * [Merge Two Sorted Linked Lists](#p10)
     * [Reorder](#p11)
 * ### LeetCode Problems
-    * [0002. Add Two Numbers (Medium)](https://leetcode.com/problems/add-two-numbers/)
+    * [0002. Add Two Numbers ```(Medium)```](https://leetcode.com/problems/add-two-numbers/)
     * [0019. Remove Nth Node From End of List (Medium)](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
     * [0021. Merge Two Sorted Lists (Easy)](https://leetcode.com/problems/merge-two-sorted-lists/)
     * [0023. Merge k Sorted Lists (Hard)](https://leetcode.com/problems/merge-k-sorted-lists/)
@@ -40,7 +40,7 @@
     * [0876. Middle of the Linked List (Easy)](https://leetcode.com/problems/middle-of-the-linked-list/)
     * [1721. Swapping Nodes in a Linked List (Mdeium)](https://leetcode.com/problems/swapping-nodes-in-a-linked-list/)
     * [2095. Delete the Middle Node of a Linked List (Medium)](https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/)
-    * [2130. Maximum Twin Sum of a Linked List](https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/)
+    * [2130. Maximum Twin Sum of a Linked List (Medium)](https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/)
 
 <br />
 
