@@ -24,7 +24,7 @@
     * [0061. Rotate List ```Medium```](https://leetcode.com/problems/rotate-list/)
     * [0083. Remove Duplicates from Sorted List ```Easy```](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
     * [0092. Reverse Linked List II ```Medium```](https://leetcode.com/problems/reverse-linked-list-ii/)
-    * [0138. Copy List with Random Pointer ``Medium```](https://leetcode.com/problems/copy-list-with-random-pointer/)
+    * [0138. Copy List with Random Pointer ```Medium```](https://leetcode.com/problems/copy-list-with-random-pointer/)
     * [0141. Linked List Cycle ```Easy```](https://leetcode.com/problems/linked-list-cycle/)
     * [0142. Linked List Cycle II ```Medium```](https://leetcode.com/problems/linked-list-cycle-ii/)
     * [0143. Reorder List ```Medium```](https://leetcode.com/problems/reorder-list/)
