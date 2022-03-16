@@ -466,7 +466,43 @@ LeetCode link: [https://leetcode.com/problems/search-in-rotated-sorted-array/](h
 ```python
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
+        return self.method1(nums, target)
+        return self.method2(nums, target)
+    
+    def method1(self, nums: List[int], target: int) -> int:
+        """
+        # ==================================================
+        #  [Array] Binary Search                           =
+        # ==================================================
+        # time  : O(logn)
+        # space : O(1)
+        """
         
+        # (base case)
+        if len(nums) == 1: return 0 if target == nums[0] else -1
+        
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            pivot = (l + r) // 2
+            
+            if nums[pivot] == target:
+                return pivot
+            
+            if nums[pivot] >= nums[l]:
+                if nums[pivot] > target >= nums[l]:
+                    r = pivot - 1
+                else:
+                    l = pivot + 1
+                    
+            else:
+                if nums[r] >= target > nums[pivot]:
+                    l = pivot + 1
+                else:
+                    r = pivot - 1
+                    
+        return -1
+    
+    def method2(self, nums: List[int], target: int) -> int:
         """
         # ==================================================
         #  [Array] Binary Search                           =
@@ -479,6 +515,7 @@ class Solution:
         if len(nums) == 1: return 0 if target == nums[0] else -1
         
         minIndex = self.findMin(nums)
+        if target == nums[minIndex]: return minIndex
         
         index = -1
         if minIndex == 0:
@@ -491,7 +528,7 @@ class Solution:
             index = self.binarySearch(nums, target, minIndex, len(nums) - 1)
         
         return index
-        
+    
     def binarySearch(self, nums: List[int], target: int, l: int, r: int) -> int:
         
         """
