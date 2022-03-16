@@ -23,11 +23,13 @@ LeetCode link: [https://leetcode.com/problems/two-sum/](https://leetcode.com/pro
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
+        """
         # ==================================================
         #  [Array] Hash Table                              =
         # ==================================================
         # time  : O(n)
         # space : O(n)
+        """
         
         # (base case)
         if len(nums) == 2: return [0, 1]
@@ -64,16 +66,19 @@ class Solution:
 ```
 
 ### 0121. Best Time to Buy and Sell Stock ```Easy```     <a name="p3"></a>
+
 LeetCode link: [https://leetcode.com/problems/best-time-to-buy-and-sell-stock/](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 ```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         
+        """
         # ==================================================
         #  [Array] DP                                      =
         # ==================================================
         # time  : O(n)
         # space : O(1)
+        """
         
         # (base case)
         if len(prices) == 1: return 0
