@@ -481,9 +481,14 @@ class Solution:
         minIndex = self.findMin(nums)
         
         index = -1
-        if minIndex == 0: index = self.binarySearch(nums, target, 0, len(nums) - 1)
-        elif nums[minIndex - 1] >= target >= nums[0]: index = self.binarySearch(nums, target, 0, minIndex)
-        elif nums[len(nums) - 1] >= target >= nums[minIndex]: index = self.binarySearch(nums, target, minIndex, len(nums) - 1)
+        if minIndex == 0:
+            index = self.binarySearch(nums, target, 0, len(nums) - 1)
+        
+        elif nums[minIndex - 1] >= target >= nums[0]:
+            index = self.binarySearch(nums, target, 0, minIndex)
+        
+        elif nums[len(nums) - 1] >= target >= nums[minIndex]:
+            index = self.binarySearch(nums, target, minIndex, len(nums) - 1)
         
         return index
         
