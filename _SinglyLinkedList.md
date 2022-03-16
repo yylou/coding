@@ -665,19 +665,19 @@ def reorder(head: Node) -> None:
     """
     # (base case) No node / Only one node / Two nodes
     if not head: return None
-    if not head.next: return head
-    if not head.next.next: return head
+    if not head.next: return 
+    if not head.next.next: return
 
-    # 1. Find middle point
+    # (1) Find middle point
     slowP, fastP = head, head
     while fastP and fastP.next and fastP.next.next:
         slowP, fastP = slowP.next, fastP.next.next
     
-    # 2. Reverse second part
+    # (2) Reverse second part
     prev, slowP.next, slowP = None, None, slowP.next
     while slowP: prev, slowP.next, slowP = slowP, prev, slowP.next
 
-    # 3. Merge
+    # (3) Merge
     while prev:
         head.next, head = prev, head.next
         prev.next, prev = head, prev.next
