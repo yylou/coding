@@ -438,7 +438,7 @@ class Solution:
         
         """
         # ==================================================
-        #  [Array] DP (curMax, curMin, curSum)             =
+        #  [Array] DP (curMax, curMin, maxSum)             =
         # ==================================================
         # time  : O(n)
         # space : O(1)
@@ -447,16 +447,16 @@ class Solution:
         # (base case)
         if len(nums) == 1: return nums[0]
         
-        ans = curMax = curMin = nums[0]
+        maxSum = curMax = curMin = nums[0]
         
         for i in range(1, len(nums)):
             num = nums[i]
-            
             candidate = (num, num*curMax, num*curMin)
+
             curMax, curMin = max(candidate), min(candidate)
-            ans = max(ans, curMax)
+            maxSum = max(maxSum, curMax)
             
-        return ans
+        return maxSum
 ```
 
 <br />
@@ -464,4 +464,72 @@ class Solution:
 ## 0033. Search in Rotated Sorted Array ```Medium```    <a name="p12"></a>
 LeetCode link: [https://leetcode.com/problems/search-in-rotated-sorted-array/](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 ```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        
+        """
+        # ==================================================
+        #  [Array] Binary Search                           =
+        # ==================================================
+        # time  : O(logn)
+        # space : O(1)
+        """
+        
+        # (base case)
+        if len(nums) == 1: return 0 if target == nums[0] else -1
+        
+        minIndex = self.findMin(nums)
+        
+        index = -1
+        if minIndex == 0: index = self.binarySearch(nums, target, 0, len(nums) - 1)
+        elif nums[minIndex - 1] >= target >= nums[0]: index = self.binarySearch(nums, target, 0, minIndex)
+        elif nums[len(nums) - 1] >= target >= nums[minIndex]: index = self.binarySearch(nums, target, minIndex, len(nums) - 1)
+        
+        return index
+        
+    def binarySearch(self, nums: List[int], target: int, l: int, r: int) -> int:
+        
+        """
+        # ==================================================
+        #  [Array] Binary Search                           =
+        #          (Leetcode 704)                          =
+        # ==================================================
+        # time  : O(logn)
+        # space : O(1)
+        """
+        
+        while l <= r:
+            pivot = (l + r) // 2
+            
+            if nums[pivot] == target:
+                return pivot
+            
+            if nums[pivot] > target: r = pivot - 1
+            else: l = pivot + 1
+                
+        return -1
+    
+    def findMin(self, nums: List[int]) -> int:
+        
+        """
+        # ==================================================
+        #  [Array] Binary Search                           =
+        #          (Leetcode 153)                          =
+        # ==================================================
+        # time  : O(logn)
+        # space : O(1)
+        """
+        
+        # (base case)
+        if len(nums) == 1 or nums[0] < nums[-1]: return 0
+        
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            pivot = (l + r) // 2
+            
+            if nums[pivot - 1] > nums[pivot]:
+                return pivot
+            
+            if nums[pivot] > nums[r]: l = pivot + 1
+            else: r = pivot - 1
 ```
