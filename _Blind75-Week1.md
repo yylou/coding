@@ -66,7 +66,7 @@ class Solution:
 ```
 
 ### 0121. Best Time to Buy and Sell Stock ```Easy```     <a name="p3"></a>
-
+---
 LeetCode link: [https://leetcode.com/problems/best-time-to-buy-and-sell-stock/](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 ```python
 class Solution:
