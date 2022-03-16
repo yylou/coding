@@ -17,8 +17,8 @@
 
 <br />
 
-### 0001. Two Sum ```Easy```                             <a name="p1"></a>
-LeetCode link: [https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)
+## 0001. Two Sum                            <a name="p1"></a>
+```Easy``` | LeetCode link: [https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
