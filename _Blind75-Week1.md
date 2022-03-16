@@ -18,7 +18,7 @@
 <br />
 
 ## 0001. Two Sum ```Easy```                             <a name="p1"></a>
-[LeetCode link]: [https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)
+LeetCode link: [https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)
 ```python
 ```
 
