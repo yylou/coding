@@ -23,56 +23,56 @@ LeetCode link: [https://leetcode.com/problems/two-sum/](https://leetcode.com/pro
 ```
 
 ## 0217. Contains Duplicate ```Easy```                  <a name="p2"></a>
-[LeetCode link]: [https://leetcode.com/problems/contains-duplicate/](https://leetcode.com/problems/contains-duplicate/)
+LeetCode link: [https://leetcode.com/problems/contains-duplicate/](https://leetcode.com/problems/contains-duplicate/)
 ```python
 ```
 
 ## 0121. Best Time to Buy and Sell Stock ```Easy```     <a name="p3"></a>
-[LeetCode link]: [https://leetcode.com/problems/best-time-to-buy-and-sell-stock/](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+LeetCode link: [https://leetcode.com/problems/best-time-to-buy-and-sell-stock/](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 ```python
 ```
 
 ## 0242. Valid Anagram ```Easy```                       <a name="p4"></a>
-[LeetCode link]: [https://leetcode.com/problems/valid-anagram/](https://leetcode.com/problems/valid-anagram/)
+LeetCode link: [https://leetcode.com/problems/valid-anagram/](https://leetcode.com/problems/valid-anagram/)
 ```python
 ```
 
 ## 0020. Valid Parentheses ```Easy```                   <a name="p5"></a>
-[LeetCode link]: [https://leetcode.com/problems/valid-parentheses/](https://leetcode.com/problems/valid-parentheses/)
+LeetCode link: [https://leetcode.com/problems/valid-parentheses/](https://leetcode.com/problems/valid-parentheses/)
 ```python
 ```
 
 ## 0053. Maximum Subarray ```Easy```                    <a name="p6"></a>
-[LeetCode link]: [https://leetcode.com/problems/maximum-subarray/](https://leetcode.com/problems/maximum-subarray/)
+LeetCode link: [https://leetcode.com/problems/maximum-subarray/](https://leetcode.com/problems/maximum-subarray/)
 ```python
 ```
 
 ## 0238. Product of Array Except Self ```Medium```      <a name="p7"></a>
-[LeetCode link]: [https://leetcode.com/problems/product-of-array-except-self/](https://leetcode.com/problems/product-of-array-except-self/)
+LeetCode link: [https://leetcode.com/problems/product-of-array-except-self/](https://leetcode.com/problems/product-of-array-except-self/)
 ```python
 ```
 
 ## 0015. 3Sum ```Medium```                              <a name="p8"></a>
-[LeetCode link]: [https://leetcode.com/problems/3sum/](https://leetcode.com/problems/3sum/)
+LeetCode link: [https://leetcode.com/problems/3sum/](https://leetcode.com/problems/3sum/)
 ```python
 ```
 
 ## 0056. Merge Intervals ```Medium```                   <a name="p9"></a>
-[LeetCode link]: [https://leetcode.com/problems/merge-intervals/](https://leetcode.com/problems/merge-intervals/)
+LeetCode link: [https://leetcode.com/problems/merge-intervals/](https://leetcode.com/problems/merge-intervals/)
 ```python
 ```
 
 ## 0049. Group Anagrams ```Medium```                    <a name="p10"></a>
-[LeetCode link]: [https://leetcode.com/problems/group-anagrams/](https://leetcode.com/problems/group-anagrams/)
+LeetCode link: [https://leetcode.com/problems/group-anagrams/](https://leetcode.com/problems/group-anagrams/)
 ```python
 ```
 
 ## 0152. Maximum Product Subarray ```Medium```          <a name="p11"></a>
-[LeetCode link]: [https://leetcode.com/problems/maximum-product-subarray/](https://leetcode.com/problems/maximum-product-subarray/)
+LeetCode link: [https://leetcode.com/problems/maximum-product-subarray/](https://leetcode.com/problems/maximum-product-subarray/)
 ```python
 ```
 
 ## 0033. Search in Rotated Sorted Array ```Medium```    <a name="p12"></a>
-[LeetCode link]: [https://leetcode.com/problems/search-in-rotated-sorted-array/](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+LeetCode link: [https://leetcode.com/problems/search-in-rotated-sorted-array/](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 ```python
 ```
