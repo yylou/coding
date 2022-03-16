@@ -9,8 +9,6 @@ Date    : 2022/02/19
 
 # For Python3 Compatibility
 from __future__ import print_function
-from re import L
-from tkinter import N
 
 
 class Node:
