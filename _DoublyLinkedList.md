@@ -5,6 +5,9 @@
     * [<ins>Source Code<ins>](./_DoublyLinkedList.py)
     * [\_\_len\_\_ / \_\_str\_\_](#p1)
     * [Append / Prepend / Insert / Delete](#p2)
+    * [Reverse](#p3)
+    * [Rotate](#p4)
+    * [Remove Duplicates](#p5)
 
 <br />
 
