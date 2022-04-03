@@ -275,3 +275,23 @@ getParameters3(*Parts)      # description
 getParameters4(*Parts)      # ID description ('cost', 'amount')
 getParameters5(*Parts)      # TypeError: getParameters5() takes 3 positional arguments but 4 were given
 ```
+
+### 6. OrderedDict
+```python
+"""
+OrderedDict: Like a dict but preserves the order of insertion
+"""
+
+from collections import OrderedDict
+
+data = {'banana': 3, 'apple': 4, 'pear': 1, 'orange': 2}
+orderedDict1 = OrderedDict(data)
+orderedDict2 = OrderedDict(sorted(data.items()))
+
+print(orderedDict1)         # OrderedDict([('orange', 2), ('pear', 1), ('banana', 3), ('apple', 4)])
+print(orderedDict2)         # OrderedDict([('apple', 4), ('banana', 3), ('orange', 2), ('pear', 1)])
+
+print(orderedDict1.keys())  # ['orange', 'pear', 'banana', 'apple']
+print(orderedDict2.keys())  # ['apple', 'banana', 'orange', 'pear']
+
+```
