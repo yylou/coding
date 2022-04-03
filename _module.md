@@ -72,7 +72,7 @@ print(parser.parse_args())
 <br />
 
 ## Collections Module                               <a name="p2"></a>
-1. ChainMap
+### 1. ChainMap
 ```python
 """
 ChainMap: With precendence when initialization
@@ -116,7 +116,7 @@ ChainMap(
 """
 ```
 
-2. Counter
+### 2. Counter
 ```python
 """
 Counter: With handful methods - elements(), most_common(), subtract(), update()
