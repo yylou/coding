@@ -145,6 +145,7 @@ counter.update(tmp)
 print(counter)                          # Counter({'u': 3, 's': 2, 'e': 1, 'f': 1, 'l': 1, 'o': 1, 'p': 1, 'r': 1})
 ```
 
+### 3. defaultdict
 ```python
 """
 defaultdict: Can set default using lambda / None for KeyError
@@ -175,6 +176,102 @@ table = defaultdict(None)
 table['Mike']           # KeyError: 'Mike'
 ```
 
-``python
+### 4. deque
+```python
+"""
+deque: Generalization of stacks and queues
+"""
 
+from collections import deque
+import string
+
+def tail(filename, n=5):
+    """
+    Linux tail command for last n lines
+    """
+    try:
+        with open(filename) as FILE:
+            return deque(FILE, n)
+    
+    except OSError:
+        print(f'Error opening file: {filename}')
+        raise
+
+queue = deque(string.ascii_lowercase)
+print(queue)            # deque(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
+                        #        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+
+queue.append('A')       # deque(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
+                        #        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A'])
+
+queue.appendleft('-')   # deque(['-', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+                        #        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A'])
+
+queue.rotate(1)         # deque(['A', '-', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                        #        'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+
+queue.rotate(-1)        # deque(['-', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+                        #        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A'])
+
+queue.popleft()         # deque(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                        #        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A'])
+
+queue.pop()             # deque(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                        #        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+```
+
+### 5. namedtuple
+```python
+"""
+namedtuple: Like a struct
+"""
+
+from collections import namedtuple
+
+def getParameters1(**kwargs):
+    for key, value in kwargs.items(): print(f'{key}={value}', end=', ')
+    print()
+
+def getParameters2(*args):
+    print(args)
+
+def getParameters3(ID, description, cost, amount):
+    print(description)
+
+def getParameters4(ID, description, *other):
+    print(ID, description, other)
+
+def getParameters5(ID, description, cost):
+    print(ID, description, cost)
+
+
+# First argument  = Class Name
+# Second argument = field names
+Parts = namedtuple('Parts', 'ID description cost amount')
+auto_parts = Parts(ID='0001', description='Ford Engine', cost=1200.00, amount=10)
+
+print(Parts)                # <class '__main__.Parts'>
+print(auto_parts)           # Parts(ID='0001', description='Ford Engine', cost=1200.0, amount=10)
+print(dir(Parts))           # [..., 'amount', 'cost', 'description', 'ID', ...]
+print(dir(auto_parts))      # [..., 'amount', 'cost', 'description', 'ID', ...]
+
+# Use dict keys to initialize
+Parts = {'ID': '0001', 'description': 'Ford Engine', 'cost': 1200.00, 'amount': 10}
+empty_parts = namedtuple('Parts', Parts.keys())
+
+# Use keyword arguments (**kwargs) to fill in the values
+# NOTE: *args give all parameters as a tuple
+auto_parts  = empty_parts(**Parts)
+
+print(Parts)                # {'amount': 10, 'cost': 1200.0, 'ID': '0001', 'description': 'Ford Engine'
+print(empty_parts)          # <class '__main__.Parts'>
+print(auto_parts)           # Parts(ID='0001', description='Ford Engine', cost=1200.0, amount=10)
+print(dir(Parts))           # without 'amount', 'cost', 'description', 'ID'
+print(dir(auto_parts))      # [..., 'amount', 'cost', 'description', 'ID', ...]
+
+getParameters1(**Parts)     # ID=0001, description=Ford Engine, cost=1200.0, amount=10
+getParameters2(*Parts)      # ('ID', 'description', 'cost', 'amount')
+getParameters3(*Parts)      # description
+getParameters4(*Parts)      # ID description ('cost', 'amount')
+getParameters5(*Parts)      # TypeError: getParameters5() takes 3 positional arguments but 4 were given
 ```
