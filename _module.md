@@ -3,7 +3,7 @@
 * ### [Menu](./README.md)
 * ### Module
     * [Argument Parsing](#p1)
-    * [Collections Module](#p2)
+    * [Collections Module - ChainMap, Counter, defaultdict, deque](#p2)
 
 <br />
 
@@ -72,6 +72,7 @@ print(parser.parse_args())
 <br />
 
 ## Collections Module                               <a name="p2"></a>
+1. ChainMap
 ```python
 """
 ChainMap: With precendence when initialization
@@ -107,10 +108,10 @@ print(car_pricing)
 > python3 ___.py -model3 Mercedes
 
 ChainMap(
-         {'model1': 'Ford', 'model2': 'Chevy', 'model3': 'Mercedes'}    # car_model
-         {'hood_ornament': 150, 'seat_cover': 99, 'cover': 100},        # car_accessories
-         {'rollbar': 300, 'A/C': 1000, 'Turbo': 2500},                  # car_options
-         {'engine': 5000, 'hood': 500, 'front_door': 750}               # car_parts
+            {'model1': 'Ford', 'model2': 'Chevy', 'model3': 'Mercedes'}    # car_model
+            {'hood_ornament': 150, 'seat_cover': 99, 'cover': 100},        # car_accessories
+            {'rollbar': 300, 'A/C': 1000, 'Turbo': 2500},                  # car_options
+            {'engine': 5000, 'hood': 500, 'front_door': 750}               # car_parts
         )
 """
 ```
@@ -145,7 +146,7 @@ print(counter)                          # Counter({'u': 3, 's': 2, 'e': 1, 'f': 
 
 ```python
 """
-defaultdict: Can set default using lambda
+defaultdict: Can set default using lambda / None for KeyError
 """
 
 from collections import defaultdict
@@ -165,6 +166,14 @@ print(table)            # defaultdict(<type 'list'>, {345: [10.45, 222.66], 1234
 # lambda
 table = defaultdict(lambda: 'Foo Fighters')
 table['Mike'] = 'Aerosmith'
-print(table['Jerry'])   # Foo Fighters
+table['Jerry']          # Foo Fighters
 print(table)            # defaultdict(<function <lambda> at 0x100a888d0>, {'Mike': 'Aerosmith', 'Jerry': 'Foo Fighters'})
+
+# None = KeyError
+table = defaultdict(None)
+table['Mike']           # KeyError: 'Mike'
+```
+
+``python
+
 ```
