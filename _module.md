@@ -116,6 +116,7 @@ ChainMap(
 """
 ```
 
+2. Counter
 ```python
 """
 Counter: With handful methods - elements(), most_common(), subtract(), update()
