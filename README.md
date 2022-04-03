@@ -18,6 +18,8 @@
     * Implementing duck typing
     * Abstract Base Classes (ABC)
     * Iterable vs. Iterator
+* ### [Module](./_module.md)
+    * Argument Parsing
 * ### Data Structures (w/ Leetcode Problems)
     * [Hash Table ```#8```](./_HashTable.md)
     * [Singly Linked List ```#27```](./_SinglyLinkedList.md)
