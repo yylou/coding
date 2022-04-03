@@ -3,7 +3,7 @@
 * ### [Menu](./README.md)
 * ### Module
     * [Argument Parsing](#p1)
-    * [Collections Module - ChainMap, Counter, defaultdict, deque](#p2)
+    * [Collections Module - ChainMap, Counter, defaultdict, deque, namedtuple, OrderedDict](#p2)
 
 <br />
 
