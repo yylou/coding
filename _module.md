@@ -69,6 +69,8 @@ This is where you might put example usage
 print(parser.parse_args())
 ```
 
+<br />
+
 ## Collections Module                               <a name="p2"></a>
 ```python
 """
