@@ -24,6 +24,7 @@
     * [0061. Rotate List ```Medium```](https://leetcode.com/problems/rotate-list/)
     * [0082. Remove Duplicates from Sorted List II ```Medium```](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)
     * [0083. Remove Duplicates from Sorted List ```Easy```](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
+    * [0086. Partition List ```Medium```](https://leetcode.com/problems/partition-list/)
     * [0092. Reverse Linked List II ```Medium```](https://leetcode.com/problems/reverse-linked-list-ii/)
     * [0138. Copy List with Random Pointer ```Medium```](https://leetcode.com/problems/copy-list-with-random-pointer/)
     * [0141. Linked List Cycle ```Easy```](https://leetcode.com/problems/linked-list-cycle/)
@@ -40,6 +41,7 @@
     * [0445. Add Two Numbers II ```Medium```](https://leetcode.com/problems/add-two-numbers-ii/)
     * [0725. Split Linked List in Parts ```Medium```](https://leetcode.com/problems/split-linked-list-in-parts/)
     * [0876. Middle of the Linked List ```Easy```](https://leetcode.com/problems/middle-of-the-linked-list/)
+    * [1019. Next Greater Node In Linked List ```Medium```](https://leetcode.com/problems/next-greater-node-in-linked-list/)
     * [1721. Swapping Nodes in a Linked List ```Mdeium```](https://leetcode.com/problems/swapping-nodes-in-a-linked-list/)
     * [2095. Delete the Middle Node of a Linked List ```Medium```](https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/)
     * [2130. Maximum Twin Sum of a Linked List ```Medium```](https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/)
@@ -234,7 +236,7 @@ class LinkedList:
             
             cur, prev = cur.next, cur
 
-        # Return: Both nodes not exist | Two nodes are the same
+        # Return: One of nodes not exist | Two nodes are the same
         if not (node1 and node2) or (node1 == node2): return
 
         # Node1's previous node exists, assign next pointer to node2
@@ -242,7 +244,7 @@ class LinkedList:
         # Otherwise, assign node2 to head node
         else: self.head = node2
 
-        # Node1's previous node exists, assign next pointer to node2
+        # Node2's previous node exists, assign next pointer to node1
         if prev2: prev2.next = node1
         # Otherwise, assign node2 to head node
         else: self.head = node1
