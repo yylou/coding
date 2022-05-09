@@ -27,4 +27,4 @@
     * [Circular Linked List ```#3```](./_CircularLinkedList.md)
     * [Doubly Linked List](./_DoublyLinkedList.md)
 * ### Blind 75 LeetCode Problems
-    * [Week 1 ```#12```](./_Blind75-Week1.md)
+    * [Week 1 ```#12```](./__Blind75-Week1.md)
