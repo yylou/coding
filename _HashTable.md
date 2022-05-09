@@ -24,8 +24,18 @@
 0049. Group Anagrams (Medium)
 https://leetcode.com/problems/group-anagrams/
 """
+
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+        """
+        # ==================================================
+        #  [Array] Hash Table, Sort                        =
+        # ==================================================
+        # time  : O(n * mlogm)
+        # space : O(1)
+        """
+        
         # (base case)
         if not strs: return [['']]
         if len(strs) == 1: return [strs]
@@ -36,19 +46,18 @@ class Solution:
             # key = self.count(element)
             
             # (2) Using sorted string as key
-            key = ''.join(sorted(element))
+            key = tuple(sorted(element))
             
             table[key] = table.get(key, []) + [element]
             
         return table.values()
         
-    def count(self, s: str) -> tuple:
+    def count(self, s: str):
         """
         Count the occurence based on 26 lowercase Engligh letters
         """
         counter = [0 for _ in range(26)]
         for char in s: counter[ord(char) - ord('a')] += 1
-        
         return tuple(counter)
 ```
 
@@ -57,8 +66,18 @@ class Solution:
 0242. Valid Anagram (Easy)
 https://leetcode.com/problems/valid-anagram/
 """
+
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
+        
+        """
+        # ==================================================
+        #  [String] Hash Table                             =
+        # ==================================================
+        # time  : O(m + n)
+        # space : O(n)
+        """
+        
         # (base case) Non-equal length / length == 1
         if len(s) != len(t): return False
         if len(s) == 1 and len(t) == 1: return s[0] == t[0]
@@ -74,9 +93,8 @@ class Solution:
             # (2) Not enough chars
             if table[char] < 0: return False
         
-        # Remain chars
-        for val in table.values():
-            if val != 0: return False
+        # (3) Remain chars
+        if any(counter.values()): return False
         
         return True
 ```
