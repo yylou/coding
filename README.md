@@ -23,7 +23,7 @@
     * Collections Module
 * ### Data Structures (w/ Leetcode Problems)
     * [Hash Table ```#8```](./_HashTable.md)
-    * [Singly Linked List ```#28```](./_SinglyLinkedList.md)
+    * [Singly Linked List ```#30```](./_SinglyLinkedList.md)
     * [Circular Linked List ```#3```](./_CircularLinkedList.md)
     * [Doubly Linked List](./_DoublyLinkedList.md)
 * ### Blind 75 LeetCode Problems
