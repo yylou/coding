@@ -22,7 +22,7 @@
 ```python
 """
 0049. Group Anagrams (Medium)
-https://leetcode.com/problems/group-anagrams/
+https://leetcode.com/problems/group-anagrams
 """
 
 class Solution:
@@ -64,7 +64,7 @@ class Solution:
 ```python
 """
 0242. Valid Anagram (Easy)
-https://leetcode.com/problems/valid-anagram/
+https://leetcode.com/problems/valid-anagram
 """
 
 class Solution:
@@ -102,7 +102,7 @@ class Solution:
 ```python
 """
 0409. Longest Palindrome (Easy)
-https://leetcode.com/problems/longest-palindrome/
+https://leetcode.com/problems/longest-palindrome
 """
 
 class Solution:
@@ -136,7 +136,7 @@ class Solution:
 ```python
 """
 0438. Find All Anagrams in a String (Medium)
-https://leetcode.com/problems/find-all-anagrams-in-a-string/
+https://leetcode.com/problems/find-all-anagrams-in-a-string
 """
 
 class Solution:
