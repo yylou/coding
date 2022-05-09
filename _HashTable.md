@@ -104,8 +104,18 @@ class Solution:
 0409. Longest Palindrome (Easy)
 https://leetcode.com/problems/longest-palindrome/
 """
+
 class Solution:
     def longestPalindrome(self, s: str) -> int:
+        
+        """
+        # ==================================================
+        #  [String] Hash Table (Counter), Math             =
+        # ==================================================
+        # time  : O(n)
+        # space : O(1)
+        """
+        
         # (base case)
         if len(s) == 1: return 1
         
@@ -113,13 +123,12 @@ class Solution:
         
         length = 0
         for k, v in table.items():
-            # Even occurence: take all
-            # Odd  occurence: take all and only left 1
+            # (1)   Take even number of occurence
             result, remain = divmod(v, 2)
             length += v - remain
             
-            # Current length is even and char still remains
-            if length % 2 == 0 and v % 2 == 1: length += 1
+            # (2)   Current length is even and char still remains
+            if length % 2 == 0 and remain == 1: length += 1
             
         return length
 ```
@@ -129,27 +138,31 @@ class Solution:
 0438. Find All Anagrams in a String (Medium)
 https://leetcode.com/problems/find-all-anagrams-in-a-string/
 """
+
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
+        
+        """
+        # ==================================================
+        #  [String] Sliding Window                         =
+        # ==================================================
+        # time  : O(n)
+        # space : O(n)
+        """
+        
         # (base case)
         if len(p) > len(s): return []
         
-        ans = []
-        table, n = Counter(p), len(p)
-        tmpTable = Counter(s[:n])
-        if table == tmpTable: ans.append(0)
+        n = len(p)
+        current = sum(hash(char) for char in s[:n])
+        target  = sum(hash(char) for char in p)
         
-        # Sliding Window
-        for i in range(n, len(s)):
-            # 1. Remove previous char
-            tmpTable[s[i-n]] -= 1
-            if tmpTable[s[i-n]] < 0: del tmpTable[s[i-n]]
-                
-            # 2. Add new char
-            tmpTable[s[i]] = tmpTable.get(s[i], 0) + 1
+        ans = []
+        if current == target: ans.append(0)
+        
+        for i, v in enumerate(s[n:]):
+            current += hash(v) - hash(s[i])
+            if current == target: ans.append(i + 1)
             
-            # 3. Check
-            if table == tmpTable: ans.append(i + 1 - n)
-                
         return ans
 ```
