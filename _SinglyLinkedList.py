@@ -203,8 +203,8 @@ class LinkedList:
 
     def swap_nodes(self, k: int) -> Node:
         """
-        Leetcode 1721. Swapping Nodes in a Linked List (Medium) [(https://leetcode.com/problems/swapping-nodes-in-a-linked-list/]
-        - Swap the kth node from the beginning and the kth node from the end
+        Leetcode 1721. Swapping Nodes in a Linked List (Medium)
+        [(https://leetcode.com/problems/swapping-nodes-in-a-linked-list/]
         """
         ret = prev1 = prev2 = Node(0, self.head)
         cur = self.head
@@ -228,7 +228,8 @@ class LinkedList:
 
     def swap_pairs(self) -> Node:
         """
-        Leetcode 0024. Swap Nodes in Pairs (Medium) [https://leetcode.com/problems/swap-nodes-in-pairs/]
+        Leetcode 0024. Swap Nodes in Pairs (Medium)
+        [https://leetcode.com/problems/swap-nodes-in-pairs/]
         """
         # (base case)
         if not self.head: return None
@@ -309,7 +310,8 @@ class LinkedList:
 
     def reverse_between(self, left: int, right: int) -> Node:
         """
-        Leetcode 0092. Reverse Linked List II (Medium) [https://leetcode.com/problems/reverse-linked-list-ii/]
+        Leetcode 0092. Reverse Linked List II (Medium)
+        [https://leetcode.com/problems/reverse-linked-list-ii/]
         """ 
         # (base case)
         if left == right: return self.head
@@ -437,8 +439,8 @@ class LinkedList:
 
     def sort(self) -> Node:
         """
-        Leetcode 0148. Sort List (Medium) [https://leetcode.com/problems/sort-list/]
-        - Sort the linked list (using bottom-up Merge Sort)
+        Leetcode 0148. Sort List (Medium)
+        [https://leetcode.com/problems/sort-list/]
         """ 
         # (base case)
         if not self.head or not self.head.next: return self.head
@@ -601,7 +603,8 @@ def mergeTwoLists_recursive(l1, l2) -> Node:
 
 def reorder(head: Node) -> None:
     """
-    Leetcode 0143. Reorder List (Medium) [https://leetcode.com/problems/reorder-list/]
+    Leetcode 0143. Reorder List (Medium)
+    [https://leetcode.com/problems/reorder-list/]
     """
     # (base case) No node / Only one node / Two nodes
     if not head: return None
@@ -624,7 +627,8 @@ def reorder(head: Node) -> None:
 
 def intersection(headA: Node, headB: Node) -> Node:
     """
-    Leetcode 0160. Intersection of Two Linked Lists (Easy) [https://leetcode.com/problems/intersection-of-two-linked-lists/]
+    Leetcode 0160. Intersection of Two Linked Lists (Easy)
+    [https://leetcode.com/problems/intersection-of-two-linked-lists/]
     """
     pA, pB = headA, headB
     while pA != pB:
