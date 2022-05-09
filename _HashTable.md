@@ -85,15 +85,15 @@ class Solution:
         table = Counter(s)
         
         for char in t:
-            # (1) Additional char
+            # (1)   Additional char
             if char not in table: return False
             
             table[char] -= 1
             
-            # (2) Not enough chars
+            # (2)   Not enough char
             if table[char] < 0: return False
         
-        # (3) Remain chars
+        # (3)   Remaining char
         if any(counter.values()): return False
         
         return True
