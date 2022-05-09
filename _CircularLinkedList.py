@@ -408,7 +408,9 @@ class LinkedList:
 
 def josephus_circle(head: Node, step: int) -> Node:
     """
-    Leetcode 1823. Find the Winner of the Circular Game (Medium) [https://leetcode.com/problems/find-the-winner-of-the-circular-game]
+    Leetcode 1823. Find the Winner of the Circular Game (Medium)
+    [https://leetcode.com/problems/find-the-winner-of-the-circular-game]
+    
     - Find the Winner of the Circular Game (Josephus Problem)
     """
     # (base case)
@@ -457,8 +459,11 @@ def josephus_circle(head: Node, step: int) -> Node:
 
 def linkedList_cycle(head: Node) -> tuple:
     """
-    Leetcode 0141. Linked List Cycle    (Easy)   [https://leetcode.com/problems/linked-list-cycle/]
-    Leetcode 0142. Linked List Cycle II (Medium) [https://leetcode.com/problems/linked-list-cycle-ii/]
+    Leetcode 0141. Linked List Cycle    (Easy)
+    [https://leetcode.com/problems/linked-list-cycle/]
+    
+    Leetcode 0142. Linked List Cycle II (Medium)
+    [https://leetcode.com/problems/linked-list-cycle-ii/]
     """
     # (base case) No nodes / Only one node
     if not head or not head.next: return False, None
