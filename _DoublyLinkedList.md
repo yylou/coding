@@ -2,7 +2,7 @@
 
 * ### [Menu](./README.md)                   <a name="p0"></a>
 * ### Data Structures - Doubly Linked List
-    * [<ins>Source Code<ins>](./_DoublyLinkedList.py)
+    * [<ins>Source Code<ins>](./DoublyLinkedList.py)
     * [\_\_len\_\_ / \_\_str\_\_](#p1)
     * [Append / Prepend / Insert / Delete](#p2)
     * [Reverse](#p3)
