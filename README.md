@@ -1,5 +1,6 @@
 # Coding Practice
 > [Notion Pages](https://yylou.notion.site/CODING-eef2bf79104b44709c56f0bedea8d9f5)
+![Notion](./notion.png)
 
 * ### Python Programming
     * ```Educative.io``` [Python for Programmers](https://www.educative.io/path/python-for-programmers)
