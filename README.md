@@ -6,6 +6,6 @@
     * ```Educative.io``` [Ace The Python Coding Interview](https://www.educative.io/path/ace-python-coding-interview)
 
 * ### Problem Solving
-    * Bling 75
-    * NeetCode
-    * LeetCode
+    * [Bling 75](https://www.techinterviewhandbook.org/best-practice-questions/)
+    * [NeetCode](https://neetcode.io/roadmap)
+    * [LeetCode](https://leetcode.com/yylou/)
