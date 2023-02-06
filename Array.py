@@ -14,6 +14,7 @@ class Array:
     @classmethod
     def search(self, id: str):
         if id == "0088": return self._0088_merge_sorted_array
+        if id == "0242": return self._0242_valid_anagram
         if id == "1470": return self._1470_shuffle_array
 
     @classmethod
@@ -37,6 +38,23 @@ class Array:
                 p2 -= 1
 
             place -= 1
+
+    @classmethod
+    def _0242_valid_anagram(self, s: str, t: str) -> bool:
+        """
+        Easy  |  Hash  |  https://leetcode.com/problems/valid-anagram
+        """
+
+        from collections import Counter
+
+        counter = Counter(s)
+        for char in t:
+            if char not in counter: return False    # extra
+            if counter[char] <= 0 : return False    # not enough
+            counter[char] -= 1
+        
+        if any(counter.values()): return False      # remain
+        return True
 
     @classmethod
     def _1470_shuffle_array(self, nums: list, n: int) -> list:
