@@ -14,6 +14,7 @@ import inspect
 
 from Array                      import Array
 from Test                       import Test
+from parse                      import Company
 
 def argu():
     parser = ARGU.ArgumentParser(description="LeetCode Problem Solving DB")
