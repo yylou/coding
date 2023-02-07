@@ -44,45 +44,36 @@
 
 ## Execution Mode
 ```python
-> python3 main.py -prob 0088
+> python3 main.py -prob 0242
 
     @classmethod
-    def _0088_merge_sorted_array(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:
+    def _0242_valid_anagram(self, s: str, t: str) -> bool:
         """
-        |  Easy  |  Two Pointer  |
-        https://leetcode.com/problems/merge-sorted-array/
+        |  Easy  |  Hash  |  https://leetcode.com/problems/valid-anagram
         """
 
-        # Time:  O(m+n)
-        # Space: O(1)
+        # Time:  O(max(n, m))
+        # Space: O(n)
+
+        from collections import Counter
+
+        counter = Counter(s)
+        for char in t:
+            if char not in counter: return False    # extra
+            if counter[char] <= 0 : return False    # not enough
+            counter[char] -= 1
         
-        p1, p2 = m-1, n-1
-        place = m+n-1
-
-        while p1>=0 or p2>=0:
-            val1 = nums1[p1] if p1 >= 0 else float("-inf")
-            val2 = nums2[p2] if p2 >= 0 else float("-inf")
-
-            if val1 > val2:     # nums1[p1] = val1
-                nums1[place] = val1
-                p1 -= 1
-            else:               # nums2[p2] = val2
-                nums1[place] = val2
-                p2 -= 1
-
-            place -= 1
+        if any(counter.values()): return False      # remain
+        return True
 
 
     """
 
-    [Input]     nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
-    [Answer]    [1,2,2,3,5,6]
+    [Input]     s = "anagram", t = "nagaram"
+    [Answer]    True
 
-    [Input]     nums1 = [1], m = 1, nums2 = [], n = 0
-    [Answer]    [1]
-
-    [Input]     nums1 = [0], m = 0, nums2 = [1], n = 1
-    [Answer]    [1]
+    [Input]     s = "rat", t = "car"
+    [Answer]    False
 
     """
 
