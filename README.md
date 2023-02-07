@@ -44,35 +44,45 @@
 
 ## Execution Mode
 ```python
-> python3 main.py -prob 0027
+> python3 main.py -prob 0088
 
     @classmethod
-    def _0027_remove_element(self, nums: list[int], val: int) -> int:
+    def _0088_merge_sorted_array(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:
         """
         |  Easy  |  Two Pointer  |
-        https://leetcode.com/problems/remove-element/description/
+        https://leetcode.com/problems/merge-sorted-array/
         """
 
-        # Time:  O(n)
+        # Time:  O(m+n)
         # Space: O(1)
+        
+        p1, p2 = m-1, n-1
+        place = m+n-1
 
-        l, r = 0, len(nums)-1
-        while l <= r:
-            if nums[l] == val:
-                nums[l], nums[r] = nums[r], nums[l]
-                r -= 1
-            else:
-                l += 1
-        return l
+        while p1>=0 or p2>=0:
+            val1 = nums1[p1] if p1 >= 0 else float("-inf")
+            val2 = nums2[p2] if p2 >= 0 else float("-inf")
+
+            if val1 > val2:     # nums1[p1] = val1
+                nums1[place] = val1
+                p1 -= 1
+            else:               # nums2[p2] = val2
+                nums1[place] = val2
+                p2 -= 1
+
+            place -= 1
 
 
     """
 
-    [Input]     nums = [3,2,2,3], val = 3
-    [Answer]    2, [2, 2]
+    [Input]     nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+    [Answer]    [1,2,2,3,5,6]
 
-    [Input]     nums = [0,1,2,2,3,0,4,2], val = 2
-    [Answer]    5, [0, 1, 4, 0, 3]
+    [Input]     nums1 = [1], m = 1, nums2 = [], n = 0
+    [Answer]    [1]
+
+    [Input]     nums1 = [0], m = 0, nums2 = [1], n = 1
+    [Answer]    [1]
 
     """
 
