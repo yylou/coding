@@ -41,3 +41,39 @@
                 l += 1
         return l
 ```
+
+## Execution Mode
+```python
+# > python3 main.py -prob 0027
+
+    @classmethod
+    def _0027_remove_element(self, nums: list[int], val: int) -> int:
+        """
+        |  Easy  |  Two Pointer  |
+        https://leetcode.com/problems/remove-element/description/
+        """
+
+        # Time:  O(n)
+        # Space: O(1)
+
+        l, r = 0, len(nums)-1
+        while l <= r:
+            if nums[l] == val:
+                nums[l], nums[r] = nums[r], nums[l]
+                r -= 1
+            else:
+                l += 1
+        return l
+
+
+    """
+
+    [Input]     nums = [3,2,2,3], val = 3
+    [Answer]    2, [2, 2]
+
+    [Input]     nums = [0,1,2,2,3,0,4,2], val = 2
+    [Answer]    5, [0, 1, 4, 0, 3]
+
+    """
+    
+```
