@@ -44,7 +44,7 @@
 
 ## Execution Mode
 ```python
-# > python3 main.py -prob 0027
+> python3 main.py -prob 0027
 
     @classmethod
     def _0027_remove_element(self, nums: list[int], val: int) -> int:
@@ -75,5 +75,5 @@
     [Answer]    5, [0, 1, 4, 0, 3]
 
     """
-    
+
 ```
