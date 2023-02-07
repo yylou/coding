@@ -2,9 +2,9 @@
 > [Notion Pages](https://yylou.notion.site/CODING-eef2bf79104b44709c56f0bedea8d9f5)
 > ![Notion](./notion.png)
 > * #### Python Programming
->   * ```Educative.io``` [Python for Programmers](https://www.educative.io/path/python-for-programmers) | [Ace The Python Coding Interview](https://www.educative.io/path/ace-python-coding-interview)
+>   * **Educative.io:** [```Python for Programmers```](https://www.educative.io/path/python-for-programmers) | [```Ace The Python Coding Interview```](https://www.educative.io/path/ace-python-coding-interview)
 > * #### Problem Solving
->   * [LeetCode](https://leetcode.com/problemset/all/) | [Bling 75](https://www.techinterviewhandbook.org/best-practice-questions/) | [NeetCode](https://neetcode.io/roadmap)
+>   * [```LeetCode```](https://leetcode.com/problemset/all/) | [```Bling 75```](https://www.techinterviewhandbook.org/best-practice-questions/) | [```NeetCode```](https://neetcode.io/roadmap)
 
 <br />
 
