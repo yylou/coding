@@ -21,7 +21,7 @@ def argu():
     parser.add_argument("-prob",     nargs='?', type=str,    default="",    help="(problem id)")
     return parser
 
-def get_test(id: str): Test.search(id)
+def get_test(id: str): print('\n    """'); Test.search(id); print('    """\n')
 def get_code(id: str): print('\n\n' + inspect.getsource(Array.search(id)))
 
 def main():

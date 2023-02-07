@@ -51,7 +51,7 @@ class Test:
         input = 'nums = [0,1,2,2,3,0,4,2], val = 2'
         answer = 5
         print(f"\n    [Input]     {input}")
-        print(f"    [Answer]    {answer}, {nums[:answer]}")
+        print(f"    [Answer]    {answer}, {nums[:answer]}\n")
     
     @classmethod
     def _0088_merge_sorted_array(self) -> None:
