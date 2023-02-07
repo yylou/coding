@@ -8,7 +8,7 @@
 
 <br />
 
-## Interactive Mode
+## :soon: Interactive Mode
 ```python
 >>> from Test import Test
 >>> Test.run("0027", nums=[3,2,2,3], val=3)
@@ -42,7 +42,7 @@
         return l
 ```
 
-## Execution Mode
+## :on: Execution Mode
 ```python
 > python3 main.py -prob 0242
 
