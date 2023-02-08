@@ -14,7 +14,10 @@ class Array:
     @classmethod
     def search(self, id: str):
         if id == "0027": return self._0027_remove_element
+        if id == "0049": return self._0049_group_anagrams
         if id == "0088": return self._0088_merge_sorted_array
+        if id == "0121": return self._0121_best_time_buy_sell_stock
+        if id == "0122": return self._0122_best_time_buy_sell_stock_II
         if id == "0217": return self._0217_contains_duplicate
         if id == "0219": return self._0219_contains_duplicate_II
         if id == "0242": return self._0242_valid_anagram
@@ -25,7 +28,7 @@ class Array:
     def _0027_remove_element(self, nums: list[int], val: int) -> int:
         """
         |  Easy  |  Two Pointer  |
-        https://leetcode.com/problems/remove-element/description/
+        https://leetcode.com/problems/remove-element/
         """
 
         # Time:  O(n)
@@ -42,6 +45,25 @@ class Array:
             else:
                 l += 1
         return l
+
+    @classmethod
+    def _0049_group_anagrams(self, strs: list[str]) -> list[list[str]]:
+        """
+        |  Medium  |  Hash  |
+        https://leetcode.com/problems/group-anagrams
+        """
+
+        # Time:  O(mn)
+        # Space: O(n)
+
+        table = {}
+        for string in strs:
+            counter = [0 for _ in range(26)]
+            for char in string: counter[ord(char) - ord("a")] += 1
+            key = tuple(counter)
+            table[key] = table.get(key, []) + [string]
+
+        return table.values()
 
     @classmethod
     def _0088_merge_sorted_array(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:
@@ -70,10 +92,46 @@ class Array:
             place -= 1
 
     @classmethod
+    def _0121_best_time_buy_sell_stock(self, prices: list[int]) -> int:
+        """
+        |  Easy  |  DP  |
+        https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+        """
+
+        # Time:  O(n)
+        # Space: O(1)
+
+        hold, sold = float("-inf"), 0
+        for price in prices:
+            preHold, preSold = hold, sold
+            hold = max(preHold, 0 - price)  # preSold=0 as only allow one transaction
+            sold = max(preSold, preHold + price)
+
+        return sold
+    
+    @classmethod
+    def _0122_best_time_buy_sell_stock_II(self, prices: list[int]) -> int:
+        """
+        |  Medium  |  DP  |
+        https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+        """
+
+        # Time:  O(n)
+        # Space: O(1)
+
+        hold, sold = float("-inf"), 0
+        for price in prices:
+            preHold, preSold = hold, sold
+            hold = max(preHold, preSold - price)  # greedy
+            sold = max(preSold, preHold + price)
+
+        return sold
+
+    @classmethod
     def _0217_contains_duplicate(self, nums: list[int]) -> bool:
         """
         |  Easy  |  Hash  |
-        |https://leetcode.com/problems/contains-duplicate
+        https://leetcode.com/problems/contains-duplicate
         """
 
         # Time:  O(n)
@@ -132,7 +190,8 @@ class Array:
     @classmethod
     def _0242_valid_anagram(self, s: str, t: str) -> bool:
         """
-        |  Easy  |  Hash  |  https://leetcode.com/problems/valid-anagram
+        |  Easy  |  Hash  |
+        https://leetcode.com/problems/valid-anagram
         """
 
         # Time:  O(max(n, m))
