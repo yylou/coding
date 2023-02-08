@@ -3,7 +3,7 @@ Author  : Yuan-Yao Lou (Mike)
 Title   : PhD student in ECE at Purdue University
 Email   : yylou@purdue.edu
 Website : https://yylou.github.io/
-Date    : 2023/01/22
+Date    : Jan 22, 2023
 
 Describtion : Parse HTML (Leetcode: Company tags)
 """
