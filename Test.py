@@ -15,6 +15,7 @@ class Test:
 
     @classmethod
     def run(self, *values, **options):
+        # Array
         if values[0] == "0027": Array._0027_remove_element(**options); print(options["nums"])
         if values[0] == "0088": Array._0088_merge_sorted_array(**options); print(options["nums1"])
         if values[0] == "0217": print(Array._0217_contains_duplicate(**options))
@@ -25,6 +26,7 @@ class Test:
 
     @classmethod
     def search(self, id: str):
+        # Array
         if id == "0027": return self._0027_remove_element()
         if id == "0088": return self._0088_merge_sorted_array()
         if id == "0217": return self._0217_contains_duplicate()

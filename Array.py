@@ -32,10 +32,13 @@ class Array:
         # Space: O(1)
 
         l, r = 0, len(nums)-1
+        while r >= 0 and nums[r] == val: r -= 1             # skip duplicate
+
         while l <= r:
             if nums[l] == val:
                 nums[l], nums[r] = nums[r], nums[l]
                 r -= 1
+                while r >= 0 and nums[r] == val: r -= 1     # skip duplicate
             else:
                 l += 1
         return l
