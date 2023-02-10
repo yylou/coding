@@ -13,16 +13,9 @@ class Array:
 
     @classmethod
     def search(self, id: str):
-        if id == "0027": return self._0027_remove_element
-        if id == "0049": return self._0049_group_anagrams
-        if id == "0088": return self._0088_merge_sorted_array
-        if id == "0121": return self._0121_best_time_buy_sell_stock
-        if id == "0122": return self._0122_best_time_buy_sell_stock_II
-        if id == "0217": return self._0217_contains_duplicate
-        if id == "0219": return self._0219_contains_duplicate_II
-        if id == "0242": return self._0242_valid_anagram
-        if id == "0940": return self._0940_fruit_into_baskets
-        if id == "1470": return self._1470_shuffle_array
+        for function, object in self.__dict__.items():
+            if function[1:5] == id: return object
+        return None
 
     @classmethod
     def _0027_remove_element(self, nums: list[int], val: int) -> int:
