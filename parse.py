@@ -10,6 +10,7 @@ Describtion : Parse HTML (Leetcode: Company tags)
 
 from bs4        import BeautifulSoup
 import json     as      JSON
+import sys      as SYS
 
 class Problem:
     def __init__(self, id=0, title="None", href="/", tags="None", level="Easy|Medium|Hard", freq="0.0"):
@@ -18,12 +19,18 @@ class Problem:
         self.href   = href
         self.tags   = tags
         self.level  = level
-        self.freq   = freq
+        self.freq   = float(freq)
     
     def __str__(self): return JSON.dumps(self.__dict__, indent=4)
 
 class Company:
     def __init__(self, path):
+        if not path.endswith(".html"):
+            print(f"\nLooking for HTML file ...")
+            print(f"\nFile with wrong extension: {path}")
+            print(f"Please remove that file and execute the program again.")
+            SYS.exit()
+
         self.object = BeautifulSoup(open(path, encoding="utf-8"), features="html.parser")
         self.table  = self.object.find("tbody", attrs={"class": "reactable-data"})
         self.id     = self.table.find_all("td", attrs={"label": "#"})
@@ -51,6 +58,6 @@ class Company:
             for tag in tags: self.filter["tags"][tag] = self.filter["tags"].get(tag, []) + [id]
 
     def get_problem(self, id: str): return self.problems[id]
-    def get_problems(self): return [prob.id for prob in sorted(self.problems.values(), key=lambda x: x.freq, reverse=True)]
-    def get_tags(self):     return [tag[0] for tag in sorted(self.filter["tags"].items(), key=lambda x: len(x[1]), reverse=True)]
-    def get_levels(self):   return [(level[0], level[1]) for level in sorted(self.filter["level"].items(), key=lambda x: len(x[1]), reverse=True)]
+    def get_problems(self): return set([prob.id for prob in sorted(self.problems.values(), key=lambda x: x.freq, reverse=True)])
+    def get_tags(self):     return set([tag[0] for tag in sorted(self.filter["tags"].items(), key=lambda x: len(x[1]), reverse=True)])
+    def get_levels(self):   return set([(level[0], level[1]) for level in sorted(self.filter["level"].items(), key=lambda x: len(x[1]), reverse=True)])

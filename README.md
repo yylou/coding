@@ -24,11 +24,7 @@
 >>> print(code)
     @classmethod
     def _0027_remove_element(self, nums: list[int], val: int) -> int:
-        """
-        |  Easy  |  Two Pointer  |
-        https://leetcode.com/problems/remove-element/description/
-        """
-
+        """  Easy  |  Two Pointer  """
         # Time:  O(n)
         # Space: O(1)
 
@@ -51,10 +47,7 @@
 
     @classmethod
     def _0242_valid_anagram(self, s: str, t: str) -> bool:
-        """
-        |  Easy  |  Hash  |  https://leetcode.com/problems/valid-anagram
-        """
-
+        """  Easy  |  Hash  """
         # Time:  O(max(n, m))
         # Space: O(n)
 
@@ -68,7 +61,6 @@
         
         if any(counter.values()): return False      # remain
         return True
-
 
     """
 

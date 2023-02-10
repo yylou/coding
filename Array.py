@@ -19,11 +19,7 @@ class Array:
 
     @classmethod
     def _0027_remove_element(self, nums: list[int], val: int) -> int:
-        """
-        |  Easy  |  Two Pointer  |
-        https://leetcode.com/problems/remove-element/
-        """
-
+        """  Easy  |  Two Pointer  """
         # Time:  O(n)
         # Space: O(1)
 
@@ -41,11 +37,7 @@ class Array:
 
     @classmethod
     def _0049_group_anagrams(self, strs: list[str]) -> list[list[str]]:
-        """
-        |  Medium  |  Hash  |
-        https://leetcode.com/problems/group-anagrams
-        """
-
+        """  Medium  |  Hash  """
         # Time:  O(mn)
         # Space: O(n)
 
@@ -60,11 +52,7 @@ class Array:
 
     @classmethod
     def _0088_merge_sorted_array(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:
-        """
-        |  Easy  |  Two Pointer  |
-        https://leetcode.com/problems/merge-sorted-array/
-        """
-
+        """  Easy  |  Two Pointer  """
         # Time:  O(m+n)
         # Space: O(1)
         
@@ -86,11 +74,7 @@ class Array:
 
     @classmethod
     def _0121_best_time_buy_sell_stock(self, prices: list[int]) -> int:
-        """
-        |  Easy  |  DP  |
-        https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-        """
-
+        """  Easy  |  DP  """
         # Time:  O(n)
         # Space: O(1)
 
@@ -104,11 +88,7 @@ class Array:
     
     @classmethod
     def _0122_best_time_buy_sell_stock_II(self, prices: list[int]) -> int:
-        """
-        |  Medium  |  DP  |
-        https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
-        """
-
+        """  Medium  |  DP  """
         # Time:  O(n)
         # Space: O(1)
 
@@ -122,11 +102,7 @@ class Array:
 
     @classmethod
     def _0217_contains_duplicate(self, nums: list[int]) -> bool:
-        """
-        |  Easy  |  Hash  |
-        https://leetcode.com/problems/contains-duplicate
-        """
-
+        """  Easy  |  Hash  """
         # Time:  O(n)
         # Space: O(n)
 
@@ -139,13 +115,9 @@ class Array:
 
     @classmethod
     def _0219_contains_duplicate_II(self, nums: list[int], k: int) -> bool:
-        """
-        |  Easy  |  Sliding Window + Hash  |
-        https://leetcode.com/problems/contains-duplicate-ii
-        """
 
         def solution_1(nums: list[int], k: int) -> bool:
-            
+            """  Easy  |  Sliding Window + Hash  """
             # Time:  O(n)
             # Space: O(n)
 
@@ -162,7 +134,7 @@ class Array:
             return False
         
         def solution_2(nums: list[int], k: int) -> bool:
-
+            """  Easy  |  Sliding Window + Hash  """
             # Time:  O(n)
             # Space: O(n)
 
@@ -182,10 +154,7 @@ class Array:
 
     @classmethod
     def _0242_valid_anagram(self, s: str, t: str) -> bool:
-        """
-        |  Easy  |  Hash  |
-        https://leetcode.com/problems/valid-anagram
-        """
+        """  Easy  |  Hash  """
 
         # Time:  O(max(n, m))
         # Space: O(n)
@@ -203,10 +172,7 @@ class Array:
 
     @classmethod
     def _0940_fruit_into_baskets(self, fruits: list[int]) -> int:
-        """
-        |  Medium  |  Sliding Window + Hash  |
-        https://leetcode.com/problems/fruit-into-baskets/
-        """
+        """  Medium  |  Sliding Window + Hash  """
 
         # Time:  O(n)
         # Space: O(n)
@@ -228,10 +194,7 @@ class Array:
 
     @classmethod
     def _1470_shuffle_array(self, nums: list[int], n: int) -> list:
-        """
-        |  Easy  |  Bit Operation  |
-        https://leetcode.com/problems/shuffle-the-array/
-        """
+        """  Easy  |  Bit Operation  """
 
         # Time:  O(n)
         # Space: O(1)

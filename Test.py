@@ -12,8 +12,6 @@ Project :
 from Array                      import Array
 
 class Test:
-    def __init__(self) -> None:
-        pass
 
     @classmethod
     def run(self, *values, **options):
@@ -28,8 +26,8 @@ class Test:
     @classmethod
     def search(self, id: str):
         for key, function in self.__dict__.items():
-            if key[1:5] == id: function.__func__(self)
-        return None
+            if key[1:5] == id: function.__func__(self); break
+        else: print("    No test data")
 
     @classmethod
     def _0027_remove_element(self) -> None:
