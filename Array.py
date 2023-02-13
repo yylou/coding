@@ -34,6 +34,76 @@ class Array:
             else:
                 l += 1
         return l
+    
+    @classmethod
+    def _0045_jump_game_II(self, nums: list[int]) -> int:
+        def solution_1(nums) -> int:
+            """  Medium  |  Greedy  """
+            # Time:  O(n)
+            # Space: O(1)
+
+            jumps = 0
+            left, right, maximum = 0, 0, 0
+            while right < len(nums) - 1:    # before last element
+                for idx in range(left, right+1):
+                    maximum = max(maximum, idx + nums[idx])
+                left = right + 1    # jump to next feasible range
+                right = maximum
+                jumps += 1
+
+            return jumps
+        
+        def solution_2(nums) -> int:
+            """  Medium  |  DP  """
+            # Time:  O(n^2)
+            # Space: O(n)
+
+            n = len(nums)
+            dp = [False for _ in range(n)]
+            dp[-1] = True
+            steps = [n for _ in range(n)]
+            steps[-1] = 0
+            for idx in range(n-2, -1, -1):
+                for j in range(idx+1, min(n, idx+1+nums[idx])):
+                    if dp[j] == True:   # find next stop with feasible path
+                        dp[idx] = True
+                        steps[idx] = min(steps[idx], steps[j] + 1)
+
+            return steps[0] if dp[0] else False
+
+        return solution_1(nums)
+
+    @classmethod
+    def _0055_jump_game(self, nums: list[int]) -> bool:
+        def solution_1(nums) -> bool:
+            """  Medium  |  DP  """
+            # Time:  O(n)
+            # Space: O(1)
+
+            max_position = 0
+            for idx in range(len(nums)):
+                if idx > max_position: return False
+                if max_position >= (len(nums) - 1): return True
+                max_position = max(max_position, idx + nums[idx])
+
+            return False
+        
+        def solution_2(nums) -> bool:
+            """  Medium  |  DP  """
+            # Time:  O(n^2)
+            # Space: O(n)
+
+            dp = [False for _ in range(len(nums))]
+            dp[-1] = True
+            for idx in range(len(nums)-2, -1, -1):
+                for j in range(idx+1, min(len(nums), idx+1+nums[idx])):
+                    if dp[j] == True:
+                        dp[idx] = True
+                        break
+
+            return dp[0]
+
+        return solution_1(nums)
 
     @classmethod
     def _0049_group_anagrams(self, strs: list[str]) -> list[list[str]]:
@@ -153,9 +223,28 @@ class Array:
         return ans1
 
     @classmethod
+    def _0238_product_of_array_except_self(self, nums: list[int]) -> list[int]:
+        """  Medium  |  Prefix Sum  """
+        # Time:  O(n)
+        # Space: O(1)
+
+        output = [1 for _ in range(len(nums))]
+        
+        cur = 1
+        for idx in range(len(nums)):    # 1, a1, a1a2, a1a2a3
+            output[idx] *= cur
+            cur *= nums[idx]
+
+        cur = 1
+        for idx in range(len(nums)-1, -1, -1):  # a2a3a4, a1a3a4, a1a2a4, a1a2a3
+            output[idx] *= cur
+            cur *= nums[idx]
+
+        return output
+
+    @classmethod
     def _0242_valid_anagram(self, s: str, t: str) -> bool:
         """  Easy  |  Hash  """
-
         # Time:  O(max(n, m))
         # Space: O(n)
 
@@ -173,7 +262,6 @@ class Array:
     @classmethod
     def _0940_fruit_into_baskets(self, fruits: list[int]) -> int:
         """  Medium  |  Sliding Window + Hash  """
-
         # Time:  O(n)
         # Space: O(n)
 
@@ -195,7 +283,6 @@ class Array:
     @classmethod
     def _1470_shuffle_array(self, nums: list[int], n: int) -> list:
         """  Easy  |  Bit Operation  """
-
         # Time:  O(n)
         # Space: O(1)
 
