@@ -10,6 +10,7 @@ Project :
 """
 
 from Array                      import Array
+from String                     import String
 
 class Colors:
     END   = "\033[0m"
@@ -248,6 +249,28 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0125_valid_palindrome(self) -> None:
+        func = String._0125_valid_palindrome
+
+        #   | Case 1
+        input  = 's = "A man, a plan, a canal: Panama"'
+        submit = func(s = "A man, a plan, a canal: Panama")
+        answer = True
+        self.check(input, submit, answer)
+
+        #   | Case 2
+        input  = 's = "race a car"'
+        submit = func(s = "race a car")
+        answer = False
+        self.check(input, submit, answer)
+
+        #   | Case 3
+        input  = " "
+        submit = func(s = " ")
+        answer = True
+        self.check(input, submit, answer)
+
+    @classmethod
     def _0217_contains_duplicate(self) -> None:
         func = Array._0217_contains_duplicate
         
@@ -324,8 +347,24 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
-    def _0940_fruit_into_baskets(self) -> None:
-        func = Array._0940_fruit_into_baskets
+    def _0347_top_k_frequent_elements(self) -> None:
+        func = Array._0347_top_k_frequent_elements
+
+        #   | Case 1
+        input  = "nums = [1,1,1,2,2,3], k = 2"
+        submit = func(nums = [1,1,1,2,2,3], k = 2)
+        answer = [1,2]
+        self.check(input, sorted(submit), answer)
+
+        #   | Case 2
+        input  = "nums = [1], k = 1"
+        submit = func(nums = [1], k = 1)
+        answer = [1]
+        self.check(input, submit, answer)
+
+    @classmethod
+    def _0904_fruit_into_baskets(self) -> None:
+        func = Array._0904_fruit_into_baskets
         
         #   | Case 1
         input  = "fruits = [1,2,1]"

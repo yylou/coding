@@ -71,7 +71,7 @@ class Array:
 
             return steps[0] if dp[0] else False
 
-        return solution_1(nums)
+        return solution_1(nums=nums)
 
     @classmethod
     def _0055_jump_game(self, nums: list[int]) -> bool:
@@ -103,7 +103,7 @@ class Array:
 
             return dp[0]
 
-        return solution_1(nums)
+        return solution_1(nums=nums)
 
     @classmethod
     def _0049_group_anagrams(self, strs: list[str]) -> list[list[str]]:
@@ -151,7 +151,7 @@ class Array:
         hold, sold = float("-inf"), 0
         for price in prices:
             preHold, preSold = hold, sold
-            hold = max(preHold, 0 - price)  # preSold=0 as only allow one transaction
+            hold = max(preHold, 0 - price)  # preSold=0 as only allow 1 transaction
             sold = max(preSold, preHold + price)
 
         return sold
@@ -224,23 +224,45 @@ class Array:
 
     @classmethod
     def _0238_product_of_array_except_self(self, nums: list[int]) -> list[int]:
-        """  Medium  |  Prefix Sum  """
-        # Time:  O(n)
-        # Space: O(1)
+        def solution_1(nums) -> list[int]:
+            """  Medium  |  Prefix Sum  """
+            # Time:  O(n)
+            # Space: O(1)
 
-        output = [1 for _ in range(len(nums))]
+            output = [1 for _ in range(len(nums))]
+            prefix = 1
+            suffix = 1
+
+            for idx in range(len(nums)):
+                #   | Prefix product:      1,   a1, a1a2, a1a2a3
+                output[idx] *= prefix
+                prefix *= nums[idx]
+                #   | Suffix product: a2a3a4, a3a4,   a4,      1
+                output[-1-idx] *= suffix
+                suffix *= nums[-1-idx]
+                
+            return output
+
+        def solution_2(nums) -> list[int]:
+            """  Medium  |  Prefix Sum  """
+            # Time:  O(n)
+            # Space: O(1)
+
+            output = [1 for _ in range(len(nums))]
+            
+            cur = 1
+            for idx in range(len(nums)):  # 1, a1, a1a2, a1a2a3
+                output[idx] *= cur
+                cur *= nums[idx]
+
+            cur = 1
+            for idx in range(len(nums)-1, -1, -1):  # a2a3a4, a3a4, a4, 1
+                output[idx] *= cur
+                cur *= nums[idx]
+
+            return output
         
-        cur = 1
-        for idx in range(len(nums)):    # 1, a1, a1a2, a1a2a3
-            output[idx] *= cur
-            cur *= nums[idx]
-
-        cur = 1
-        for idx in range(len(nums)-1, -1, -1):  # a2a3a4, a1a3a4, a1a2a4, a1a2a3
-            output[idx] *= cur
-            cur *= nums[idx]
-
-        return output
+        return solution_1(nums=nums)
 
     @classmethod
     def _0242_valid_anagram(self, s: str, t: str) -> bool:
@@ -260,7 +282,87 @@ class Array:
         return True
 
     @classmethod
-    def _0940_fruit_into_baskets(self, fruits: list[int]) -> int:
+    def _0347_top_k_frequent_elements(self, nums: list[int], k: int) -> list[int]:
+        def solution_1(nums: list[int], k: int) -> list[int]:
+            """  Medium  |  QuickSelect  """
+            # Time:  O(n)
+            # Space: O(n)
+
+            from collections import Counter
+            freq = Counter(nums)
+            freq_keys = list(freq.keys())
+            n = len(freq_keys)
+
+            def partition(l, r):
+                pivot = freq_keys[r]
+                place = l
+                for i in range(place, r):
+                    if freq[freq_keys[i]] < freq[pivot]: 
+                        freq_keys[i], freq_keys[place] = freq_keys[place], freq_keys[i]
+                        place += 1
+                freq_keys[place], freq_keys[r] = freq_keys[r], freq_keys[place]
+                return place
+
+            def quick_select(l: int, r: int, k: int):
+                idx = partition(l, r)
+                if   idx == k: return
+                elif idx  > k: quick_select(l, idx-1, k)
+                elif idx  < k: quick_select(idx+1, r, k)
+
+            quick_select(l=0, r=n-1, k=n-k)
+            return freq_keys[n-k:]
+
+        def solution_2(nums: list[int], k: int) -> list[int]:
+            """  Medium  |  Heap  """
+            # Time:  O(n + klogn)
+            # Space: O(n)
+
+            import heapq
+            from collections import Counter
+            counter = Counter(nums)
+            heap = [(-freq, num) for num, freq in counter.items()]  # maxHeap = -freq
+            heapq.heapify(heap)
+            
+            ans = []
+            while len(ans) < k:
+                freq, num = heapq.heappop(heap)
+                ans.append(num)
+            return ans
+
+        def solution_3(nums: list[int], k: int) -> list[int]:
+            """  Medium  |  Bucket Sort  """
+            # Time:  O(n)
+            # Space: O(10^5)
+
+            from collections import Counter
+            counter = Counter(nums)
+            bucket = [[] for _ in range(len(nums) + 1)]     # Frequency is 0-indexed = length + 1
+            for num, freq in counter.items(): bucket[freq].append(num)
+            
+            freq = len(nums)
+            ans = []
+            while len(ans) < k:
+                while bucket[freq] == []: freq -= 1
+                for num in bucket[freq]: 
+                    ans.append(num)
+                    if len(ans) >= k: return ans
+                freq -= 1
+            return ans
+        
+        def solution_4(nums: list[int], k: int) -> list[int]:
+            """  Medium  |  Hash + Sort  """
+            # Time:  O(n + nlogn)
+            # Space: O(n)
+
+            from collections import Counter
+            counter = Counter(nums)
+            ans = []
+            return sorted(counter, key=lambda x: counter[x], reverse=True)[:k]
+
+        return solution_4(nums=nums, k=k)
+
+    @classmethod
+    def _0904_fruit_into_baskets(self, fruits: list[int]) -> int:
         """  Medium  |  Sliding Window + Hash  """
         # Time:  O(n)
         # Space: O(n)

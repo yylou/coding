@@ -10,15 +10,15 @@ Project :
 """
 
 import argparse                 as ARGU
-import bs4
 import inspect
-import json                     as JSON
 import os                       as OS
 
 from Array                      import Array
-from Test                       import Test
+from String                     import String
+
 from Test                       import Colors
 from parse                      import Company
+from Test                       import Test
 
 def argu():
     parser = ARGU.ArgumentParser(description="LeetCode Problem Solving DB")
@@ -54,11 +54,16 @@ def main():
         if "id" in info:
             print(f"\n\n{TAB}{CYAN}{info['id']}. {info['title']} ({info['href']}){END}")        # ID, Title, URL
             print(f"{TAB}{GREY}|  {info['level']}  |  {', '.join(info['tags'])}  |{END}")       # Level, tags
-            for entry in info["company"]: print(f"    {GREEN}|{entry[0].capitalize():^15}|  {entry[1]+'%':>6}  |{END}")
+            for entry in info["company"]:
+                if eval(entry[1]) > 50: print(f"    {GREEN}|{entry[0].capitalize():^15}|  {RED}{entry[1]+'%':>6}{END}  {GREEN}|{END}")
+                else: print(f"    {GREEN}|{entry[0].capitalize():^15}|  {entry[1]+'%':>6}  |{END}")
             average = sum([eval(_[1]) for _ in info['company']]) / len(info['company'])
             if average > 30: print(f"    {GREEN}|{'(Average)':^15}|  {RED}{average:>5.2f}%{END}  {GREEN}|{END}", end="")
             else: print(f"    {GREEN}|{'(Average)':^15}|  {average:>5.2f}%  |{END}", end="")
-            get_code(Array.search(argp.prob))
+            
+            if   Array.search(argp.prob): get_code(Array.search(argp.prob))
+            elif String.search(argp.prob): get_code(String.search(argp.prob))
+            
             get_test(argp.prob)
 
 if __name__ == "__main__":
