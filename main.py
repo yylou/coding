@@ -48,7 +48,7 @@ def main():
         CYAN = Colors.Pattern(Colors.BOLD, Colors.TCYAN, Colors.BNONE)
         GREEN= Colors.Pattern(Colors.BOLD, Colors.TGREEN, Colors.BNONE)
         RED  = Colors.Pattern(Colors.BOLD, Colors.TRED, Colors.BNONE)
-        GREY = Colors.Pattern(Colors.BOLD, Colors.TGREY, Colors.BNONE)
+        GREY = Colors.Pattern(Colors.BOLD, Colors.TDGREY, Colors.BNONE)
         END  = Colors.END
         TAB  = "    "
         if "id" in info:

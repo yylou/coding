@@ -42,36 +42,4 @@
 ```
 
 ## :on: Execution Mode
-```python
-> python3 main.py -prob 0242
-
-    @classmethod
-    def _0242_valid_anagram(self, s: str, t: str) -> bool:
-        """  Easy  |  Hash  """
-        # Time:  O(max(n, m))
-        # Space: O(n)
-
-        from collections import Counter
-
-        counter = Counter(s)
-        for char in t:
-            if char not in counter: return False    # extra
-            if counter[char] <= 0 : return False    # not enough
-            counter[char] -= 1
-        
-        if any(counter.values()): return False      # remain
-        return True
-
-    """
-
-    [Input]     s = "anagram", t = "nagaram"
-    [Answer]    True
-
-    [Input]     s = "rat", t = "car"
-    [Answer]    False
-
-    """
-
-```
-
 ![Output](./output.png)
