@@ -48,7 +48,7 @@ def main():
         CYAN = Colors.Pattern(Colors.BOLD, Colors.TCYAN, Colors.BNONE)
         GREEN= Colors.Pattern(Colors.BOLD, Colors.TGREEN, Colors.BNONE)
         RED  = Colors.Pattern(Colors.BOLD, Colors.TRED, Colors.BNONE)
-        GREY = Colors.Pattern(Colors.BOLD, Colors.TDGREY, Colors.BNONE)
+        GREY = Colors.Pattern(Colors.BOLD, Colors.TGREY, Colors.BNONE)
         END  = Colors.END
         TAB  = "    "
         if "id" in info:
@@ -58,8 +58,8 @@ def main():
                 if eval(entry[1]) > 50: print(f"    {GREEN}|{entry[0].capitalize():^15}|  {RED}{entry[1]+'%':>6}{END}  {GREEN}|{END}")
                 else: print(f"    {GREEN}|{entry[0].capitalize():^15}|  {entry[1]+'%':>6}  |{END}")
             average = sum([eval(_[1]) for _ in info['company']]) / len(info['company'])
-            if average > 30: print(f"    {GREEN}|{'(Average)':^15}|  {RED}{average:>5.2f}%{END}  {GREEN}|{END}", end="")
-            else: print(f"    {GREEN}|{'(Average)':^15}|  {average:>5.2f}%  |{END}", end="")
+            if average > 30: print(f"    {GREEN}|{'(Average)':^15}|  {RED}{average:>5.2f}%{END}  {GREEN}|{END}")
+            else: print(f"    {GREEN}|{'(Average)':^15}|  {average:>5.2f}%  |{END}")
             
             if   Array.search(argp.prob): get_code(Array.search(argp.prob))
             elif String.search(argp.prob): get_code(String.search(argp.prob))
