@@ -11,6 +11,7 @@ Project :
 
 from Array                      import Array
 from String                     import String
+from Stack                      import Stack
 
 class Colors:
     END   = "\033[0m"
@@ -94,6 +95,22 @@ class Test:
     # ---
 
     @classmethod
+    def _0011_container_with_most_water(self) -> None:
+        func = Array._0011_container_with_most_water
+
+        #   | Case 1
+        input  = 'height = [1,8,6,2,5,4,8,3,7]'
+        submit = func(height = [1,8,6,2,5,4,8,3,7])
+        answer = 49
+        self.check(input, submit, answer)
+
+        #   | Case 2
+        input  = 'height = [1,1]'
+        submit = func(height = [1,1])
+        answer = 1
+        self.check(input, submit, answer)
+
+    @classmethod
     def _0027_remove_element(self) -> None:
         func = Array._0027_remove_element
 
@@ -117,6 +134,22 @@ class Test:
         print(f"\n    [Input]     {input}")
         print(f"    [Answer]    {answer}, {nums[:answer]}\n")
     
+    @classmethod
+    def _0036_valid_sudoku(self) -> None:
+        func = Array._0036_valid_sudoku
+
+        #   | Case 1
+        input  = 'board = [ ["5","3",".",".","7",".",".",".","."], ["6",".",".","1","9","5",".",".","."], [".","9","8",".",".",".",".","6","."], ["8",".",".",".","6",".",".",".","3"], ["4",".",".","8",".","3",".",".","1"], ["7",".",".",".","2",".",".",".","6"], [".","6",".",".",".",".","2","8","."], [".",".",".","4","1","9",".",".","5"], [".",".",".",".","8",".",".","7","9"]]'
+        submit = func(board = [ ["5","3",".",".","7",".",".",".","."], ["6",".",".","1","9","5",".",".","."], [".","9","8",".",".",".",".","6","."], ["8",".",".",".","6",".",".",".","3"], ["4",".",".","8",".","3",".",".","1"], ["7",".",".",".","2",".",".",".","6"], [".","6",".",".",".",".","2","8","."], [".",".",".","4","1","9",".",".","5"], [".",".",".",".","8",".",".","7","9"]])
+        answer = True
+        self.check(input, submit, answer)
+
+        #   | Case 2
+        input  = 'board = [ ["8","3",".",".","7",".",".",".","."], ["6",".",".","1","9","5",".",".","."], [".","9","8",".",".",".",".","6","."], ["8",".",".",".","6",".",".",".","3"], ["4",".",".","8",".","3",".",".","1"], ["7",".",".",".","2",".",".",".","6"], [".","6",".",".",".",".","2","8","."], [".",".",".","4","1","9",".",".","5"], [".",".",".",".","8",".",".","7","9"]]'
+        submit = func(board = [ ["8","3",".",".","7",".",".",".","."], ["6",".",".","1","9","5",".",".","."], [".","9","8",".",".",".",".","6","."], ["8",".",".",".","6",".",".",".","3"], ["4",".",".","8",".","3",".",".","1"], ["7",".",".",".","2",".",".",".","6"], [".","6",".",".",".",".","2","8","."], [".",".",".","4","1","9",".",".","5"], [".",".",".",".","8",".",".","7","9"]])
+        answer = False
+        self.check(input, submit, answer)
+
     @classmethod
     def _0045_jump_game_II(self) -> None:
         func = Array._0045_jump_game_II
@@ -268,6 +301,16 @@ class Test:
         input  = " "
         submit = func(s = " ")
         answer = True
+        self.check(input, submit, answer)
+
+    @classmethod
+    def _0155_min_stack(self) -> None:
+        func = Stack._0155_min_stack
+
+        #   | Case 1
+        input  = 'push(-2), push(0), push(-3), getMin, pop, top, getMin'
+        submit = func()
+        answer = [None, None, None, -3, None, 0, -2]
         self.check(input, submit, answer)
 
     @classmethod

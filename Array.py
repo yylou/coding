@@ -18,6 +18,22 @@ class Array:
         return None
 
     @classmethod
+    def _0011_container_with_most_water(self, height: list[int]) -> int:
+        """  Medium  |  Two Pointer  """
+        # Time:  O(n)
+        # Space: O(1)
+
+        area = 0
+        l, r = 0, len(height)-1
+        while l < r:
+            gap  = r - l
+            area = max(area, gap * min(height[l], height[r]))
+            if height[l] < height[r]: l += 1
+            else: r -= 1
+            
+        return area    
+
+    @classmethod
     def _0027_remove_element(self, nums: list[int], val: int) -> int:
         """  Easy  |  Two Pointer  """
         # Time:  O(n)
@@ -35,6 +51,27 @@ class Array:
                 l += 1
         return l
     
+    @classmethod
+    def _0036_valid_sudoku(self, board: list[list[str]]) -> bool:
+        """  Medium  |  Bit Operation  """
+        # Time:  O(n^2)
+        # Space: O(n)
+
+        row, col, block = [0]*9, [0]*9, [0]*9
+        for rid in range(9):
+            for cid in range(9):
+                if board[rid][cid] == ".": continue
+
+                num = int(board[rid][cid])
+                bid = rid//3 * 3 + cid//3
+                if ((row[rid] >> num) & 1) or ((col[cid] >> num) & 1) or ((block[bid] >> num) & 1):
+                    return False
+                else:
+                    row[rid] |= (1 << num)
+                    col[cid] |= (1 << num)
+                    block[bid] |= (1 << num)
+        return True
+
     @classmethod
     def _0045_jump_game_II(self, nums: list[int]) -> int:
         def solution_1(nums) -> int:

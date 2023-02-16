@@ -15,6 +15,7 @@ import os                       as OS
 
 from Array                      import Array
 from String                     import String
+from Stack                      import Stack
 
 from Test                       import Colors
 from parse                      import Company
@@ -61,8 +62,9 @@ def main():
             if average > 30: print(f"    {GREEN}|{'(Average)':^15}|  {RED}{average:>5.2f}%{END}  {GREEN}|{END}")
             else: print(f"    {GREEN}|{'(Average)':^15}|  {average:>5.2f}%  |{END}")
             
-            if   Array.search(argp.prob): get_code(Array.search(argp.prob))
+            if   Array.search(argp.prob):  get_code(Array.search(argp.prob))
             elif String.search(argp.prob): get_code(String.search(argp.prob))
+            elif Stack.search(argp.prob):  get_code(Stack.search(argp.prob))
             
             get_test(argp.prob)
 
