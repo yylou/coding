@@ -18,6 +18,18 @@ class Array:
         return None
 
     @classmethod
+    def _0001_two_sum(self, nums: list[int], target: int) -> list[int]:
+        """  Easy  |  Hash  """
+        # Time:  O(n)
+        # Space: O(n)
+
+        table = {}
+        for idx, num in enumerate(nums):
+            remain = target - num
+            if remain in table: return [table[remain], idx]
+            else: table[num] = idx
+
+    @classmethod
     def _0011_container_with_most_water(self, height: list[int]) -> int:
         """  Medium  |  Two Pointer  """
         # Time:  O(n)
