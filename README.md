@@ -10,14 +10,6 @@
 
 ## :soon: Interactive Mode
 ```python
->>> from Test import Test
->>> Test.run("0027", nums=[3,2,2,3], val=3)
-[2, 2, 3, 3]
->>> Test.run("0088", nums1=[1,2,3,0,0,0], m=3, nums2=[2,5,6], n=3)
-[1, 2, 2, 3, 5, 6]
-```
-
-```python
 >>> from Array import Array
 >>> import inspect
 >>> code = inspect.getsource(Array.search("0027"))
@@ -39,6 +31,14 @@
             else:
                 l += 1
         return l
+```
+
+```python
+>>> from Test import Test
+>>> Test.run("0027", nums=[3,2,2,3], val=3)
+[2, 2, 3, 3]
+>>> Test.run("0088", nums1=[1,2,3,0,0,0], m=3, nums2=[2,5,6], n=3)
+[1, 2, 2, 3, 5, 6]
 ```
 
 ## :on: Execution Mode
