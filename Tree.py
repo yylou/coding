@@ -16,7 +16,7 @@ class TreeNode:
         self.right = right
 
     def __str__(self) -> str:
-        #   | Level-order Traversal
+        """  Level-order Traversal  """
         ret = []
         stack = [(self, 0)]
         while stack:
@@ -39,6 +39,52 @@ class Tree:
         for function, object in self.__dict__.items():
             if function[1:5] == id: return object
         return None
+
+    @classmethod
+    def _0098_validate_BST(self, root: TreeNode) -> bool:
+        def solution_1(root):
+            """  Medium  |  Morris Traversal  """
+            # Time:  O(n)
+            # Space: O(1)
+
+            prev, cur = None, root
+            while cur:
+                if cur.left:
+                    left = cur.left
+                    while left.right and left.right != cur:
+                        left = left.right
+
+                    if left.right == cur:   # VISITED
+                        if prev and prev.val >= cur.val: return False
+                        left.right = None
+                        prev, cur = cur, cur.right
+
+                    else:
+                        left.right = cur
+                        cur = cur.left
+
+                else:
+                    if prev and prev.val >= cur.val: return False
+                    prev, cur = cur, cur.right
+            
+            return True
+        
+        def solution_2(root):
+            """  Medium  |  Stack  """
+            # Time:  O(n)
+            # Space: O(n)
+
+            stack = [(root, float("inf"), float("-inf"))]
+            while stack:
+                node, upper, lower = stack.pop()
+                if not (lower < node.val < upper): return False
+                if node.right: stack.append((node.right, upper, node.val))
+                if node.left: stack.append((node.left, node.val, lower))
+            
+            return True
+
+        return solution_1(root=root)
+        return solution_2(root=root)
 
     @classmethod
     def _0100_same_tree(self, p: TreeNode, q: TreeNode) -> bool:
@@ -94,12 +140,53 @@ class Tree:
         return ans
 
     @classmethod
-    def _0110_balanced_binary_tree(self, root: TreeNode, val: int) -> TreeNode:
+    def _0110_balanced_binary_tree(self, root: TreeNode) -> bool:
         """  Easy  |  Iterative  """
         # Time:  O(n)
         # Space: O(1)
 
+        table = {None: -1}  # record height after visited
+        stack = [(root, False)]
+
+        while stack:
+            node, visited = stack.pop()
+            if not node: continue
+
+            if visited:
+                if abs(table[node.left] - table[node.right]) > 1: return False
+                table[node] = max(table[node.left], table[node.right]) + 1
+            else:
+                stack.append((node, True))
+                stack.append((node.right, False))
+                stack.append((node.left,  False))
         
+        return True
+
+    @classmethod
+    def _0226_invert_binary_tree(self, root: TreeNode) -> TreeNode:
+        def solution_1(root: TreeNode):
+            """  Easy  |  Stack  """
+            stack = [(root, False)]
+            while stack:
+                node, visited = stack.pop()
+                if not node: continue
+                if visited: node.left, node.right = node.right, node.left
+                else:
+                    stack.append((node, True))
+                    stack.append((node.right, False))
+                    stack.append((node.left,  False))
+            return root
+
+        def solution_2(root: TreeNode):
+            """  Easy  |  Recursion  """
+            if not root: return root
+            solution_2(root.left)
+            solution_2(root.right)
+            root.left, root.right = root.right, root.left
+            return root
+
+        return solution_1(root=root)
+        return solution_2(root=root)
 
     @classmethod
     def _0530_min_abs_diff_in_BST(self, root: TreeNode) -> int:
@@ -116,13 +203,13 @@ class Tree:
                     left = left.right
 
                 if left.right == cur:   # visited
-                    left.right = None
                     if prev: ans = min(ans, abs(cur.val - prev.val))
+                    left.right = None
                     prev, cur = cur, cur.right
 
                 else:
                     left.right = cur
-                    prev, cur = cur, cur.left
+                    cur = cur.left
 
             else:   # no left child
                 if prev: ans = min(ans, abs(cur.val - prev.val))
