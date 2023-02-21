@@ -46,6 +46,43 @@ class Array:
         return area    
 
     @classmethod
+    def _0015_3sum(self, nums: list[int]) -> list[list[int]]:
+        """  Medium  |  Hash  """
+        # Time:  O(n)
+        # Space: O(n)
+
+        ans = set()
+        neg, zero, pos = {}, {}, {}
+        for num in nums:
+            if   num  < 0: neg[num]  = neg.get(num, 0) + 1
+            elif num == 0: zero[num] = zero.get(num, 0) + 1
+            elif num  > 0: pos[num]  = pos.get(num, 0) + 1
+
+        if zero:
+            if zero[0] > 2: ans.add((0, 0, 0))
+            for num in pos:
+                if -num in neg:
+                    ans.add((-num, 0, num))
+
+        if pos:
+            for n1, counter in neg.items():
+                for n2, counter in neg.items():
+                    remain = -(n1 + n2)
+                    if remain in pos:
+                        if n1 == n2 and counter > 1: ans.add((min(n1, n2), max(n1, n2), remain))
+                        elif n1 != n2: ans.add((min(n1, n2), max(n1, n2), remain))
+
+        if neg:
+            for n1, counter in pos.items():
+                for n2, counter in pos.items():
+                    remain = -(n1 + n2)
+                    if remain in neg:
+                        if n1 == n2 and counter > 1: ans.add((remain, min(n1, n2), max(n1, n2)))
+                        elif n1 != n2: ans.add((remain, min(n1, n2), max(n1, n2)))
+
+        return ans
+
+    @classmethod
     def _0027_remove_element(self, nums: list[int], val: int) -> int:
         """  Easy  |  Two Pointer  """
         # Time:  O(n)
@@ -121,6 +158,7 @@ class Array:
             return steps[0] if dp[0] else False
 
         return solution_1(nums=nums)
+        return solution_2(nums=nums)
 
     @classmethod
     def _0055_jump_game(self, nums: list[int]) -> bool:
@@ -153,6 +191,7 @@ class Array:
             return dp[0]
 
         return solution_1(nums=nums)
+        return solution_2(nums=nums)
 
     @classmethod
     def _0049_group_anagrams(self, strs: list[str]) -> list[list[str]]:
@@ -168,6 +207,56 @@ class Array:
             table[key] = table.get(key, []) + [string]
 
         return table.values()
+
+    @classmethod
+    def _0053_maximum_subarray(self, nums: list[int]) -> int:
+        def solution_1(nums):
+            """  Medium  |  DP  """
+            # Time:  O(n)
+            # Space: O(n)
+
+            stack, dp = [], []              # (optional)
+            local, ans = float("-inf"), float("-inf")
+        
+            for num in nums:
+                if local + num > num:
+                    stack.append(num)
+                    local += num
+                else:
+                    stack = [num]
+                    local = num
+
+                dp.append((local, stack))   # (optional)
+                ans = max(ans, local)
+
+            return ans
+        
+        def solution_2(nums: list, l: int, r: int):
+            """  Medium  |  Divide and Conquer  """
+            # Time:  O(n)
+            # Space: O(1)
+            
+            if l > r: return float("-inf")
+            mid = (l + r) // 2
+
+            # LEFT | RIGHT
+            l_max = solution_2(nums, l, mid-1)
+            r_max = solution_2(nums, mid+1, r)
+
+            # MIDDLE
+            tmp = l_part = 0
+            for i in range(mid-1, l-1, -1):
+                tmp += nums[i]
+                l_part = max(l_part, tmp)
+            tmp = r_part = 0
+            for i in range(mid+1, r+1, 1):
+                tmp += nums[i]
+                r_part = max(r_part, tmp)
+
+            return max(l_max, r_max, l_part + nums[mid] + r_part)
+
+        return solution_1(nums=nums)
+        return solution_2(nums=nums, l=0, r=len(nums)-1)
 
     @classmethod
     def _0088_merge_sorted_array(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:
@@ -218,6 +307,37 @@ class Array:
             sold = max(preSold, preHold + price)
 
         return sold
+
+    @classmethod
+    def _0167_two_sum_II_input_array_sorted(self, numbers: list[int], target: int) -> list[int]:
+        def solution_1(numbers, target):
+            """  Medium  |  Two Pointer  """
+            # Time:  O(n)
+            # Space: O(1)
+
+            l, r = 0, len(numbers)-1
+            while l < r:
+                total = numbers[l] + numbers[r]
+                if total == target: return [l+1, r+1]
+                if total > target: r -= 1
+                else: l += 1
+
+        def solution_2(numbers, target):
+            """  Medium  |  Binary Search  """
+            # Time:  O(nlogn)
+            # Space: O(1)
+
+            for idx, val in enumerate(numbers):
+                remain = target - val
+                l, r = idx+1, len(numbers)
+                while l < r:
+                    mid = (l + r) // 2
+                    if numbers[mid] == remain: return [idx+1, mid+1]
+                    if numbers[mid] > remain: r = mid
+                    else: l = mid + 1
+
+        return solution_1(numbers=numbers, target=target)
+        return solution_1(numbers=numbers, target=target)
 
     @classmethod
     def _0217_contains_duplicate(self, nums: list[int]) -> bool:
@@ -312,6 +432,7 @@ class Array:
             return output
         
         return solution_1(nums=nums)
+        return solution_2(nums=nums)
 
     @classmethod
     def _0242_valid_anagram(self, s: str, t: str) -> bool:
@@ -408,6 +529,9 @@ class Array:
             ans = []
             return sorted(counter, key=lambda x: counter[x], reverse=True)[:k]
 
+        return solution_1(nums=nums, k=k)       
+        return solution_2(nums=nums, k=k)
+        return solution_3(nums=nums, k=k)
         return solution_4(nums=nums, k=k)
 
     @classmethod
