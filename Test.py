@@ -152,6 +152,60 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0015_3sum(self, obj, func) -> None:
+        #   | Case 1
+        input = 'nums = [-1,0,1,2,-1,-4]'
+        submit = func(obj, nums = [-1,0,1,2,-1,-4])
+        answer = [[-1,-1,2],[-1,0,1]]
+        self.check(input=input, submit=set(submit), answer=set(map(tuple, answer)))
+
+        #   | Case 2
+        input = 'nums = [0,1,1]'
+        submit = func(obj, nums = [0,1,1])
+        answer = []
+        self.check(input=input, submit=set(submit), answer=set(map(tuple, answer)))
+
+        #   | Case 3
+        input = 'nums = [0,0,0]'
+        submit = func(obj, nums = [0,0,0])
+        answer = [[0,0,0]]
+        self.check(input=input, submit=set(submit), answer=set(map(tuple, answer)))
+
+    @classmethod
+    def _0020_valid_parentheses(self, obj, func) -> None:
+        #   | Case 1
+        input = 's = "()"'
+        submit = func(obj, s = "()")
+        answer = True
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 's = "()[]{}"'
+        submit = func(obj, s = "()[]{}")
+        answer = True
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 3
+        input = 's = "(]"'
+        submit = func(obj, s = "(]")
+        answer = False
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
+    def _0022_generate_parentheses(self, obj, func) -> None:
+        #   | Case 1
+        input = 'n = 3'
+        submit = func(obj, n = 3)
+        answer = ["((()))","(()())","(())()","()(())","()()()"]
+        self.check(input=input, submit=set(submit), answer=set(answer))
+
+        #   | Case 2
+        input = 'n = 1'
+        submit = func(obj, n = 1)
+        answer = ["()"]
+        self.check(input=input, submit=set(submit), answer=set(answer))
+
+    @classmethod
     def _0027_remove_element(self, obj, func) -> None:
         #   | Case 1
         input = 'nums = [3,2,2,3], val = 3'
@@ -201,6 +255,26 @@ class Test:
         submit = func(obj, nums = [2,3,0,1,4])
         answer = 2
         self.check(input, submit, answer)
+
+    @classmethod
+    def _0053_maximum_subarray(self, obj, func) -> None:
+        #   | Case 1
+        input = 'nums = [-2,1,-3,4,-1,2,1,-5,4]'
+        submit = func(obj, nums = [-2,1,-3,4,-1,2,1,-5,4])
+        answer = 6
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 'nums = [1]'
+        submit = func(obj, nums = [1])
+        answer = 1
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 3
+        input = 'nums = [5,4,-1,7,8]'
+        submit = func(obj, nums = [5,4,-1,7,8])
+        answer = 23
+        self.check(input=input, submit=submit, answer=answer)
 
     @classmethod
     def _0055_jump_game(self, obj, func) -> None:
@@ -271,6 +345,39 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0098_validate_BST(self, obj, func) -> None:
+        #   | Case 1
+        input = TreeNode(2)
+        input.left = TreeNode(1)
+        input.right = TreeNode(3)
+        _input = str(input)
+        submit = func(obj, input)
+        answer = True
+        self.check(input=_input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = TreeNode(5)
+        input.left = TreeNode(1)
+        input.right = TreeNode(4)
+        input.right.left = TreeNode(3)
+        input.right.right = TreeNode(6)
+        _input = str(input)
+        submit = func(obj, input)
+        answer = False
+        self.check(input=_input, submit=submit, answer=answer)
+
+        #   | Case 3
+        input = TreeNode(5)
+        input.left = TreeNode(4)
+        input.right = TreeNode(6)
+        input.right.left = TreeNode(3)
+        input.right.right = TreeNode(7)
+        _input = str(input)
+        submit = func(obj, input)
+        answer = False
+        self.check(input=_input, submit=submit, answer=answer)
+
+    @classmethod
     def _0100_same_tree(self, obj, func) -> None:
         #   | Case 1
         root = TreeNode(1)
@@ -323,6 +430,36 @@ class Test:
         input = None
         submit = func(obj, input)
         answer = []
+        self.check(input, submit, answer)
+
+    @classmethod
+    def _0110_balanced_binary_tree(self, obj, func) -> None:
+        #   | Case 1
+        input = TreeNode(3)
+        input.left  = TreeNode(9)
+        input.right = TreeNode(20)
+        input.right.left  = TreeNode(20)
+        input.right.right = TreeNode(7)
+        submit = func(obj, input)
+        answer = True
+        self.check(input, submit, answer)
+
+        #   | Case 2
+        input = TreeNode(1)
+        input.left  = TreeNode(2)
+        input.right = TreeNode(2)
+        input.left.left  = TreeNode(3)
+        input.left.right = TreeNode(3)
+        input.left.left.left  = TreeNode(4)
+        input.left.left.right = TreeNode(4)
+        submit = func(obj, input)
+        answer = False
+        self.check(input, submit, answer)
+
+        #   | Case 3
+        input = None
+        submit = func(obj, input)
+        answer = True
         self.check(input, submit, answer)
 
     @classmethod
@@ -388,6 +525,26 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0167_two_sum_II_input_array_sorted(self, obj, func) -> None:
+        #   | Case 1
+        input = "numbers = [2,7,11,15], target = 9"
+        submit = func(obj, numbers = [2,7,11,15], target = 9)
+        answer = [1, 2]
+        self.check(input, set(submit), set(answer))
+
+        #   | Case 2
+        input = "numbers = [2,3,4], target = 6"
+        submit = func(obj, numbers = [2,3,4], target = 6)
+        answer = [1, 3]
+        self.check(input, set(submit), set(answer))
+
+        #   | Case 3
+        input = "numbers = [-1,0], target = -1"
+        submit = func(obj, numbers = [-1,0], target = -1)
+        answer = [1, 2]
+        self.check(input, set(submit), set(answer))
+
+    @classmethod
     def _0217_contains_duplicate(self, obj, func) -> None:
         #   | Case 1
         input  = "nums = [1,2,3,1]"
@@ -426,6 +583,20 @@ class Test:
         submit =  func(obj, nums = [1,2,3,1,2,3], k = 2)
         answer = False
         self.check(input, submit, answer)
+
+    @classmethod
+    def _0226_invert_BST(self, obj, func) -> None:
+        #   | Case 1
+        input = TreeNode(4)
+        input.left  = TreeNode(2)
+        input.left.left  = TreeNode(1)
+        input.left.right = TreeNode(3)
+        input.right = TreeNode(7)
+        input.right.left  = TreeNode(6)
+        input.right.right = TreeNode(9)
+        submit = func(obj, root = input)
+        answer = [[4], [7, 2], [9, 6, 3, 1]]
+        self.check(str(input), str(submit), str(answer))
 
     @classmethod
     def _0238_product_of_array_except_self(self, obj, func) -> None:
