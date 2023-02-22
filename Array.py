@@ -161,39 +161,6 @@ class Array:
         return solution_2(nums=nums)
 
     @classmethod
-    def _0055_jump_game(self, nums: list[int]) -> bool:
-        def solution_1(nums) -> bool:
-            """  Medium  |  DP  """
-            # Time:  O(n)
-            # Space: O(1)
-
-            max_position = 0
-            for idx in range(len(nums)):
-                if idx > max_position: return False
-                if max_position >= (len(nums) - 1): return True
-                max_position = max(max_position, idx + nums[idx])
-
-            return False
-        
-        def solution_2(nums) -> bool:
-            """  Medium  |  DP  """
-            # Time:  O(n^2)
-            # Space: O(n)
-
-            dp = [False for _ in range(len(nums))]
-            dp[-1] = True
-            for idx in range(len(nums)-2, -1, -1):
-                for j in range(idx+1, min(len(nums), idx+1+nums[idx])):
-                    if dp[j] == True:
-                        dp[idx] = True
-                        break
-
-            return dp[0]
-
-        return solution_1(nums=nums)
-        return solution_2(nums=nums)
-
-    @classmethod
     def _0049_group_anagrams(self, strs: list[str]) -> list[list[str]]:
         """  Medium  |  Hash  """
         # Time:  O(mn)
@@ -259,6 +226,62 @@ class Array:
         return solution_2(nums=nums, l=0, r=len(nums)-1)
 
     @classmethod
+    def _0055_jump_game(self, nums: list[int]) -> bool:
+        def solution_1(nums) -> bool:
+            """  Medium  |  DP  """
+            # Time:  O(n)
+            # Space: O(1)
+
+            max_position = 0
+            for idx in range(len(nums)):
+                if idx > max_position: return False
+                if max_position >= (len(nums) - 1): return True
+                max_position = max(max_position, idx + nums[idx])
+
+            return False
+        
+        def solution_2(nums) -> bool:
+            """  Medium  |  DP  """
+            # Time:  O(n^2)
+            # Space: O(n)
+
+            dp = [False for _ in range(len(nums))]
+            dp[-1] = True
+            for idx in range(len(nums)-2, -1, -1):
+                for j in range(idx+1, min(len(nums), idx+1+nums[idx])):
+                    if dp[j] == True:
+                        dp[idx] = True
+                        break
+
+            return dp[0]
+
+        return solution_1(nums=nums)
+        return solution_2(nums=nums)
+
+    @classmethod
+    def _0056_merge_intervals(self, intervals: list[list[int]]) -> list[list[int]]:
+        """  Medium  |  Sorting  """
+        # Time:  O(nlogn + n)
+        # Space: O(1)
+
+        intervals.sort(key=lambda x: x[0])
+
+        ans = []
+        for interval in intervals:
+            #   (initial)
+            if not ans: ans.append(interval)
+
+            #   (out of range)
+            elif not (ans[-1][0] <= interval[0] <= ans[-1][1]): ans.append(interval)
+
+            #   (overlap: merge and update)
+            else:
+                ans[-1][0] = min(ans[-1][0], interval[0])
+                ans[-1][1] = max(ans[-1][1], interval[1])
+
+        return ans
+
+    @classmethod
     def _0088_merge_sorted_array(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:
         """  Easy  |  Two Pointer  """
         # Time:  O(m+n)
@@ -307,6 +330,23 @@ class Array:
             sold = max(preSold, preHold + price)
 
         return sold
+
+    @classmethod
+    def _0152_maximum_product_subarray(self, nums: list[int]) -> int:
+        """  Medium  |  DP  """
+        # Time:  O(n)
+        # Space: O(1)
+
+        ans = float("-inf")
+        local_min, local_max = 1, 1
+        for num in nums:
+            #   (use tmp variable or write in one-liners)
+            _min = min(local_min*num, num, local_min*num)
+            _max = max(local_max*num, num, local_max*num)
+            local_min, local_max = _min, _max
+            
+            ans = max(ans, local_max)
+        return ans
 
     @classmethod
     def _0167_two_sum_II_input_array_sorted(self, numbers: list[int], target: int) -> list[int]:
