@@ -107,7 +107,7 @@ class Test:
             if key[1:5] == id: function.__func__(self, obj, func); break
         else: print(f"{self.YELLOW}    No test data{self.END}")
 
-    @ classmethod
+    @classmethod
     def check(self, input, submit, answer):
         assert submit == answer, f"{submit}\nAnswer: {answer}"
         print(f"\n{self.YELLOW}    [Input]     {input}{self.END}")
@@ -257,6 +257,35 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0049_group_anagrams(self, obj, func) -> None:
+        #   | Case 1
+        input  = 'strs = ["eat","tea","tan","ate","nat","bat"]'
+        submit = func(obj, strs = ["eat","tea","tan","ate","nat","bat"])
+        answer = set(list(map(tuple, [sorted(["bat"]),sorted(["nat","tan"]),sorted(["ate","eat","tea"])])))
+        diff = len(set(list(map(tuple, [sorted(_) for _ in submit]))).difference(answer))
+        assert diff == 0
+        print(f"\n{self.YELLOW}    [Input]     {input}{self.END}")
+        print(f"{self.YELLOW}    [Answer]    {answer}{self.END}")
+
+        #   | Case 2
+        input  = 'strs = [""]'
+        submit = func(obj, strs = [""])
+        answer = [[""]]
+        diff = len(set(list(map(tuple, [sorted(_) for _ in submit]))).difference(set(list(map(tuple, answer)))))
+        assert diff == 0
+        print(f"\n{self.YELLOW}    [Input]     {input}{self.END}")
+        print(f"{self.YELLOW}    [Answer]    {answer}{self.END}")
+
+        #   | Case 3
+        input = 'strs = ["a"]'
+        submit = func(obj, strs = ["a"])
+        answer = [["a"]]
+        diff = len(set(list(map(tuple, [sorted(_) for _ in submit]))).difference(set(list(map(tuple, answer)))))
+        assert diff == 0
+        print(f"\n{self.YELLOW}    [Input]     {input}{self.END}")
+        print(f"{self.YELLOW}    [Answer]    {answer}{self.END}")
+
+    @classmethod
     def _0053_maximum_subarray(self, obj, func) -> None:
         #   | Case 1
         input = 'nums = [-2,1,-3,4,-1,2,1,-5,4]'
@@ -291,32 +320,18 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
-    def _0049_group_anagrams(self, obj, func) -> None:        #   | Case 1
-        input  = 'strs = ["eat","tea","tan","ate","nat","bat"]'
-        submit = func(obj, strs = ["eat","tea","tan","ate","nat","bat"])
-        answer = set(list(map(tuple, [sorted(["bat"]),sorted(["nat","tan"]),sorted(["ate","eat","tea"])])))
-        diff = len(set(list(map(tuple, [sorted(_) for _ in submit]))).difference(answer))
-        assert diff == 0
-        print(f"\n{self.YELLOW}    [Input]     {input}{self.END}")
-        print(f"{self.YELLOW}    [Answer]    {answer}{self.END}")
+    def _0056_merge_intervals(self, obj, func) -> None:
+        #   | Case 1
+        input = 'intervals = [[1,3],[2,6],[8,10],[15,18]]'
+        submit = func(obj, intervals = [[1,3],[2,6],[8,10],[15,18]])
+        answer = [[1,6],[8,10],[15,18]]
+        self.check(input=input, submit=submit, answer=answer)
 
         #   | Case 2
-        input  = 'strs = [""]'
-        submit = func(obj, strs = [""])
-        answer = [[""]]
-        diff = len(set(list(map(tuple, [sorted(_) for _ in submit]))).difference(set(list(map(tuple, answer)))))
-        assert diff == 0
-        print(f"\n{self.YELLOW}    [Input]     {input}{self.END}")
-        print(f"{self.YELLOW}    [Answer]    {answer}{self.END}")
-
-        #   | Case 3
-        input = 'strs = ["a"]'
-        submit = func(obj, strs = ["a"])
-        answer = [["a"]]
-        diff = len(set(list(map(tuple, [sorted(_) for _ in submit]))).difference(set(list(map(tuple, answer)))))
-        assert diff == 0
-        print(f"\n{self.YELLOW}    [Input]     {input}{self.END}")
-        print(f"{self.YELLOW}    [Answer]    {answer}{self.END}")
+        input = 'intervals = [[1,4],[4,5]]'
+        submit = func(obj, intervals = [[1,4],[4,5]])
+        answer = [[1,5]]
+        self.check(input=input, submit=submit, answer=answer)
 
     @classmethod
     def _0088_merge_sorted_array(self, obj, func) -> None:
@@ -515,6 +530,20 @@ class Test:
         submit = func(obj, s = " ")
         answer = True
         self.check(input, submit, answer)
+
+    @classmethod
+    def _0152_maximum_product_subarray(self, obj, func) -> None:
+        #   | Case 1
+        input = 'nums = [2,3,-2,4]'
+        submit = func(obj, nums = [2,3,-2,4])
+        answer = 6
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 'nums = [-2,0,-1]'
+        submit = func(obj, nums = [-2,0,-1])
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
 
     @classmethod
     def _0155_min_stack(self, obj, func) -> None:
