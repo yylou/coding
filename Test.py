@@ -670,6 +670,20 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0502_IPO(self, obj, func) -> None:
+        #   | Case 1
+        input  = "k = 2, w = 0, profits = [1,2,3], capital = [0,1,1]"
+        submit = func(obj, k = 2, w = 0, profits = [1,2,3], capital = [0,1,1])
+        answer = 4
+        self.check(input, submit, answer)
+
+        #   | Case 2
+        input  = "k = 3, w = 0, profits = [1,2,3], capital = [0,1,2]"
+        submit = func(obj, k = 3, w = 0, profits = [1,2,3], capital = [0,1,2])
+        answer = 6
+        self.check(input, submit, answer)
+
+    @classmethod
     def _0530_min_abs_diff_in_BST(self, obj, func) -> None:
         #   | Case 1
         input = TreeNode(4)
@@ -738,6 +752,26 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _1011_capacity_to_ship_packages_within_d_days(self, obj, func) -> None:
+        #   | Case 1
+        input  = "weights = [1,2,3,4,5,6,7,8,9,10], days = 5"
+        submit = func(obj, weights = [1,2,3,4,5,6,7,8,9,10], days = 5)
+        answer = 15
+        self.check(input, submit, answer)
+
+        #   | Case 2
+        input  = "weights = [3,2,2,4,1,4], days = 3"
+        submit = func(obj, weights = [3,2,2,4,1,4], days = 3)
+        answer = 6
+        self.check(input, submit, answer)
+
+        #   | Case 3
+        input  = "weights = [1,2,3,1,1], days = 4"
+        submit = func(obj, weights = [1,2,3,1,1], days = 4)
+        answer = 3
+        self.check(input, submit, answer)
+
+    @classmethod
     def _1470_shuffle_array(self, obj, func) -> None:
         #   | Case 1
         input  = "nums = [2,5,1,3,4,7], n = 3"
@@ -749,7 +783,6 @@ class Test:
         input  = "nums = [1,2,3,4,4,3,2,1], n = 4"
         submit = func(obj, nums = [1,2,3,4,4,3,2,1], n = 4)
         answer = [1,4,2,3,3,2,4,1]
-        assert submit == answer
         self.check(input, submit, answer)
 
         #   | Case 3
