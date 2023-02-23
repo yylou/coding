@@ -166,6 +166,9 @@ class Tree:
     def _0226_invert_binary_tree(self, root: TreeNode) -> TreeNode:
         def solution_1(root: TreeNode):
             """  Easy  |  Stack  """
+            # Time:  O(n)
+            # Space: O(n)
+
             stack = [(root, False)]
             while stack:
                 node, visited = stack.pop()
@@ -179,6 +182,9 @@ class Tree:
 
         def solution_2(root: TreeNode):
             """  Easy  |  Recursion  """
+            # Time:  O(n)
+            # Space: O(n)
+
             if not root: return root
             solution_2(root.left)
             solution_2(root.right)
