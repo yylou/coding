@@ -575,6 +575,24 @@ class Array:
         return solution_4(nums=nums, k=k)
 
     @classmethod
+    def _0502_IPO(self, k: int, w: int, profits: list[int], capital: list[int]) -> int:
+        """  Medium  |  Greedy, Sort, Heap  """
+
+        import heapq
+        candidate = []
+
+        idx = 0
+        projects = sorted(zip(capital, profits))
+        for _ in range(k):
+            while idx < len(projects) and projects[idx][0] <= w:
+                heapq.heappush(candidate, -projects[idx][1])
+                idx += 1
+            if not candidate: break
+            w += -heapq.heappop(candidate)
+
+        return w
+
+    @classmethod
     def _0904_fruit_into_baskets(self, fruits: list[int]) -> int:
         """  Medium  |  Sliding Window + Hash  """
         # Time:  O(n)
@@ -594,6 +612,33 @@ class Array:
 
         maximum = max(maximum, sum(table.values()))
         return maximum
+
+    @classmethod
+    def _1011_capacity_to_ship_packages_within_d_days(self, weights: list[int], days: int) -> int:
+        """  Medium  |  Binary Search  """
+        # Time:  O(n * logn)
+        # space: O(1)
+
+        def validate(weights, capacity, days):
+            cur = 0
+            for package in weights:
+                cur += package
+                if cur > capacity:
+                    days -= 1
+                    cur = package   # (reload)
+            return days > 0
+
+        #   | Search space: [min, max]
+        l, r = max(weights), sum(weights)
+
+        while l < r:
+            mid = (l + r) // 2
+            if validate(weights, capacity=mid, days=days):  # (feasible)
+                r = mid
+            else:
+                l = mid + 1
+        
+        return l
 
     @classmethod
     def _1470_shuffle_array(self, nums: list[int], n: int) -> list:
