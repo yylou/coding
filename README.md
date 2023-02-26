@@ -4,7 +4,7 @@
 > * #### Python Programming
 >   * **Educative.io:** [```Python for Programmers```](https://www.educative.io/path/python-for-programmers) | [```Ace The Python Coding Interview```](https://www.educative.io/path/ace-python-coding-interview)
 > * #### Problem Solving
->   * [```LeetCode```](https://leetcode.com/problemset/all/) | [```Blind 75```](https://www.techinterviewhandbook.org/best-practice-questions/) | [```NeetCode```](https://neetcode.io/roadmap)
+>   * [```LeetCode```](https://leetcode.com/problemset/all/) | [```Blind 75```](https://www.techinterviewhandbook.org/best-practice-questions/) | [```NeetCode 150```](https://neetcode.io/roadmap)
 
 <br />
 
