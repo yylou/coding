@@ -8,7 +8,7 @@
 
 <br />
 
-## :soon: Interactive Mode
+## :round_pushpin: Interactive Mode
 ```python
 >>> from Array import Array
 >>> import inspect
@@ -41,5 +41,5 @@
 [1, 2, 2, 3, 5, 6]
 ```
 
-## :on: Execution Mode
+## :round_pushpin: Execution Mode
 ![Output](./fig/output.png)
