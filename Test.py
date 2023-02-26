@@ -138,6 +138,26 @@ class Test:
         self.check(input, set(submit), set(answer))
 
     @classmethod
+    def _0003_longest_substring_without_repeating_characters(self, obj, func) -> None:
+        #   | Case 1
+        input = 's = "abcabcbb"'
+        submit = func(obj, s = "abcabcbb")
+        answer = 3
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 's = "bbbbb"'
+        submit = func(obj, s = "bbbbb")
+        answer = 1
+        self.check(input=input, submit=submit, answer=answer)
+        
+        #   | Case 3
+        input = 's = "pwwkew"'
+        submit = func(obj, s = "pwwkew")
+        answer = 3
+        self.check(input=input, submit=submit, answer=answer)  
+
+    @classmethod
     def _0011_container_with_most_water(self, obj, func) -> None:
         #   | Case 1
         input  = 'height = [1,8,6,2,5,4,8,3,7]'
@@ -227,6 +247,50 @@ class Test:
         print(f"\n{self.YELLOW}    [Input]     {input}{self.END}")
         print(f"{self.YELLOW}    [Answer]    {answer}, {nums[:answer]}{self.END}")
     
+    @classmethod
+    def _0033_search_in_rotated_sorted_array(self, obj, func) -> None:
+        #   | Case 1
+        input = 'nums = [4,5,6,7,0,1,2], target = 0'
+        submit = func(obj, nums = [4,5,6,7,0,1,2], target = 0)
+        answer = 4
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 'nums = [4,5,6,7,0,1,2], target = 3'
+        submit = func(obj, nums = [4,5,6,7,0,1,2], target = 3)
+        answer = -1
+        self.check(input=input, submit=submit, answer=answer)
+        
+        #   | Case 3
+        input = 'nums = [1], target = 0'
+        submit = func(obj, nums = [1], target = 0)
+        answer = -1
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 4
+        input = 'nums = [1,2,3], target = 1'
+        submit = func(obj, nums = [1,2,3], target = 1)
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 5
+        input = 'nums = [1], target = 1'
+        submit = func(obj, nums = [1], target = 1)
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 6
+        input = 'nums = [1,3], target = 1'
+        submit = func(obj, nums = [1,2,3], target = 1)
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 7
+        input = 'nums = [3,5,1], target = 3'
+        submit = func(obj, nums = [3,5,1], target = 3)
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
     @classmethod
     def _0036_valid_sudoku(self, obj, func) -> None:
 
@@ -546,6 +610,38 @@ class Test:
         self.check(input=input, submit=submit, answer=answer)
 
     @classmethod
+    def _0153_find_minimum_in_rotated_sorted_array(self, obj, func) -> None:
+        #   | Case 1
+        input = 'nums = [4,5,6,7,0,1,2]'
+        submit = func(obj, nums = [4,5,6,7,0,1,2])
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 'nums = [3,4,5,1,2]'
+        submit = func(obj, nums = [3,4,5,1,2])
+        answer = 1
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 4
+        input = 'nums = [11,13,15,17]'
+        submit = func(obj, nums = [11,13,15,17])
+        answer = 11
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 5
+        input = 'nums = [2,1]'
+        submit = func(obj, nums = [2,1])
+        answer = 1
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 6
+        input = 'nums = [3,1,2]'
+        submit = func(obj, nums = [3,1,2])
+        answer = 1
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
     def _0155_min_stack(self, obj, func) -> None:
         #   | Case 1
         input  = 'push(-2), push(0), push(-3), getMin, pop, top, getMin'
@@ -670,6 +766,84 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0395_longest_substring_with_at_least_k_repeating_characters(self, obj, func) -> None:
+        #   | Case 1
+        input = 's = "aaabb", k = 3'
+        submit = func(obj, s = "aaabb", k = 3)
+        answer = 3
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 's = "ababbc", k = 2'
+        submit = func(obj, s = "ababbc", k = 2)
+        answer = 5
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
+    def _0424_longest_repeating_character_replacement(self, obj, func) -> None:
+        #   | Case 1
+        input = 's = "ABAB", k = 2'
+        submit = func(obj, s = "ABAB", k = 2)
+        answer = 4
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 's = "AABABBA", k = 1'
+        submit = func(obj, s = "AABABBA", k = 1)
+        answer = 4
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
+    def _0450_delete_node_in_a_BST(self, obj, func) -> None:
+        #   | Case 1
+        root = TreeNode(5)
+        obj._0701_insert_into_a_BST(root, 3)
+        obj._0701_insert_into_a_BST(root, 6)
+        obj._0701_insert_into_a_BST(root, 2)
+        obj._0701_insert_into_a_BST(root, 4)
+        obj._0701_insert_into_a_BST(root, 7)
+        input = root
+        submit = func(obj, root = input, key = 3)
+        answer = "[[5], [4, 6], [2, None, None, 7]]"
+        self.check(input, str(submit), answer)
+
+        #   | Case 2
+        root = TreeNode(5)
+        obj._0701_insert_into_a_BST(root, 3)
+        obj._0701_insert_into_a_BST(root, 6)
+        obj._0701_insert_into_a_BST(root, 2)
+        obj._0701_insert_into_a_BST(root, 4)
+        obj._0701_insert_into_a_BST(root, 7)
+        input = root
+        submit = func(obj, root = input, key = 0)
+        answer = "[[5], [3, 6], [2, 4, None, 7]]"
+        self.check(input, str(submit), answer)
+
+        #   | Case 3
+        input = None
+        submit = func(obj, root = input, key = 0)
+        answer = "None"
+        self.check(input, str(submit), answer)
+
+        #   | Case 4
+        input = TreeNode(0)
+        submit = func(obj, root = input, key = 0)
+        answer = "None"
+        self.check(input, str(submit), answer)
+
+        #   | Case 5
+        root = TreeNode(50)
+        obj._0701_insert_into_a_BST(root, 30)
+        obj._0701_insert_into_a_BST(root, 40)
+        obj._0701_insert_into_a_BST(root, 70)
+        obj._0701_insert_into_a_BST(root, 60)
+        obj._0701_insert_into_a_BST(root, 80)
+        input = root
+        submit = func(obj, root = input, key = 50)
+        answer = "[[70], [60, 80], [30, None, None, None], [None, 40]]"
+        self.check(input, str(submit), answer)
+
+    @classmethod
     def _0502_IPO(self, obj, func) -> None:
         #   | Case 1
         input  = "k = 2, w = 0, profits = [1,2,3], capital = [0,1,1]"
@@ -704,6 +878,30 @@ class Test:
         submit = func(obj, input)
         answer = 1
         self.check(input, submit, answer)
+
+    @classmethod
+    def _0700_search_in_a_BST(self, obj, func) -> None:
+        #   | Case 1
+        root = TreeNode(4)
+        obj._0701_insert_into_a_BST(root, 2)
+        obj._0701_insert_into_a_BST(root, 7)
+        obj._0701_insert_into_a_BST(root, 1)
+        obj._0701_insert_into_a_BST(root, 3)
+        input = root
+        submit = func(obj, root = input, val = 2)
+        answer = "[[2], [1, 3]]"
+        self.check(input, str(submit), answer)
+
+        #   | Case 2
+        root = TreeNode(4)
+        obj._0701_insert_into_a_BST(root, 2)
+        obj._0701_insert_into_a_BST(root, 7)
+        obj._0701_insert_into_a_BST(root, 1)
+        obj._0701_insert_into_a_BST(root, 3)
+        input = root
+        submit = func(obj, root = input, val = 5)
+        answer = "None"
+        self.check(input, str(submit), answer)
 
     @classmethod
     def _0701_insert_into_a_BST(self, obj, func) -> None:
@@ -789,4 +987,24 @@ class Test:
         input  = "nums = [1,1,2,2], n = 2"
         submit = func(obj, nums = [1,1,2,2], n = 2)
         answer = [1,2,1,2]
+        self.check(input, submit, answer)
+
+    @classmethod
+    def _1675_minimize_deviation_in_array(self, obj, func) -> None:
+        #   | Case 1
+        input  = "nums = [1,2,3,4]"
+        submit = func(obj, nums = [1,2,3,4])
+        answer = 1
+        self.check(input, submit, answer)
+
+        #   | Case 2
+        input  = "nums = [4,1,5,20,3]"
+        submit = func(obj, nums = [4,1,5,20,3])
+        answer = 3
+        self.check(input, submit, answer)
+
+        #   | Case 3
+        input  = "nums = [2,10,8]"
+        submit = func(obj, nums = [2,10,8])
+        answer = 3
         self.check(input, submit, answer)
