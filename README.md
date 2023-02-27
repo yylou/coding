@@ -8,6 +8,9 @@
 
 <br />
 
+## :round_pushpin: Show solved problems
+![View](./fig/view.png)
+
 ## :round_pushpin: Interactive Mode
 ```python
 >>> from Array import Array
