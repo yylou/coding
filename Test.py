@@ -6,7 +6,7 @@ Website : https://yylou.github.io/
 Date    : Feb 05, 2023
 
 Project :
-    [Coding practice] Tester
+    [Coding practice] Unit tests
 """
 
 from Array                      import Array
@@ -250,9 +250,27 @@ class Test:
     @classmethod
     def _0028_find_the_index_of_the_first_occurence_in_a_string(self, obj, func) -> None:
         #   | Case 1
-        input = ""
-        submit = func(obj, )
-        answer = ""
+        input = 'haystack = "sadbutsad", needle = "sad"'
+        submit = func(obj, haystack = "sadbutsad", needle = "sad")
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 'haystack = "leetcode", needle = "leeto"'
+        submit = func(obj, haystack = "leetcode", needle = "leeto")
+        answer = -1
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 3
+        input = 'haystack = "abc", needle = "c"'
+        submit = func(obj, haystack = "abc", needle = "c")
+        answer = 2
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 4
+        input = 'haystack = "hello", needle = "ll"'
+        submit = func(obj, haystack = "hello", needle = "ll")
+        answer = 2
         self.check(input=input, submit=submit, answer=answer)
 
     @classmethod
@@ -676,6 +694,26 @@ class Test:
         submit = func(obj, numbers = [-1,0], target = -1)
         answer = [1, 2]
         self.check(input, set(submit), set(answer))
+
+    @classmethod
+    def _0187_repeated_DNA_sequences(self, obj, func) -> None:
+        #   | Case 1
+        input = 's = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"'
+        submit = func(obj, s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT")
+        answer = ["AAAAACCCCC","CCCCCAAAAA"]
+        self.check(input=input, submit=set(submit), answer=set(answer))
+
+        #   | Case 2
+        input = 's = "AAAAAAAAAAAAA"'
+        submit = func(obj, s = "AAAAAAAAAAAAA")
+        answer = ["AAAAAAAAAA"]
+        self.check(input=input, submit=set(submit), answer=set(answer))
+
+        #   | Case 3
+        input = 's = "AAAAAAAAAAA"'
+        submit = func(obj, s = "AAAAAAAAAAA")
+        answer = ["AAAAAAAAAA"]
+        self.check(input=input, submit=set(submit), answer=set(answer))
 
     @classmethod
     def _0217_contains_duplicate(self, obj, func) -> None:
