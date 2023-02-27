@@ -715,6 +715,12 @@ class Test:
         answer = ["AAAAAAAAAA"]
         self.check(input=input, submit=set(submit), answer=set(answer))
 
+        #   | Case 4
+        input = 's = "AAAAAAAAAA"'
+        submit = func(obj, s = "AAAAAAAAAA")
+        answer = []
+        self.check(input=input, submit=set(submit), answer=set(answer))
+
     @classmethod
     def _0217_contains_duplicate(self, obj, func) -> None:
         #   | Case 1
