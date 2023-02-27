@@ -9,11 +9,11 @@
 <br />
 
 ## :round_pushpin: List solved problems
-```**Command**: python3 main.py -list```
+**Command:** ```python3 main.py -list```
 ![View](./fig/view.png)
 
 ## :round_pushpin: Execution Mode
-```**Command**: python3 main.py -prob [PROB_ID: 0001, 0002, 0003, ...]```
+**Command:** ```python3 main.py -prob [PROB_ID: 0001, 0002, 0003, ...]```
 ![Output](./fig/output.png)
 
 ## :round_pushpin: Interactive Mode
