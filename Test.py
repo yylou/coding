@@ -248,6 +248,14 @@ class Test:
         print(f"{self.YELLOW}    [Answer]    {answer}, {nums[:answer]}{self.END}")
     
     @classmethod
+    def _0028_find_the_index_of_the_first_occurence_in_a_string(self, obj, func) -> None:
+        #   | Case 1
+        input = ""
+        submit = func(obj, )
+        answer = ""
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
     def _0033_search_in_rotated_sorted_array(self, obj, func) -> None:
         #   | Case 1
         input = 'nums = [4,5,6,7,0,1,2], target = 0'
@@ -723,6 +731,31 @@ class Test:
         answer = [[4], [7, 2], [9, 6, 3, 1]]
         self.check(str(input), str(submit), str(answer))
 
+    @classmethod
+    def _0236_lowest_common_ancestor_of_a_binary_tree(self, obj, func) -> None:
+        #   | Tree
+        root = TreeNode(3)
+        root.left  = TreeNode(5)
+        root.right = TreeNode(1)
+        root.left.left  = TreeNode(6)
+        root.left.right = TreeNode(2)
+        root.right.left  = TreeNode(0)
+        root.right.right = TreeNode(8)
+        root.left.right.left  = TreeNode(7)
+        root.left.right.right = TreeNode(4)
+
+        #   | Case 1
+        input = root
+        submit = func(obj, root = input, p = 5, q = 1)
+        answer = 3
+        self.check(input=f"{input}, p=5, q=1", submit=submit.val, answer=answer)
+
+        #   | Case 2
+        input = root
+        submit = func(obj, root = input, p = 5, q = 4)
+        answer = 5
+        self.check(input=f"{input}, p=5, q=4", submit=submit.val, answer=answer)
+        
     @classmethod
     def _0238_product_of_array_except_self(self, obj, func) -> None:
         #   | Case 1
