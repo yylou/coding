@@ -11,6 +11,9 @@
 ## :round_pushpin: Show solved problems
 ![View](./fig/view.png)
 
+## :round_pushpin: Execution Mode
+![Output](./fig/output.png)
+
 ## :round_pushpin: Interactive Mode
 ```python
 >>> from Array import Array
@@ -43,6 +46,3 @@
 >>> Test.run("0088", nums1=[1,2,3,0,0,0], m=3, nums2=[2,5,6], n=3)
 [1, 2, 2, 3, 5, 6]
 ```
-
-## :round_pushpin: Execution Mode
-![Output](./fig/output.png)
