@@ -514,6 +514,30 @@ class Test:
         self.check(f"{p}\n                {q}", submit, answer)
 
     @classmethod
+    def _0101_symmetric_tree(self, obj, func) -> None:
+        #   | Case 1
+        input = TreeNode(1)
+        input.left  = TreeNode(2)
+        input.right = TreeNode(2)
+        input.left.left   = TreeNode(3)
+        input.left.right  = TreeNode(4)
+        input.right.left  = TreeNode(4)
+        input.right.right = TreeNode(3)
+        submit = func(obj, root = input)
+        answer = True
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = TreeNode(1)
+        input.left  = TreeNode(2)
+        input.left.right  = TreeNode(3)
+        input.right = TreeNode(2)
+        input.right.right = TreeNode(3)
+        submit = func(obj, root = input)
+        answer = False
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
     def _0102_binary_tree_level_order_traversal(self, obj, func) -> None:
         #   | Case 1
         input = TreeNode(3)
@@ -957,6 +981,41 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0652_find_duplicate_subtrees(self, obj, func) -> None:
+        #   | Case 1
+        root = TreeNode(1)
+        root.left  = TreeNode(2)
+        root.right = TreeNode(3)
+        root.left.left   = TreeNode(4)
+        root.right.left  = TreeNode(2)
+        root.right.right = TreeNode(4)
+        root.right.left.left = TreeNode(4)
+        input = str(root)
+        submit = func(obj, root = root)
+        answer = [root.left.left, root.left]
+        self.check(input=input, submit=set(submit), answer=set(answer))
+
+        #   | Case 2
+        root = TreeNode(2)
+        root.left  = TreeNode(1)
+        root.right = TreeNode(1)
+        input = str(root)
+        submit = func(obj, root = root)
+        answer = [root.left]
+        self.check(input=input, submit=set(submit), answer=set(answer))
+
+        #   | Case 3
+        root = TreeNode(2)
+        root.left  = TreeNode(2)
+        root.right = TreeNode(2)
+        root.left.left   = TreeNode(3)
+        root.right.left  = TreeNode(3)
+        input = str(root)
+        submit = func(obj, root = root)
+        answer = [root.left.left, root.left]
+        self.check(input=input, submit=set(submit), answer=set(answer))
+
+    @classmethod
     def _0700_search_in_a_BST(self, obj, func) -> None:
         #   | Case 1
         root = TreeNode(4)
@@ -1047,6 +1106,20 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _1297_maximum_number_of_occurrences_of_a_substring(self, obj, func) -> None:
+        #   | Case 1
+        input  = 's = "aababcaab", maxLetters = 2, minSize = 3, maxSize = 4'
+        submit = func(obj, s = "aababcaab", maxLetters = 2, minSize = 3, maxSize = 4)
+        answer = 2
+        self.check(input, submit, answer)
+
+        #   | Case 2
+        input  = 's = "aaaa", maxLetters = 1, minSize = 3, maxSize = 3'
+        submit = func(obj, s = "aaaa", maxLetters = 1, minSize = 3, maxSize = 3)
+        answer = 2
+        self.check(input, submit, answer)
+
+    @classmethod
     def _1470_shuffle_array(self, obj, func) -> None:
         #   | Case 1
         input  = "nums = [2,5,1,3,4,7], n = 3"
@@ -1084,4 +1157,18 @@ class Test:
         input  = "nums = [2,10,8]"
         submit = func(obj, nums = [2,10,8])
         answer = 3
+        self.check(input, submit, answer)
+
+    @classmethod
+    def _1910_remove_all_occurrences_of_a_string(self, obj, func) -> None:
+        #   | Case 1
+        input  = 's = "daabcbaabcbc", part = "abc"'
+        submit = func(obj, s = "daabcbaabcbc", part = "abc")
+        answer = "dab"
+        self.check(input, submit, answer)
+
+        #   | Case 2
+        input  = 's = "axxxxyyyyb", part = "xy"'
+        submit = func(obj, s = "axxxxyyyyb", part = "xy")
+        answer = "ab"
         self.check(input, submit, answer)
