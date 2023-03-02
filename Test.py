@@ -424,6 +424,20 @@ class Test:
         self.check(input=input, submit=submit, answer=answer)
 
     @classmethod
+    def _0072_edit_distance(self, obj, func) -> None:
+        #   | Case 1
+        input = 'word1 = "horse", word2 = "ros"'
+        submit = func(obj, word1 = "horse", word2 = "ros")
+        answer = 3
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input = 'word1 = "intention", word2 = "execution"'
+        submit = func(obj, word1 = "intention", word2 = "execution")
+        answer = 5
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
     def _0088_merge_sorted_array(self, obj, func) -> None:
         #   | Case 1
         input = "nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3"
