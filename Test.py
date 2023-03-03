@@ -995,6 +995,20 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0572_subtree_of_another_tree(self, obj, func) -> None:
+        input = TreeNode(3)
+        input.left  = TreeNode(4)
+        input.right = TreeNode(5)
+        input.left.left  = TreeNode(1)
+        input.left.right = TreeNode(2)
+        subRoot = TreeNode(4)
+        subRoot.left  = TreeNode(1)
+        subRoot.right = TreeNode(2)
+        submit = func(obj, root = input, subRoot = subRoot)
+        answer = True
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
     def _0652_find_duplicate_subtrees(self, obj, func) -> None:
         #   | Case 1
         root = TreeNode(1)
