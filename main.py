@@ -52,10 +52,13 @@ def main():
         print(f"\n    {YELLOW}{'ID':^8} {'Title':^60} {'Level':<15}{'Tags':<50}{'Company'}{Colors.END}")
         print("    " + "=====" * 34)
 
+        counter = 0
         for element in [Array, String, Stack, Tree]:
             for problem_id in element.__dict__:
                 result = RE.match("_(\d*)_(.*)", problem_id)
                 if result and result.groups()[0]:
+                    counter += 1
+
                     idx = result.groups()[0]
                     info = {"company": {"amazon": 0, "apple": 0, "bloomberg": 0, "facebook": 0, "google": 0, "microsoft": 0}}
                     for name, company in data.items():
@@ -71,6 +74,7 @@ def main():
                     print(f"{' / '.join(sorted([table[_] if _ in table else _ for _ in info['tags'][:3]])):<50}", end="")
                     print(f"{' | '.join([k.capitalize()[:3] if v != 0 else '   ' for k, v in sorted(info['company'].items())])}")
             print("    " + "=====" * 34)
+        print(f"      Total: {counter}")
 
 
     if argp.prob:
