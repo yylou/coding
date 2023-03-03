@@ -39,6 +39,7 @@ def main():
     for file in files: data[file] = Company(path=f"./company/{file}")
     
     HIFREQ = Colors.Pattern(Colors.BOLD, Colors.TLRED, Colors.BBLACK)
+    TYPE   = Colors.Pattern(Colors.BOLD, Colors.TLBLUE, Colors.BBLACK)
     YELLOW = Colors.Pattern(Colors.BOLD, Colors.TYELLOW, Colors.BNONE)
     
     table = {
@@ -54,7 +55,6 @@ def main():
 
         counter = 0
         for element in [Array, String, Stack, Tree]:
-            print(f"({element})")
             for problem_id in element.__dict__:
                 result = RE.match("_(\d*)_(.*)", problem_id)
                 if result and result.groups()[0]:
@@ -74,6 +74,7 @@ def main():
                         print(f"    {idx:^8} {info['title']:60} {info['level']:<15}", end="")
                     print(f"{' / '.join(sorted([table[_] if _ in table else _ for _ in info['tags'][:3]])):<50}", end="")
                     print(f"{' | '.join([k.capitalize()[:3] if v != 0 else '   ' for k, v in sorted(info['company'].items())])}")
+            print(f"    {' '*85}{TYPE} ({element}) {Colors.END}")
             print("    " + "=====" * 34)
         print(f"      Total: {counter}")
 
