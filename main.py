@@ -54,6 +54,7 @@ def main():
 
         counter = 0
         for element in [Array, String, Stack, Tree]:
+            print(f"({element})")
             for problem_id in element.__dict__:
                 result = RE.match("_(\d*)_(.*)", problem_id)
                 if result and result.groups()[0]:
