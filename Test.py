@@ -464,6 +464,32 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0091_decode_ways(self, obj, func) -> None:
+        #   | Case 1
+        input  = 's = "12"'
+        submit = func(obj, s = "12")
+        answer = 2
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input  = 's = "226"'
+        submit = func(obj, s = "226")
+        answer = 3
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 3
+        input  = 's = "06"'
+        submit = func(obj, s = "06")
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 3
+        input  = 's = "2101"'
+        submit = func(obj, s = "2101")
+        answer = 1
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
     def _0098_validate_BST(self, obj, func) -> None:
         #   | Case 1
         input = TreeNode(2)
@@ -906,6 +932,22 @@ class Test:
         input = 's = "AABABBA", k = 1'
         submit = func(obj, s = "AABABBA", k = 1)
         answer = 4
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
+    def _0427_construct_quad_tree(self, obj, func) -> None:
+        #   | Case 1
+        input  = "[[0,1],[1,0]]"
+        submit = func(obj, grid = [[0,1],[1,0]])
+        submit = [element for _ in eval(str(submit)) for element in _]
+        answer = [[0,1],[1,0],[1,1],[1,1],[1,0]]
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input  = "[[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0]]"
+        submit = func(obj, grid = [[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0]])
+        submit = [element for _ in eval(str(submit)) for element in _]
+        answer = [[0,1],[1,1],[0,1],[1,1],[1,0],None,None,None,None,[1,0],[1,0],[1,1],[1,1],None,None,None,None,None,None,None,None]
         self.check(input=input, submit=submit, answer=answer)
 
     @classmethod
