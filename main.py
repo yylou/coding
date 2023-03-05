@@ -41,6 +41,7 @@ def main():
     HIFREQ = Colors.Pattern(Colors.BOLD, Colors.TLRED, Colors.BBLACK)
     TYPE   = Colors.Pattern(Colors.BOLD, Colors.TLBLUE, Colors.BBLACK)
     YELLOW = Colors.Pattern(Colors.BOLD, Colors.TYELLOW, Colors.BNONE)
+    RED    = Colors.Pattern(Colors.BOLD, Colors.TRED, Colors.BNONE)
     
     table = {
         "Dynamic Programming":  "DP",
@@ -106,7 +107,7 @@ def main():
             if average > 30: print(f"    {GREEN}|{'(Average)':^15}|  {RED}{average:>5.2f}%{END}  {GREEN}|{END}")
             else: print(f"    {GREEN}|{'(Average)':^15}|  {average:>5.2f}%  |{END}")
         else:
-            print("\n    Problem not found.")
+            print(f"\n    {RED}Problem not found.{Colors.END}")
             
         obj, func = None, None
         if   Array.search(argp.prob):  obj, func = Array,  Array.search(argp.prob)
@@ -116,7 +117,7 @@ def main():
         if obj and func:
             get_code(func)
             get_test(argp.prob, obj, func.__func__ if func else None)
-        else: print("\n    Solution not found\n")
+        else: print(f"\n    {RED}Solution not found{Colors.END}\n")
 
 
 if __name__ == "__main__":
