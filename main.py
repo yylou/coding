@@ -105,16 +105,19 @@ def main():
             average = sum([eval(_[1]) for _ in info['company']]) / len(info['company'])
             if average > 30: print(f"    {GREEN}|{'(Average)':^15}|  {RED}{average:>5.2f}%{END}  {GREEN}|{END}")
             else: print(f"    {GREEN}|{'(Average)':^15}|  {average:>5.2f}%  |{END}")
+        else:
+            print("\n    Problem not found.")
             
-            obj, func = None, None
-            if   Array.search(argp.prob):  obj, func = Array,  Array.search(argp.prob)
-            elif String.search(argp.prob): obj, func = String, String.search(argp.prob)
-            elif Stack.search(argp.prob):  obj, func = Stack,  Stack.search(argp.prob)
-            elif Tree.search(argp.prob):   obj, func = Tree,   Tree.search(argp.prob)
-            if obj and func:
-                get_code(func)
-                get_test(argp.prob, obj, func.__func__ if func else None)
-            else: print("\n    Solution not found\n")
+        obj, func = None, None
+        if   Array.search(argp.prob):  obj, func = Array,  Array.search(argp.prob)
+        elif String.search(argp.prob): obj, func = String, String.search(argp.prob)
+        elif Stack.search(argp.prob):  obj, func = Stack,  Stack.search(argp.prob)
+        elif Tree.search(argp.prob):   obj, func = Tree,   Tree.search(argp.prob)
+        if obj and func:
+            get_code(func)
+            get_test(argp.prob, obj, func.__func__ if func else None)
+        else: print("\n    Solution not found\n")
+
 
 if __name__ == "__main__":
     main()
