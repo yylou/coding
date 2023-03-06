@@ -1051,6 +1051,26 @@ class Test:
         self.check(input=input, submit=submit, answer=answer)
 
     @classmethod
+    def _0581_shortest_unsorted_cntinuous_subarray(self, obj, func) -> None:
+        #   | Case 1
+        input  = 'nums = [2,6,4,8,10,9,15]'
+        submit = func(obj, nums = [2,6,4,8,10,9,15])
+        answer = 5
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input  = 'nums = [1,2,3,4]'
+        submit = func(obj, nums = [1,2,3,4])
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 3
+        input  = 'nums = [1]'
+        submit = func(obj, nums = [1])
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
     def _0652_find_duplicate_subtrees(self, obj, func) -> None:
         #   | Case 1
         root = TreeNode(1)
@@ -1242,3 +1262,17 @@ class Test:
         submit = func(obj, s = "axxxxyyyyb", part = "xy")
         answer = "ab"
         self.check(input, submit, answer)
+
+    @classmethod
+    def _2444_count_subarrays_with_fixed_bounds(self, obj, func) -> None:
+        #   | Case 1
+        input  = 'nums = [1,3,5,2,7,5], minK = 1, maxK = 5'
+        submit = func(obj, nums = [1,3,5,2,7,5], minK = 1, maxK = 5)
+        answer = 2
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input  = 'nums = [1,1,1,1], minK = 1, maxK = 1'
+        submit = func(obj, nums = [1,1,1,1], minK = 1, maxK = 1)
+        answer = 10
+        self.check(input=input, submit=submit, answer=answer)
