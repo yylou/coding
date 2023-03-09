@@ -879,6 +879,32 @@ class Test:
         self.check(input, submit, answer)
 
     @classmethod
+    def _0239_sliding_window_maximum(self, obj, func) -> None:
+        #   | Case 1
+        input  = 'nums = [1,3,-1,-3,5,3,6,7], k = 3'
+        submit = func(obj, nums = [1,3,-1,-3,5,3,6,7], k = 3)
+        answer = [3,3,5,5,6,7]
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input  = 'nums = [1], k = 1'
+        submit = func(obj, nums = [1], k = 1)
+        answer = [1]
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 3
+        input  = 'nums = [7,2,4], k = 2'
+        submit = func(obj, nums = [7,2,4], k = 2)
+        answer = [7, 4]
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 4
+        input  = 'nums = [1,-1], k = 1'
+        submit = func(obj, nums = [1,-1], k = 1)
+        answer = [1,-1]
+        self.check(input=input, submit=submit, answer=answer)
+
+    @classmethod
     def _0242_valid_anagram(self, obj, func) -> None:
         #   | Case 1
         input  = 's = "anagram", t = "nagaram"'
@@ -1208,6 +1234,38 @@ class Test:
         submit = func(obj, s = "aaaa", maxLetters = 1, minSize = 3, maxSize = 3)
         answer = 2
         self.check(input, submit, answer)
+
+    @classmethod
+    def _1345_jump_game_IV(self, obj, func) -> None:
+        #   | Case 1
+        input  = 'arr = [100,-23,-23,404,100,23,23,23,3,404]'
+        submit = func(obj, arr = [100,-23,-23,404,100,23,23,23,3,404])
+        answer = 3
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 2
+        input  = 'arr = [7]'
+        submit = func(obj, arr = [7])
+        answer = 0
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 3
+        input  = 'arr = [7,6,9,6,9,6,9,7]'
+        submit = func(obj, arr = [7,6,9,6,9,6,9,7])
+        answer = 1
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 4
+        input  = '[11,22,7,7,7,7,7,7,7,22,13]'
+        submit = func(obj, arr = [11,22,7,7,7,7,7,7,7,22,13])
+        answer = 3
+        self.check(input=input, submit=submit, answer=answer)
+
+        #   | Case 5
+        input  = '[7,7,2,1,7,7,7,3,4,1]'
+        submit = func(obj, arr = [7,7,2,1,7,7,7,3,4,1])
+        answer = 3
+        self.check(input=input, submit=submit, answer=answer)
 
     @classmethod
     def _1470_shuffle_array(self, obj, func) -> None:
