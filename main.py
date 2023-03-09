@@ -41,6 +41,7 @@ def main():
     HIFREQ = Colors.Pattern(Colors.BOLD, Colors.TLRED, Colors.BBLACK)
     TYPE   = Colors.Pattern(Colors.BOLD, Colors.TLBLUE, Colors.BBLACK)
     YELLOW = Colors.Pattern(Colors.BOLD, Colors.TYELLOW, Colors.BNONE)
+    GREY   = Colors.Pattern(Colors.BOLD, Colors.TGREY, Colors.BBLACK)
     RED    = Colors.Pattern(Colors.BOLD, Colors.TRED, Colors.BNONE)
     
     table = {
@@ -69,16 +70,18 @@ def main():
                             info["company"][name[:-5]] = info['freq'] / company.sorted[0].freq * 100
                             del info["freq"]
                     
-                    if any([_ > 50 for _ in info["company"].values()]): 
-                        print(f"    {HIFREQ}{idx:^8} {info['title']:60}{Colors.END} {info['level']:<15}", end="")
-                    else: 
-                        print(f"    {idx:^8} {info['title']:60} {info['level']:<15}", end="")
-                    print(f"{' / '.join(sorted([table[_] if _ in table else _ for _ in info['tags'][:3]])):<50}", end="")
-                    print(f"{' | '.join([k.capitalize()[:3] if v != 0 else '   ' for k, v in sorted(info['company'].items())])}")
+                    if any([_ > 1 for _ in info["company"].values()]):
+                        if any([_ > 50 for _ in info["company"].values()]): 
+                            print(f"    {HIFREQ}{idx:^8} {info['title']:60}{Colors.END} {info['level']:<15}", end="")
+                        else: 
+                            print(f"    {idx:^8} {info['title']:60} {info['level']:<15}", end="")
+                        print(f"{' / '.join(sorted([table[_] if _ in table else _ for _ in info['tags'][:3]])):<50}", end="")
+                        print(f"{' | '.join([k.capitalize()[:3] if v != 0 else '   ' for k, v in sorted(info['company'].items())])}")
+                    else:
+                        print(f"    {GREY}{idx:^8} {' '.join(problem_id.split('_')[2:]).capitalize()} {Colors.END}")
             print(f"    {' '*85}{TYPE} ({element}) {Colors.END}")
             print("    " + "=====" * 34)
         print(f"      Total: {counter}")
-
 
     if argp.prob:
         #   | Collect
